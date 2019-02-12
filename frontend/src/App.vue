@@ -10,11 +10,20 @@
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  font-family: gotham_light;
+  letter-spacing: 1.1px;
   color: #2c3e50;
   margin-top: 60px;
 }
+@font-face {
+  font-family: gotham_light;
+  src: url('./../public/fonts/GothamRounded-Light.otf');
+}
+
+
+
 </style>
+
