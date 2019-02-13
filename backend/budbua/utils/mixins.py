@@ -1,16 +1,15 @@
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
 
 
 class TimeStampable(models.Model):
     created_at = models.DateTimeField(
-        _('created at'),
+        verbose_name='created at',
         default=timezone.now
     )
 
     updated_at = models.DateTimeField(
-        _('updated at'),
+        verbose_name='updated at',
         default=timezone.now
     )
 

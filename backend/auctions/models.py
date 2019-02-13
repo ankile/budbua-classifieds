@@ -1,7 +1,15 @@
 from django.db import models
 
+from budbua.utils.mixins import TimeStampable
 
-class Ad(models.Model):
+
+class Ad(TimeStampable):
+
+    class Meta:
+        ordering = ('-created_at', )
+
+    def __str__(self):
+        return f'Ad(owner={self.owner}, title="{self.title}")'
 
     owner = models.ForeignKey(
         'users.User',
@@ -19,26 +27,40 @@ class Ad(models.Model):
         verbose_name='description',
     )
 
+    bid_end_time = models.DateTimeField(
+        verbose_name='bid end time',
+    )
+
     minimum_bid = models.IntegerField(
         verbose_name='minimum bid',
         default=0,
     )
 
-    bid_end_time = models.DateTimeField(
-        verbose_name='bid end time',
-    )
+    @property
+    def maximum_bid(self):
+        return self.bids.first().value if self.bids.count() else None
 
 
-class Bid(models.Model):
+class Bid(TimeStampable):
 
-    bidder = models.OneToOneField(
+    class Meta:
+        ordering = ('-created_at', )
+
+    def __str__(self):
+        return f'Bid(bidder={self.bidder}, ad={self.ad.title}, value={self.value})'
+
+    bidder = models.ForeignKey(
         'users.User',
         on_delete=models.CASCADE,
         related_name='bids',
     )
 
-    ad = models.OneToOneField(
+    ad = models.ForeignKey(
         'auctions.Ad',
         on_delete=models.CASCADE,
         related_name='bids',
+    )
+
+    value = models.IntegerField(
+        verbose_name='value',
     )
