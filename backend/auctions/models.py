@@ -38,7 +38,7 @@ class Bid(models.Model):
     )
 
     ad = models.OneToOneField(
-        'actions.Ad',
+        'auctions.Ad',
         on_delete=models.CASCADE,
         related_name='bids',
     )
