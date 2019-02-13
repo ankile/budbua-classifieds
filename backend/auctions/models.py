@@ -40,6 +40,10 @@ class Ad(TimeStampable):
     def maximum_bid(self):
         return self.bids.first().value if self.bids.count() else None
 
+    @property
+    def num_bids(self):
+        return self.bids.count()
+
 
 class Bid(TimeStampable):
 
