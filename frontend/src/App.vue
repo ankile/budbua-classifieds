@@ -1,8 +1,8 @@
+
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link>
     </div>
     <router-view/>
   </div>
@@ -10,11 +10,20 @@
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  font-family: gotham_light;
+  letter-spacing: 1.1px;
   color: #2c3e50;
   margin-top: 60px;
 }
+@font-face {
+  font-family: gotham_light;
+  src: url('./../public/fonts/GothamRounded-Light.otf');
+}
+
+
+
 </style>
+
