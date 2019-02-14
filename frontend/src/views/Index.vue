@@ -1,5 +1,6 @@
 <template>
     <div class="index">
+        <AdSearch></AdSearch>
         <Ad v-bind:ads="ads"></Ad>
     </div>
 </template>
@@ -7,12 +8,14 @@
 
 <script>
     import Ad from './ad/Ad'
+    import AdSearch from './ad/AdSearch'
     import axios from 'axios';
 
     export default {
         name: "Index",
         components: {
-            Ad
+            Ad,
+            AdSearch
         },
         data() {
             return {
