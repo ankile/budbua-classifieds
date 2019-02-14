@@ -4,7 +4,7 @@
       <h3>{{ad.title}}</h3>
     </router-link>
     <router-link v-bind:to="'/details/'+ad.id">
-      <img src="./logo.png" alt="Annonsebilde">
+      <img  alt="Annonsebilde">
     </router-link>
   </div>
 </template>
