@@ -26,20 +26,29 @@
     padding: 0;
   }
 
-  #app {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    font-family: gotham_light;
-    letter-spacing: 1.1px;
-    color: #2c3e50;
-
-  }
   @font-face {
     font-family: gotham_light;
     src: url('./../public/fonts/GothamRounded-Light.otf');
   }
+  @font-face {
+    font-family: gotham_bold;
+    src: url('./../public/fonts/GothamRounded-Bold.otf');
+  }
+  @font-face {
+    font-family: gotham;
+    src: url('./../public/fonts/GothamRounded-Medium.otf');
+  }
 
+  #app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    font-family: gotham_light ;
+    letter-spacing: 1.1px;
+    color: #2c3e50;
+    background-color: #F2F2F2;
+
+  }
 
 
 </style>

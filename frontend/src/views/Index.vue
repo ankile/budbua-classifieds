@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-       <Login v-bind:value="test"></Login>
+       <authWrapper></authWrapper>
     </div>
 </template>
 
@@ -9,12 +9,12 @@
     import Ad from './ad/Ad'
     import AdSearch from './ad/AdSearch'
     import axios from 'axios';
-    import Login from './auth/Login'
+    import authWrapper from './auth/authWrapper'
 
     export default {
         name: "Index",
         components: {
-            Login
+            authWrapper
         },
         data() {
             return {

@@ -57,7 +57,7 @@ currently the following variants are accepted:
         width:175px;
         height:40px;
         border-radius: 5px;
-        border:1px solid #313639;
+        border:1px solid #8f8f8f;
         padding:5px;
         font-size:1em;
         outline:none;
@@ -66,10 +66,10 @@ currently the following variants are accepted:
 
     .text-input--large{
         width:500px;
-        height:45px;
+        height:50px;
         border-radius: 5px;
-        border:1px solid #313639;
-        padding:5px;
+        border:1px solid #8f8f8f;
+        padding:10px;
         font-size:1em;
         outline:none;
         -webkit-appearance: none;

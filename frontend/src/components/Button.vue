@@ -48,3 +48,17 @@ currently the following variants are accepted:
     }
 
 </script>
+
+<style scoped>
+    .button--small{
+        width:150px;
+        border: 2px solid #3d5aff;
+        height:50px;
+        border-radius: 5px;
+        font-size:1em;
+        font-family: gotham;
+        z-index:100;
+        outline:none;
+    }
+
+</style>
