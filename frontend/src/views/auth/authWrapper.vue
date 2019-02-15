@@ -30,7 +30,7 @@ This file wraps the Register.vue and Login.vue components into a single view.
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .authWrapper-container{
     width: 100%;

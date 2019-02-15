@@ -31,7 +31,7 @@ Components used:
 
             <div class="input-group">
                 <BaseButton
-                        v-bind:variant="'button--small'"
+                        v-bind:variant="'button--small primary'"
                         v-bind:text="'Logg inn'">
 
                 </BaseButton>
@@ -73,7 +73,7 @@ Components used:
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
     .card-header{
         font-size:2em;

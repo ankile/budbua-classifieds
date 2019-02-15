@@ -18,7 +18,7 @@ currently the following variants are accepted:
             v-on="listeners"
             :class="variant"
     >
-        {{this.text}}
+        {{text}}
     </button>
 
 </template>
@@ -49,10 +49,12 @@ currently the following variants are accepted:
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    @import './../common.scss';
+
     .button--small{
         width:150px;
-        border: 2px solid #3d5aff;
+        border: 2px solid black;
         height:50px;
         border-radius: 5px;
         font-size:1em;
@@ -60,5 +62,10 @@ currently the following variants are accepted:
         z-index:100;
         outline:none;
     }
-
+    .primary{
+        border: 2px solid $primary !important;
+    }
+    .primary:active{
+        background-color: $primary-light;
+    }
 </style>

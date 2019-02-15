@@ -19,7 +19,10 @@
 
 
 
-<style>
+<style lang="scss">
+  @import 'common.scss';
+
+
   * {
     box-sizing: border-box;
     margin: 0;
