@@ -75,7 +75,9 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=2)
+    # TODO Uncomment this line before pushing to production
+    # 'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=2)
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=365)
 }
 
 ROOT_URLCONF = 'budbua.urls'
