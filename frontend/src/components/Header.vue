@@ -3,6 +3,7 @@
     <h1>Budbua AS</h1>
     <div id="nav">
         <router-link to="/">Hjem</router-link>  |
+        <router-link to="/about">Om Oss</router-link>
     </div>
     </header>
 </template>
