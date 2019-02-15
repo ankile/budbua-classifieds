@@ -17,13 +17,13 @@ class UserDetailView(APIView):
 
     @staticmethod
     def put(request):
-        serializer = UserUpdateSerializer(request.user, data=request.data)
+        serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_200_OK)
 
     @staticmethod
-    def delete(_):
+    def delete(request):
         request.user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -34,7 +34,6 @@ class UserCreateView(APIView):
 
     @staticmethod
     def post(request):
-        print(request.data)
         serializer = UserCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
