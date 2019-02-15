@@ -1,3 +1,4 @@
+import axios from 'axios'
 
 class Api {
     static headers() {
@@ -15,5 +16,15 @@ class Api {
         }
 
         return headers;
+    }
+
+    static config() {
+        let config = {
+            headers: Api.headers()
+        }
+    }
+    static get(url) {
+        const config = Api.config();
+        return axios.get(url, config)
     }
 }
