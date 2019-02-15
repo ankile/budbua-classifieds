@@ -30,10 +30,8 @@ class AdCreateSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        validated_data.context['user']
-        ad = Ad.objects.create(**validated_data, owner=user)
-
-        return ad
+        validated_data['owner'] = self.context['user']
+        return super().create(validated_data)
 
 
 class AdDetailSerializer(serializers.ModelSerializer):
@@ -43,7 +41,4 @@ class AdDetailSerializer(serializers.ModelSerializer):
         read_only_fields = ('first_name', 'last_name', 'email', )
         fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner', ) \
             + read_only_fields
-        extra_kwargs = {
-
-        }
 
