@@ -12,6 +12,8 @@ currently the following variants are accepted:
     text-input--small
     text-input--large
 
+
+TODO: add support for different types of input, preventing having multiple files for inputs
 -->
 
 <template>
@@ -52,7 +54,7 @@ currently the following variants are accepted:
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
     .text-input--small{
         width:175px;
         height:40px;

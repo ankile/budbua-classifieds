@@ -9,19 +9,19 @@ Components used:
 
 <template>
     <div class="login-container">
-        <Card class="login-card">
+        <BaseCard class="login-card">
             <div class="card-header"> <!--TODO: legg card-header inn i selve card komponenten -->
                 Logg deg inn på Budbua!
             </div>
             <div class="input-group">
-                <Input_Text
+                <BaseInput_Text
                         v-model="usernameInput"
                         v-bind:variant="'text-input--large'"
                         v-bind:placeholder="'Skriv ditt brukernavn'"
                         class="input"
                 />
 
-                <Input_Text
+                <BaseInput_Text
                         v-model="passwordInput"
                         v-bind:variant="'text-input--large'"
                         v-bind:placeholder="'Skriv ditt passord'"
@@ -30,22 +30,22 @@ Components used:
             </div>
 
             <div class="input-group">
-                <Button
+                <BaseButton
                         v-bind:variant="'button--small'"
                         v-bind:text="'Logg inn'">
 
-                </Button>
+                </BaseButton>
             </div>
 
-        </Card>
+        </BaseCard>
 
     </div>
 </template>
 
 <script>
-    import Input_Text from "../../components/Input_Text";
-    import Button from "../../components/Button";
-    import Card from "../../components/Card";
+    import BaseInput_Text from "../../components/BaseInput_Text";
+    import BaseButton from "../../components/BaseButton";
+    import BaseCard from "../../components/BaseCard";
 
     export default {
 
@@ -57,9 +57,9 @@ Components used:
         },
 
         components: {
-            Input_Text,
-            Button,
-            Card
+            BaseInput_Text,
+            BaseButton,
+            BaseCard
         },
 
         methods: {
