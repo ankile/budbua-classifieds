@@ -18,7 +18,7 @@ currently the following variants are accepted:
             v-on="listeners"
             :class="variant"
     >
-        {{text}}
+       <slot />
     </button>
 
 </template>
@@ -27,10 +27,6 @@ currently the following variants are accepted:
 
     export default{
         props:{
-            text:{
-                type:String,
-                default:''
-            },
             variant:{
                 type:String,
                 default:'button--small'
@@ -52,20 +48,20 @@ currently the following variants are accepted:
 <style lang="scss" scoped>
     @import './../common.scss';
 
+    .button--primary{
+        background-color: $primary-dark;
+        color:white;
+    }
+    .button-primary:active{
+        background-color: $primary-light;
+    }
     .button--small{
-        width:150px;
-        border: 2px solid black;
-        height:50px;
+        width:160px;
+        height:53px;
         border-radius: 5px;
-        font-size:1em;
+        font-size:1.05em;
         font-family: gotham;
         z-index:100;
         outline:none;
-    }
-    .primary{
-        border: 2px solid $primary !important;
-    }
-    .primary:active{
-        background-color: $primary-light;
     }
 </style>

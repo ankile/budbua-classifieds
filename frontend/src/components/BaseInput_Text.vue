@@ -35,7 +35,7 @@ TODO: add support for different types of input, preventing having multiple files
             },
             variant:{
                 type:String,
-                default:'text-input--small'
+                default:'text-input'
             },
             placeholder:{
                 type:String,
@@ -55,6 +55,9 @@ TODO: add support for different types of input, preventing having multiple files
 </script>
 
 <style scoped>
+    .text-input{
+        border-radius: 5px;
+    }
     .text-input--small{
         width:175px;
         height:40px;

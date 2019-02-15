@@ -5,7 +5,7 @@ This file wraps the Register.vue and Login.vue components into a single view.
 -->
 
 <template>
-    <div class="authWrapper-container">
+    <div class="authWrapper">
         <Login />
     </div>
 </template>
@@ -32,7 +32,7 @@ This file wraps the Register.vue and Login.vue components into a single view.
 
 <style lang="scss" scoped>
 
-.authWrapper-container{
+.authWrapper{
     width: 100%;
     height: 100%;
     display: flex;

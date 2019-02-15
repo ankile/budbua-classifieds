@@ -9,33 +9,41 @@ Components used:
 
 <template>
     <div class="login-container">
-        <BaseCard class="login-card">
-            <div class="card-header"> <!--TODO: legg card-header inn i selve card komponenten -->
+        <BaseCard class="card__login">
+
+            <template slot="header"> <!--TODO: legg card-header inn i selve card komponenten -->
                 Logg deg inn på Budbua!
-            </div>
-            <div class="input-group">
-                <BaseInput_Text
-                        v-model="usernameInput"
-                        v-bind:variant="'text-input--large'"
-                        v-bind:placeholder="'Skriv ditt brukernavn'"
-                        class="input"
-                />
+            </template>
 
-                <BaseInput_Text
-                        v-model="passwordInput"
-                        v-bind:variant="'text-input--large'"
-                        v-bind:placeholder="'Skriv ditt passord'"
-                        class="input"
-                />
-            </div>
+            <template>
+                <div class="login__input">
+                    <BaseInput_Text
+                            v-model="usernameInput"
+                            v-bind:variant="'text-input--large'"
+                            v-bind:placeholder="'Skriv ditt brukernavn'"
+                            class="text-input__login"
+                    />
 
-            <div class="input-group">
-                <BaseButton
-                        v-bind:variant="'button--small primary'"
-                        v-bind:text="'Logg inn'">
+                    <BaseInput_Text
+                            v-model="passwordInput"
+                            v-bind:variant="'text-input--large'"
+                            v-bind:placeholder="'Skriv ditt passord'"
+                            class="text-input__login"
+                    />
+                </div>
+                <div class="login__footer">
+                    <BaseButton
+                            v-bind:variant="'button--small button--primary'"
+                            class="footer__button"
+                    >
+                        Logg inn
+                    </BaseButton>
 
-                </BaseButton>
-            </div>
+                    <BaseLink class="footer__link">
+                        Registrer deg
+                    </BaseLink>
+                </div>
+            </template>
 
         </BaseCard>
 
@@ -46,6 +54,7 @@ Components used:
     import BaseInput_Text from "../../components/BaseInput_Text";
     import BaseButton from "../../components/BaseButton";
     import BaseCard from "../../components/BaseCard";
+    import BaseLink from "../../components/BaseLink";
 
     export default {
 
@@ -59,7 +68,8 @@ Components used:
         components: {
             BaseInput_Text,
             BaseButton,
-            BaseCard
+            BaseCard,
+            BaseLink
         },
 
         methods: {
@@ -75,20 +85,20 @@ Components used:
 
 <style lang="scss" scoped>
 
-    .card-header{
-        font-size:2em;
+    .login__input{
 
-        border-bottom:1px solid #B7B7B7;
-        padding:10px 0 25px 0;
-        margin: 0 0 35px 0;
     }
-    .login-card{
-        padding:20px 0 20px 0;
+    .text-input__login{
+        margin:0 0 25px 0;
     }
-    .input{
-        margin:10px;
+
+    .login__footer{
+        margin:20px 0 20px 0;
+        display: grid;
+        grid-template-columns: auto;
+        grid-gap: 20px;
+        justify-items: center;
+
     }
-    button{
-        margin:30px 0 10px 0; /*TODO: klasse her*/
-    }
+
 </style>

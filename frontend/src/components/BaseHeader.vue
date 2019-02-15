@@ -15,9 +15,11 @@
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
+    @import './../common.scss';
+
     .header {
-        background: #333;
+        background: $primary;
         color: white;
         text-align: center;
         padding: 10px;

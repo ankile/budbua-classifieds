@@ -49,7 +49,7 @@
     font-family: gotham_light ;
     letter-spacing: 1.1px;
     color: #2c3e50;
-    background-color: #F2F2F2;
+    background-color: $off-white;
 
   }
 
