@@ -11,6 +11,7 @@
 <script>
   import AdItem from './AdItem'
   import axios from 'axios'
+  import Api from '../api'
 
   export default {
       name: "Ad",
@@ -23,9 +24,12 @@
         }
       },
       created() {
-          axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
-              .then(res => this.ads = res.data)
-              .catch(err => console.log(err));
+          //axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+            //  .then(res => this.ads = res.data)
+              //.catch(err => console.log(err));
+          Api.get('auctions/ads/')
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
       }
   }
 </script>

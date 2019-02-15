@@ -25,7 +25,7 @@
 <style scoped>
   div {
     text-align: left;
-    padding: 3rem;
+    padding: 2rem;
   }
 
   .box_warning {
@@ -34,6 +34,8 @@
   }
 
   p {
-    padding: 3rem;
+    padding: 2rem;
+    background: #aaa;
+    margin-bottom: 1rem;
   }
 </style>
