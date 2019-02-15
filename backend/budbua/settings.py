@@ -27,8 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
 )
@@ -36,7 +34,6 @@ CORS_ORIGIN_WHITELIST = (
 AUTH_USER_MODEL = 'users.User'
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
