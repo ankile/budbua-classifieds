@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from users.serializers import UserSerializer, UserUpdateSerializer
+from users.serializers import UserSerializer, UserUpdateSerializer, UserCreateSerializer
 
 
 class UserDetailView(APIView):
@@ -17,7 +17,7 @@ class UserDetailView(APIView):
 
     @staticmethod
     def put(request):
-        serializer = UserUpdateSerializer(request.data)
+        serializer = UserUpdateSerializer(request.user, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_200_OK)
@@ -34,7 +34,8 @@ class UserCreateView(APIView):
 
     @staticmethod
     def post(request):
-        serializer = UserCreateSerializer(request.data)
+        print(request.data)
+        serializer = UserCreateSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)

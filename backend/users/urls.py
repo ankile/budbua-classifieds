@@ -8,6 +8,6 @@ urlpatterns = [
     path('api-token-refresh/', refresh_jwt_token),
     path('api-token-verify/', verify_jwt_token, name='verify-token'),
 
-    path('users/', views.UserDetailView.as_view(), name='users'),
-    path('users/create/', views.UserCreateView.as_view(), name='users'),
+    path('', views.UserDetailView.as_view(), name='users'),
+    path('create/', views.UserCreateView.as_view(), name='users'),
 ]

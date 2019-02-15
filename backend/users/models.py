@@ -1,26 +1,15 @@
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin, UserManager
+from django.contrib.auth.models import PermissionsMixin
 from django.db import models
 
+from budbua.utils.managers import CustomUserManager
 from budbua.utils.mixins import TimeStampable
 
 
 class User(AbstractBaseUser, PermissionsMixin, TimeStampable):
-    username = models.CharField(
-        verbose_name='username',
-        max_length=255,
-        unique=True,
-    )
-
     email = models.EmailField(
         verbose_name='email',
         unique=True,
-    )
-
-    phone_number = models.CharField(
-        verbose_name='phone number',
-        max_length=255,
-        blank=True,
     )
 
     first_name = models.CharField(
@@ -55,8 +44,6 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampable):
         return f'{self.first_name if self.first_name else ""}{" " + str(self.last_name)  if self.first_name else ""}' \
             if self.first_name or self.last_name else self.username
 
-    objects = UserManager()
+    objects = CustomUserManager()
 
-    USERNAME_FIELD = 'username'
-
-    REQUIRED_FIELDS = ['email']
+    USERNAME_FIELD = 'email'
