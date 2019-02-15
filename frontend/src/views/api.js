@@ -25,7 +25,7 @@ export default class Api {
     }
 
     static addHostToPath(path) {
-        const host = 'localhost:8000/'; //TODO make enviroment variable
+        const host = 'http://localhost:8000/'; //TODO make enviroment variable
         return host + path;
     }
 
