@@ -30,11 +30,8 @@ class AdCreateSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        user = self.context['user']
-
-        minimum_bid = validated_data.pop('minimum_bid', None) or 0
+        validated_data.context['user']
         ad = Ad.objects.create(**validated_data, owner=user)
-        Bid.objects.create(ad=ad, value=minimum_bid)
 
         return ad
 

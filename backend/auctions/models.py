@@ -32,6 +32,11 @@ class Ad(TimeStampable):
         verbose_name='bid end time',
     )
 
+    minimum_bid = models.IntegerField(
+        verbose_name='minimum bid',
+        default=0,
+    )
+
     zip_code = models.IntegerField(
         verbose_name='zip code',
         null=True, blank=True,
@@ -42,12 +47,8 @@ class Ad(TimeStampable):
         return self.bids.first().value if self.bids.count() else None
 
     @property
-    def minimum_bid(self):
-        return self.bids.last().value
-
-    @property
     def num_bids(self):
-        return self.bids.count() - 1
+        return self.bids.count()
 
     @property
     def first_name(self):
