@@ -20,12 +20,12 @@ export default class Api {
 
     static config() {
         return {
-            headers: Api.headers()
+            headers: Api.headers(),
         };
     }
 
     static addHostToPath(path) {
-        const host = 'http://localhost:8000/'; //TODO make enviroment variable
+        const host = String(process.env.VUE_APP_API_BASE_URL); //TODO make enviroment variable
         return host + path;
     }
 
