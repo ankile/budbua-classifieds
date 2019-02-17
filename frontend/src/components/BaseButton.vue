@@ -56,12 +56,19 @@ currently the following variants are accepted:
         background-color: $primary-light;
     }
     .button--small{
-        width:160px;
+        width:10em;
         height:53px;
         border-radius: 5px;
         font-size:1.05em;
         font-family: gotham;
         z-index:100;
         outline:none;
+        @include respond-to(wide) {
+            width:10em;
+        }
+        @include respond-to(medium) {
+            max-width:10em;
+        }
     }
+
 </style>

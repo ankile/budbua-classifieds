@@ -5,9 +5,9 @@ Styled default link component
 -->
 
 <template>
-    <a v-on="listeners" :class="variant">
+    <router-link :to="to" v-on="listeners" :class="variant">
         <slot/>
-    </a>
+    </router-link>
 </template>
 
 <script>
@@ -16,6 +16,10 @@ Styled default link component
             variant:{
                 type:String,
                 default:'link'
+            },
+            to:{
+                type:String,
+                default:'/'
             }
         },
         computed: {
@@ -35,7 +39,6 @@ Styled default link component
     .link {
         color: $primary;
         text-underline:$primary;
-        text-decoration:underline;
         text-decoration-color: $primary;
     }
 </style>

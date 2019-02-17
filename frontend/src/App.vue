@@ -47,6 +47,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     font-family: gotham_light ;
+    width:100vw;
+    height:100vh;
     letter-spacing: 1.1px;
     color: #2c3e50;
     background-color: $off-white;

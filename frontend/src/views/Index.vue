@@ -1,6 +1,6 @@
 <template>
     <div class="index">
-       <authWrapper></authWrapper>
+
     </div>
 </template>
 
@@ -9,12 +9,11 @@
     import Ad from './ad/Ad'
     import AdSearch from './ad/AdSearch'
     import axios from 'axios';
-    import authWrapper from './auth/authWrapper'
 
     export default {
         name: "Index",
         components: {
-            authWrapper
+
         },
         data() {
             return {
@@ -33,6 +32,7 @@
 <style scoped>
     .index {
         height: 100vh;
+        width:100vw;
     }
 
 </style>

@@ -1,43 +1,50 @@
 <!--
 
-This component contains logic, styling and structure for registering a new, basic privileged, user on the site.
+This component contains logic, styling and structure for a user to log into their existing account on the site.
+
+Components used:
+    - Input_Text
 
 -->
 
 <template>
-    <div class="reg-container">
-        <BaseCard class="card__reg">
+    <div class="login-container">
+        <BaseCard class="card__login">
 
             <template slot="header"> <!--TODO: legg card-header inn i selve card komponenten -->
-                Logg deg inn på Budbua!
+                Registrer deg på Budbua!
             </template>
 
             <template>
-                <div class="reg__input">
+                <div class="login__input">
                     <BaseInput_Text
                             v-model="usernameInput"
                             v-bind:variant="'text-input--large'"
-                            v-bind:placeholder="'Skriv ditt brukernavn'"
-                            class="text-input__reg"
+                            v-bind:placeholder="'Brukernavn'"
+                            class="text-input__login"
                     />
-
+                    <BaseInput_Text
+                            v-model="emailInput"
+                            v-bind:variant="'text-input--large'"
+                            v-bind:placeholder="'Email'"
+                            class="text-input__login"
+                    />
                     <BaseInput_Text
                             v-model="passwordInput"
                             v-bind:variant="'text-input--large'"
-                            v-bind:placeholder="'Skriv ditt passord'"
-                            class="text-input__reg"
+                            v-bind:placeholder="'Passord'"
+                            class="text-input__login"
                     />
                 </div>
-                <div class="reg__footer">
+                <div class="login__footer">
                     <BaseButton
                             v-bind:variant="'button--small button--primary'"
                             class="footer__button"
-                            v-on="submitRegister"
                     >
                         Register deg
                     </BaseButton>
 
-                    <BaseLink class="footer__link">
+                    <BaseLink to="/login" class="footer__link">
                         Logg inn
                     </BaseLink>
                 </div>
@@ -59,6 +66,7 @@ This component contains logic, styling and structure for registering a new, basi
         data() {
             return {
                 usernameInput: '',
+                emailInput: '',
                 passwordInput: ''
             }
         },
@@ -82,6 +90,11 @@ This component contains logic, styling and structure for registering a new, basi
 </script>
 
 <style lang="scss" scoped>
+
+    .login-container{
+        width:100%;
+        height:100%;
+    }
 
     .login__input{
 

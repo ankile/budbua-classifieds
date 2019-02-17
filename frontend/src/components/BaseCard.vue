@@ -10,7 +10,7 @@ A styled card-component meant for wrapping other components.
     <div class="card">
         <div class="card__header">
 
-            <slot name="header"/>
+            <slot name="header" class="card__header"/>
 
         </div>
 
@@ -38,21 +38,22 @@ A styled card-component meant for wrapping other components.
 </script>
 
 <style lang="scss" scoped>
+    @import './../common.scss';
+
 
     .card {
         background-color: white;
-        width: 800px;
+        width: 100%;
         border-radius: 5px;
-        min-height: 200px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     }
 
     .card--small {
-        width: 500px;
+        width: 50%;
     }
 
     .card--medium {
-        width: 800px;
+        width: 70%;
     }
 
     .card--fill {
@@ -61,7 +62,6 @@ A styled card-component meant for wrapping other components.
 
     .card__header {
         font-size: 2em;
-
         border-bottom: 1px solid #B7B7B7;
         padding: 25px 0 25px 0;
         margin: 0 0 35px 0;

@@ -5,13 +5,13 @@ This file wraps the Register.vue and Login.vue components into a single view.
 -->
 
 <template>
-    <div class="authWrapper">
-        <Login />
+    <div class="register-wrapper">
+        <Register />
     </div>
 </template>
 
 <script>
-   import Login from './Login'
+   import Register from './Registrer'
 
     export default {
 
@@ -23,7 +23,7 @@ This file wraps the Register.vue and Login.vue components into a single view.
         },
 
         components: {
-           Login
+           Register
         }
 
     }
@@ -31,13 +31,26 @@ This file wraps the Register.vue and Login.vue components into a single view.
 </script>
 
 <style lang="scss" scoped>
+    @import './../../common.scss';
 
-.authWrapper{
+.register-wrapper{
     width: 100%;
     height: 100%;
+    margin:20px auto 10px auto;
     display: flex;
     justify-content: center;
-    margin-top:100px;
+    margin-top:3vh;
+    @include respond-to(wide) {
+        max-width: 700px;
+    }
+    @include respond-to(medium) {
+        max-width:75vw;
+    }
+    @include respond-to(phone) {
+        max-width:95%;
+    }
+
+
 }
 
 </style>

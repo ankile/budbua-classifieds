@@ -59,7 +59,7 @@ TODO: add support for different types of input, preventing having multiple files
         border-radius: 5px;
     }
     .text-input--small{
-        width:175px;
+        width:100%;
         height:40px;
         border-radius: 5px;
         border:1px solid #8f8f8f;
@@ -70,7 +70,7 @@ TODO: add support for different types of input, preventing having multiple files
     }
 
     .text-input--large{
-        width:500px;
+        width:100%;
         height:50px;
         border-radius: 5px;
         border:1px solid #8f8f8f;
