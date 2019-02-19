@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1dd9b4bd-f2e7-4653-b032-f416480f5f6b/deploy-status)](https://app.netlify.com/sites/gallant-swirles-109ebc/deploys)
+
 # frontend
 
 ### Project setup

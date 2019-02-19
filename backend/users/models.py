@@ -50,6 +50,11 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampable):
         default=False
     )
 
+    @property
+    def name(self):
+        return f'{self.first_name if self.first_name else ""}{" " + str(self.last_name)  if self.first_name else ""}' \
+            if self.first_name or self.last_name else self.username
+
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
