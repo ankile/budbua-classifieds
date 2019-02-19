@@ -1,6 +1,7 @@
 from django.db import models
 
 from budbua.utils.mixins import TimeStampable
+from django.core.exceptions import ValidationError
 from users.models import User
 
 
@@ -73,6 +74,7 @@ class Bid(TimeStampable):
 
     bidder = models.ForeignKey(
         'users.User',
+        verbose_name='bidder',
         on_delete=models.CASCADE,
         related_name='bids',
         null=True, blank=True,
@@ -80,6 +82,7 @@ class Bid(TimeStampable):
 
     ad = models.ForeignKey(
         'auctions.Ad',
+        verbose_name='ad',
         on_delete=models.CASCADE,
         related_name='bids',
     )
@@ -87,3 +90,17 @@ class Bid(TimeStampable):
     value = models.IntegerField(
         verbose_name='value',
     )
+
+
+    #Implements custom validation
+    def clean(self, *args, **kwargs):
+        if self.bidder == self.ad.owner:
+            raise ValidationError('Bidder and owner can not be the same person')
+        super(Bid, self).clean(*args, **kwargs)
+
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super(Bid, self).save(*args, **kwargs)
+
+
