@@ -10,7 +10,6 @@
 
 <script>
   import AdItem from './AdItem'
-  import axios from 'axios'
   import Api from '../api'
 
   export default {
@@ -24,12 +23,10 @@
         }
       },
       created() {
-          //axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
-            //  .then(res => this.ads = res.data)
-              //.catch(err => console.log(err));
           Api.get('auctions/ads/')
-            .then(res => console.log(res))
+            .then(res => this.ads = res.data)
             .catch(err => console.log(err));
+
       }
   }
 </script>
