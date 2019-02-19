@@ -14,9 +14,11 @@ class AdsListCreateView(APIView):
 
     # TODO Implement searching and pagination
     @staticmethod
-    def get(_):
+    def get(request):
 
-        ads = Ad.objects.all()[:25]
+        print(request.GET)
+        search_query = request.GET.get("search","")
+        ads = Ad.objects.filter(title__icontains=search_query)
         serializer = AdListSerializer(ads, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)

@@ -7,13 +7,13 @@ class Messages(models.Model):
 
     message_sender = models.ForeignKey(
         'users.User',
-        verbose_name='sender',
+        verbose_name='message sender',
         on_delete=models.CASCADE()
     )
 
     message_receiver = models.ForeignKey(
         'users.User',
-        verbose_name='receiver',
+        verbose_name='message receiver',
         on_delete=models.CASCADE()
     )
 
