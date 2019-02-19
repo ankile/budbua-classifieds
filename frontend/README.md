@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1dd9b4bd-f2e7-4653-b032-f416480f5f6b/deploy-status)](https://app.netlify.com/sites/gallant-swirles-109ebc/deploys)
+
 # frontend
 
 ### Project setup
@@ -27,6 +29,17 @@ npm run lint
 
 #### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+# colors
+
+- primary: #2962ff
+- primary light: #768fff
+- primary dark: #0039cb
+- offwhite: #F2F2F2
+- offblack #B7B7B7
+
+
 
 
 # Prosjektstruktur 

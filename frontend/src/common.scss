@@ -1,0 +1,30 @@
+/* This file contains global scss variables */
+
+/*  COLORS  */
+
+$primary: #2962ff;
+$primary-light:#768fff;
+$primary-dark:#0039cb;
+
+$off-white:#F2F2F2;
+$off-black:#2c3e50;
+
+
+
+
+/* MEDIA QUERIES */
+
+$break-small: 411px;
+$break-large: 1024px;
+
+@mixin respond-to($media) {
+  @if $media == phone {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
