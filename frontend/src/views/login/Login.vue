@@ -7,54 +7,43 @@ Components used:
 
 -->
 
-<template>
-    <div class="login-container">
-        <BaseCard class="card__login">
+<template lang="html">
+    <div class="background">
+        <sui-grid centered vertical-align="middle">
+            <sui-grid-column>
 
-            <template slot="header"> <!--TODO: legg card-header inn i selve card komponenten -->
-                Logg deg inn på Budbua!
-            </template>
+                <h2 is="sui-header" color="blue" image>
 
-            <template>
-                <div class="login__input">
-                    <BaseInput_Text
-                            v-model="usernameInput"
-                            v-bind:variant="'text-input--large'"
-                            v-bind:placeholder="'Skriv ditt brukernavn'"
-                            class="text-input__login"
-                    />
+                    <sui-header-content>Log-in to your account</sui-header-content>
+                </h2>
 
-                    <BaseInput_Text
-                            v-model="passwordInput"
-                            v-bind:variant="'text-input--large'"
-                            v-bind:placeholder="'Skriv ditt passord'"
-                            class="text-input__login"
-                    />
-                </div>
-                <div class="login__footer">
-                    <BaseButton
-                            v-bind:variant="'button--small button--primary'"
-                            class="footer__button"
-                    >
-                        Logg inn
-                    </BaseButton>
+                <sui-form>
+                    <sui-segment stacked>
+                        <sui-form-field>
+                            <sui-input
+                                    type="email"
+                                    placeholder="E-mail address"
+                                    icon="user"
+                                    icon-position="left" />
+                        </sui-form-field>
+                        <sui-form-field>
+                            <sui-input
+                                    type="password"
+                                    placeholder="Password"
+                                    icon="lock"
+                                    icon-position="left" />
+                        </sui-form-field>
+                        <sui-button size="large" color="blue" fluid>Login</sui-button>
+                    </sui-segment>
+                </sui-form>
 
-                    <BaseLink to="register" class="footer__link">
-                        Registrer deg
-                    </BaseLink>
-                </div>
-            </template>
-
-        </BaseCard>
-
+                <sui-message>New to us? <router-link to="/register">Register</router-link></sui-message>
+            </sui-grid-column>
+        </sui-grid>
     </div>
 </template>
 
 <script>
-    import BaseInput_Text from "../../components/BaseInput_Text";
-    import BaseButton from "../../components/BaseButton";
-    import BaseCard from "../../components/BaseCard";
-    import BaseLink from "../../components/BaseLink";
 
     export default {
 
@@ -66,14 +55,11 @@ Components used:
         },
 
         components: {
-            BaseInput_Text,
-            BaseButton,
-            BaseCard,
-            BaseLink
         },
 
         methods: {
             submitLogin() {
+
 
             }
 
