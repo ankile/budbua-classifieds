@@ -7,6 +7,7 @@ import About from "./views/About";
 Vue.use(Router);
 
 export default new Router({
+  mode: 'hash',
   routes: [
     {
       path: '/',
@@ -23,5 +24,14 @@ export default new Router({
       name: 'about',
       component: About
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) { //preserves the scrolling position of history entries
+    if (savedPosition) {
+      console.log(savedPosition);
+      return savedPosition
+    } else {
+      console.log("no saved position");
+      return { x: 0, y: 0 }
+    }
+  }
 })
