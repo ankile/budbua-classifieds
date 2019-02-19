@@ -42,3 +42,12 @@ class AdDetailSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner', ) \
             + read_only_fields
 
+
+class BidSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ('bidder', 'ad', 'value')
+        model = Bid
+
+
+
+
