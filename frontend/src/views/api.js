@@ -7,9 +7,7 @@ export default class Api {
             "Content-Type": "application/json",
         };
 
-        //let token = localStorage.getItem("token");
-        let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6Iml2YXJubSIsImV4cCI6MTU4MTc3MjM0MCwiZW1haWwiOiJlZ2ZyYXVzQGdtYWlsLmNvbSJ9.cdxzgKZ_9yJNEsbmLmtegooyerfzxP2XywPt9FZEodc"
-        // JWT with bearer
+        let token = localStorage.getItem("token");
         if (token) {
             headers["Authorization"] = `JWT ${token}`;
         }
