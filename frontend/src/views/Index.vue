@@ -1,6 +1,7 @@
 <template>
     <div class="index">
-
+    <AdSearch></AdSearch>
+    <Ad></Ad>
     </div>
 </template>
 
@@ -12,6 +13,8 @@
     export default {
         name: "Index",
         components: {
+            Ad,
+            AdSearch
 
         },
         data() {

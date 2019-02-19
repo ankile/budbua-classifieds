@@ -4,6 +4,7 @@ import index from './views/Index.vue'
 import Details from "./views/ad/Details";
 import LoginWrapper from "./views/login/LoginWrapper";
 import RegisterWrapper from "./views/register/RegisterWrapper";
+import About from "./views/About";
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/register',
       name:'register',
       component:RegisterWrapper
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
     }
   ],
   scrollBehavior(to, from, savedPosition) { //preserves the scrolling position of history entries
