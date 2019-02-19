@@ -9,7 +9,7 @@
       <h4 class="highest-bid" v-else>Ingen bud lagt inn <br>
         Minimum bud: {{ad.minimumBid}} kr</h4>
       <h5 v-if="timeremaining">Utløper om: {{timeremaining}}</h5>
-      <h5 v-else>Utløpt</h5>
+      <h5 class="expired" v-else>Utløpt</h5>
     </div>
     <router-link v-bind:to="'/details/'+ad.id">
       <img v-bind:src="this.adimage" alt="Annonsebilde">
@@ -86,5 +86,9 @@
 
   h5 {
     margin-top: 20px;
+  }
+
+  .expired {
+    color: red;
   }
 </style>

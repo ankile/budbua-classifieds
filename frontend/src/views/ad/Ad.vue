@@ -17,15 +17,17 @@
       components: {
           AdItem
       },
-      data() {
+      props: ["ads"],
+      /*data() {
         return {
             ads: []
         }
-      },
+      },*/
       created() {
+          /*
           Api.get('auctions/ads/')
             .then(res => this.ads = res.data)
-            .catch(err => console.log(err));
+            .catch(err => console.log(err)); */
 
       }
   }
