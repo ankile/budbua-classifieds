@@ -1,6 +1,12 @@
 import axios from 'axios'
 
-export default class Api {
+
+export {
+    Api,
+    User
+}
+
+class Api {
     static headers() {
         let headers = {
             Accept: "application/json",
@@ -22,7 +28,7 @@ export default class Api {
     }
 
     static addHostToPath(path) {
-        const host = String(process.env.VUE_APP_API_BASE_URL); //TODO make enviroment variable
+        const host = String(process.env.VUE_APP_API_BASE_URL) || "localhost:8080"; //TODO make enviroment variable
         return host + path;
     }
 
@@ -38,5 +44,14 @@ export default class Api {
         return axios.post(fullPath, data, config)
     }
 
+
+}
+
+
+class User extends Api{
+
+    static login(email, password){
+        this.get("/")
+    }
 
 }

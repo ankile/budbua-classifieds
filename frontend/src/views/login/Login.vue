@@ -46,7 +46,7 @@ Components used:
 </template>
 
 <script>
-    import Api from '../api'
+    import {Api, User} from '../../api'
 
     export default {
 
@@ -63,9 +63,7 @@ Components used:
         methods: {
             submitLogin() {
 
-
-
-                Api.post("/user/api-token-auth", {email:this.emailInput, password:this.password})
+                User.login("tets","test")
 
             }
 
