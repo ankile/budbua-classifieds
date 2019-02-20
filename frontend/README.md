@@ -31,6 +31,17 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
+# colors
+
+- primary: #2962ff
+- primary light: #768fff
+- primary dark: #0039cb
+- offwhite: #F2F2F2
+- offblack #B7B7B7
+
+
+
+
 # Prosjektstruktur 
 
 ## Mapper

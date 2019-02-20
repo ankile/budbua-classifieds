@@ -19,7 +19,6 @@
       searchAd(e) {
         e.preventDefault();
         console.log(this.searchQuery);
-
         this.searchQuery = '';
       }
     }
