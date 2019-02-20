@@ -42,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampable):
     @property
     def name(self):
         return f'{self.first_name if self.first_name else ""}{" " + str(self.last_name)  if self.first_name else ""}' \
-            if self.first_name or self.last_name else self.username
+            if self.first_name or self.last_name else self.email
 
     objects = CustomUserManager()
 
