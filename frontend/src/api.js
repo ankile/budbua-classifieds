@@ -51,7 +51,13 @@ class Api {
 class User extends Api{
 
     static login(email, password){
-        this.get("/")
+        this.post("/users/api-token-auth/", {email, password})
+            .error(res=>{
+
+            })
+            .success(res=>{
+                localStorage.setItem("token", JSON.stringify(res.token))
+            })
     }
 
 }

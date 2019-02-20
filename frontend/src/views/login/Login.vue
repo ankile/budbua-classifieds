@@ -61,10 +61,8 @@ Components used:
         },
 
         methods: {
-            submitLogin() {
-
-                User.login("tets","test")
-
+            submitLogin(){
+                User.login(this.emailInput, this.passwordInput);
             }
 
         }
