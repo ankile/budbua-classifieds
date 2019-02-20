@@ -64,7 +64,7 @@ Components used:
                     </sui-segment>
                 </sui-form>
 
-                <sui-message>Eksisterende bruker? <router-link to="/register">Logg inn</router-link></sui-message>
+                <sui-message>Eksisterende bruker? <router-link to="/login">Logg inn</router-link></sui-message>
             </sui-grid-column>
         </sui-grid>
     </div>
