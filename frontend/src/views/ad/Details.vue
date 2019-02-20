@@ -5,16 +5,13 @@
 -->
 
 <template>
-  <div id="singleblog">
+  <div is="sui-container" textAlign="left">
     <h3 v-if="loading">Laster inn...</h3>
     <DetailsGeneral v-bind:ad="ad"></DetailsGeneral>
     <DetailsBid v-bind:ad="ad" v-if="user && !owner"></DetailsBid>
+    <!--<DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport> sprint 2-->
     <DetailsUnregistered v-if="!user"></DetailsUnregistered>
-    <DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd>
-
-    <h2 class='debug debug-top' v-if="user">Debug: user true</h2>
-    <h2 class="debug" v-if="owner">Debug: owner true</h2>
-    <h2 class="debug" v-if="user && !owner">User and not owner</h2>
+    <!--<DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd> sprint 2-->
   </div>
 </template>
 
@@ -25,6 +22,7 @@
     import DetailsBid from "./DetailsBid";
     import DetailsUnregistered from "./DetailsUnregistered";
     import DetailsDeleteAd from "./DetailsDeleteAd";
+    import DetailsReport from "./DetailsReport";
 
 
     export default {
@@ -33,7 +31,8 @@
             DetailsGeneral,
             DetailsBid,
             DetailsUnregistered,
-            DetailsDeleteAd
+            DetailsDeleteAd,
+            DetailsReport
         },
         data() {
             return {
@@ -64,17 +63,10 @@
 
 
 <style scoped>
-  #singleblog {
+  div {
     max-width: 700px;
     margin: 0 auto;
     text-align: left;
   }
 
-
-  .debug {
-    color: red;
-  }
-  .debug-top {
-    margin-top: 150px;
-  }
 </style>

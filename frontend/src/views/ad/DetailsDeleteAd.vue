@@ -7,7 +7,7 @@
 
 <template>
   <div>
-    <button v-on:click="deleteAd">Slett Annonse</button>
+    <sui-button negative fluid size="big" icon="trash alternate outline" v-on:click="deleteAd">Slett Annonse</sui-button>
   </div>
 </template>
 

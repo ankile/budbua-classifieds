@@ -6,11 +6,12 @@
 -->
 
 <template>
-  <div>
-    <h3>Du er ikke logget inn. For å kunne by på en annonse må du være logget inn. Hvis du ikke har en bruker fra før av så kan du registrere en ny bruker. </h3>
-    <router-link to="/login">
-      <button>Logg inn</button>
-    </router-link>
+  <div class="wrap">
+    <sui-segment raised color="blue">
+      <h3>Du er ikke logget inn. For å kunne by på en annonse må du være logget inn. Hvis du ikke har en bruker fra før av så kan du registrere en ny bruker. </h3>
+      <sui-button primary @click="$router.push('/login')">Log Inn</sui-button>
+    </sui-segment>
+
   </div>
 </template>
 
@@ -21,7 +22,7 @@
 </script>
 
 <style scoped>
-  div {
+  .wrap {
     margin-bottom: 2rem;
   }
 
