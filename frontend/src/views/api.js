@@ -35,8 +35,13 @@ export default class Api {
     static post(url, data) {
         const fullPath = Api.addHostToPath(url);
         const config = Api.config();
-        return axios.post(fullPath, data, config)
+        return axios.post(fullPath, data, config);
     }
 
+    static delete(url) {
+        const fullPath = Api.addHostToPath(url);
+        const config = Api.config();
+        return axios.delete(fullPath, config);
+    }
 
 }
