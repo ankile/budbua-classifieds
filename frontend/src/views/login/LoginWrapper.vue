@@ -1,6 +1,7 @@
 <!--
 
 This file wraps the Login.vue component
+
 -->
 
 <template>
@@ -13,14 +14,6 @@ This file wraps the Login.vue component
     import Login from './Login'
 
     export default {
-
-        data() {
-            return {
-                usernameInput: '',
-                passwordInput: ''
-            }
-        },
-
         components: {
             Login
         }

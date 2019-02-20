@@ -28,7 +28,7 @@ class Api {
     }
 
     static addHostToPath(path) {
-        const host = String(process.env.VUE_APP_API_BASE_URL) || "localhost:8080"; //TODO make enviroment variable
+        const host = String(process.env.VUE_APP_API_BASE_URL) || "http://localhost:8080"; //TODO make enviroment variable
         return host + path;
     }
 
@@ -48,16 +48,39 @@ class Api {
 }
 
 
-class User extends Api{
+class User extends Api {
 
-    static login(email, password){
-        this.post("/users/api-token-auth/", {email, password})
-            .error(res=>{
+    static login(email, password) {
+        return new Promise((resolve, reject) => {
+            this.post("/users/api-token-auth/", {email, password})
 
-            })
-            .success(res=>{
-                localStorage.setItem("token", JSON.stringify(res.token))
-            })
+                .then(res => {
+                    localStorage.setItem("token", res.data.token);
+                    resolve();
+                })
+
+                .catch(err => {
+                    reject();
+                });
+        });
+
+    }
+
+
+
+    static register(firstName, lastName, email, password, password2) {
+        return new Promise((resolve, reject) => {
+            this.post("/users/create/",
+                {firstName, lastName, email, password, password2})
+                .then(res => {
+                    resolve();
+                })
+
+                .catch(err => {
+                    reject();
+                });
+        });
+
     }
 
 }
