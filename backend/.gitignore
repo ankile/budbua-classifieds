@@ -4,7 +4,6 @@ db.sqlite3
 /dist
 /venv
 env
-venv/
 __pycache__
 
 # local env files
@@ -12,9 +11,6 @@ __pycache__
 *.env
 .env.local
 .env.*.local
-*.venv
-.venv.local
-.venv.*.local
 
 # Log files
 npm-debug.log*
