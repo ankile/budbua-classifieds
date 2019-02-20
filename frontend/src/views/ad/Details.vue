@@ -1,3 +1,9 @@
+<!--
+  Detailed view of an ad
+  Wrapper for sub views
+  Content depending on user status
+-->
+
 <template>
   <div id="singleblog">
     <h3 v-if="loading">Laster inn...</h3>
