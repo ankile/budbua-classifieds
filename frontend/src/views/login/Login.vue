@@ -8,48 +8,51 @@ Components used:
 -->
 
 <template lang="html">
-    <div class="background">
+    <div class="login-container">
         <sui-grid centered vertical-align="middle">
             <sui-grid-column>
 
                 <h2 is="sui-header" color="blue" image>
 
-                    <sui-header-content>Log-in to your account</sui-header-content>
+                    <sui-header-content class="card--header">Log-in to your account</sui-header-content>
                 </h2>
 
                 <sui-form>
-                    <sui-segment stacked>
+                    <sui-segment >
                         <sui-form-field>
                             <sui-input
                                     type="email"
-                                    placeholder="E-mail address"
+                                    placeholder="Email"
                                     icon="user"
+                                    v-model="emailInput"
                                     icon-position="left" />
                         </sui-form-field>
                         <sui-form-field>
                             <sui-input
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Passord"
+                                    v-model="passwordInput"
                                     icon="lock"
                                     icon-position="left" />
                         </sui-form-field>
-                        <sui-button size="large" color="blue" fluid>Login</sui-button>
+                        <sui-button v-on:click="submitLogin" size="large" color="blue" fluid>Login</sui-button>
                     </sui-segment>
                 </sui-form>
 
-                <sui-message>New to us? <router-link to="/register">Register</router-link></sui-message>
+                <sui-message>Ny bruker? <router-link to="/register">Register</router-link></sui-message>
             </sui-grid-column>
         </sui-grid>
     </div>
 </template>
 
 <script>
+    import Api from '../api'
 
     export default {
 
         data() {
             return {
-                usernameInput: '',
+                emailInput: '',
                 passwordInput: ''
             }
         },
@@ -61,6 +64,9 @@ Components used:
             submitLogin() {
 
 
+
+                Api.post("/user/api-token-auth", {email:this.emailInput, password:this.password})
+
             }
 
         }
@@ -70,26 +76,26 @@ Components used:
 </script>
 
 <style lang="scss" scoped>
+    @import './../../common.scss';
 
     .login-container{
-        width:100%;
+        margin-top:10px;
+        width:90%;
+        text-align: center;
         height:100%;
+
+        @include respond-to(wide) {
+            width:500px;
+        }
+        @include respond-to(medium) {
+            max-width:400px;
+        }
+        @include respond-to(phone) {
+            max-width:300em;
+        }
     }
-
-    .login__input{
-
+    .card--header{
+        text-align: center;
+        width:100%;
     }
-    .text-input__login{
-        margin:0 0 25px 0;
-    }
-
-    .login__footer{
-        margin:20px 0 20px 0;
-        display: grid;
-        grid-template-columns: auto;
-        grid-gap: 20px;
-        justify-items: center;
-
-    }
-
 </style>
