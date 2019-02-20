@@ -13,6 +13,9 @@
     name: "App",
     components: {
       Header
+    },
+    created() {
+        document.title = 'Budbua';
     }
   }
 </script>

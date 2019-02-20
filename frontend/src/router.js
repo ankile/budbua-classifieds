@@ -8,6 +8,7 @@ import RegisterWrapper from "./views/register/RegisterWrapper";
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -29,5 +30,14 @@ export default new Router({
       name:'register',
       component:RegisterWrapper
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) { //preserves the scrolling position of history entries
+    if (savedPosition) {
+      console.log(savedPosition);
+      return savedPosition
+    } else {
+      console.log("no saved position");
+      return { x: 0, y: 0 }
+    }
+  }
 })

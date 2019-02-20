@@ -8,7 +8,6 @@
 <script>
     import Ad from './ad/Ad'
     import AdSearch from './ad/AdSearch'
-    import axios from 'axios';
 
     export default {
         name: "Index",
