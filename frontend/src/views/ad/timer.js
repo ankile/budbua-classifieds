@@ -25,7 +25,7 @@ export default class {
         // formats (depending on how long until endtime)
         // 19s,   // 2m 34s    // 1t 19m    // 5d 13m
 
-        if (timeObject.totalseconds < 0) {
+        if (timeObject.totalseconds <= 0) {
             return {
                 timestring: null,
                 shouldCount: false
