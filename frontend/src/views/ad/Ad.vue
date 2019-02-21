@@ -23,7 +23,7 @@
         }
       },
       created() {
-          Api.get('auctions/ads/')
+          Api.get('/auctions/ads/')
             .then(res => this.ads = res.data);
 
       }
