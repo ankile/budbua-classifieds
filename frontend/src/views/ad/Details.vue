@@ -23,7 +23,7 @@
             }
         },
         created() {
-            Api.get('auctions/ads/'+ this.id)
+            Api.get('/auctions/ads/'+ this.id)
                 .then(res => {
                     this.ad = res.data;
                     this.loading = false;

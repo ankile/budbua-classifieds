@@ -99,7 +99,7 @@ Components used:
                     this.emailInput,
                     this.passwordInput,
                     this.password2Input)
-                    .then(e=>router.push('/login'))
+                    .then(() => router.push('/login'))
             }
 
         }

@@ -23,9 +23,8 @@
         }
       },
       created() {
-          Api.get('/auctions/ads/')
-            .then(res => this.ads = res.data)
-            .catch(err => console.log(err));
+          Api.get('auctions/ads/')
+            .then(res => this.ads = res.data);
 
       }
   }
