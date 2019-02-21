@@ -64,8 +64,8 @@ class AdsDetailView(ModelView):
 
 
 class BidCreateView(APIView):
-    def post(self, request, format=None):
-        serializer = BidSerializer(data={**request.data, 'bidder':request.user.id})
+    def post(self, request, pk):
+        serializer = BidSerializer(data={**request.data, 'bidder':request.user.id, 'ad':pk})
         serializer.is_valid(raise_exception=True)
         serializer.create(serializer.validated_data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
