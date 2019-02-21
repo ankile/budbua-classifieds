@@ -7,80 +7,99 @@ Components used:
 
 -->
 
-<template>
-    <div class="login-container">
-        <BaseCard class="card__login">
+<template lang="html">
+    <div class="register-container">
+        <sui-grid centered vertical-align="middle">
+            <sui-grid-column>
 
-            <template slot="header"> <!--TODO: legg card-header inn i selve card komponenten -->
-                Registrer deg på Budbua!
-            </template>
+                <h2 is="sui-header" color="blue" image>
 
-            <template>
-                <div class="login__input">
-                    <BaseInput_Text
-                            v-model="usernameInput"
-                            v-bind:variant="'text-input--large'"
-                            v-bind:placeholder="'Brukernavn'"
-                            class="text-input__login"
-                    />
-                    <BaseInput_Text
-                            v-model="emailInput"
-                            v-bind:variant="'text-input--large'"
-                            v-bind:placeholder="'Email'"
-                            class="text-input__login"
-                    />
-                    <BaseInput_Text
-                            v-model="passwordInput"
-                            v-bind:variant="'text-input--large'"
-                            v-bind:placeholder="'Passord'"
-                            class="text-input__login"
-                    />
-                </div>
-                <div class="login__footer">
-                    <BaseButton
-                            v-bind:variant="'button--small button--primary'"
-                            class="footer__button"
-                    >
-                        Register deg
-                    </BaseButton>
+                    <sui-header-content class="card--header">Log-in to your account</sui-header-content>
+                </h2>
 
-                    <BaseLink to="/login" class="footer__link">
-                        Logg inn
-                    </BaseLink>
-                </div>
-            </template>
+                <sui-form>
+                    <sui-segment >
+                        <sui-form-field>
+                            <sui-input
+                                    type="text"
+                                    placeholder="Fornavn"
+                                    icon="user"
+                                    v-model="firstNameInput"
+                                    icon-position="left" />
+                        </sui-form-field>
+                        <sui-form-field>
+                            <sui-input
+                                    type="text"
+                                    placeholder="Etternavn"
+                                    v-model="lastNameInput"
+                                    icon="user"
+                                    icon-position="left" />
+                        </sui-form-field>
+                        <sui-form-field>
+                            <sui-input
+                                    type="email"
+                                    placeholder="Email"
+                                    icon="mail"
+                                    v-model="emailInput"
+                                    icon-position="left" />
+                        </sui-form-field>
+                        <sui-divider />
+                        <sui-form-field>
+                            <sui-input
+                                    type="password"
+                                    placeholder="Passord"
+                                    v-model="passwordInput"
+                                    icon="lock"
+                                    icon-position="left" />
+                        </sui-form-field>
+                        <sui-form-field>
+                            <sui-input
+                                    type="password"
+                                    placeholder="Gjenta passord"
+                                    v-model="password2Input"
+                                    icon="lock"
+                                    icon-position="left" />
+                        </sui-form-field>
+                        <sui-button v-on:click="submitRegister" size="large" color="blue" fluid>Registrer</sui-button>
+                    </sui-segment>
+                </sui-form>
 
-        </BaseCard>
-
+                <sui-message>Eksisterende bruker? <router-link to="/login">Logg inn</router-link></sui-message>
+            </sui-grid-column>
+        </sui-grid>
     </div>
 </template>
 
 <script>
-    import BaseInput_Text from "../../components/BaseInput_Text";
-    import BaseButton from "../../components/BaseButton";
-    import BaseCard from "../../components/BaseCard";
-    import BaseLink from "../../components/BaseLink";
+    import {Api, User} from '../../api'
+    import router from '../../router'
 
     export default {
 
         data() {
             return {
-                usernameInput: '',
+                firstNameInput:'',
+                lastNameInput:'',
                 emailInput: '',
-                passwordInput: ''
+                passwordInput: '',
+                password2Input:''
+
             }
         },
 
         components: {
-            BaseInput_Text,
-            BaseButton,
-            BaseCard,
-            BaseLink
         },
 
         methods: {
-            submitLogin() {
-
+            submitRegister(e){
+                e.preventDefault();
+                User.register(
+                    this.firstNameInput,
+                    this.lastNameInput,
+                    this.emailInput,
+                    this.passwordInput,
+                    this.password2Input)
+                    .then(() => router.push('/login'))
             }
 
         }
@@ -90,26 +109,26 @@ Components used:
 </script>
 
 <style lang="scss" scoped>
+    @import './../../common.scss';
 
-    .login-container{
-        width:100%;
+    .register-container{
+        margin-top:10px;
+        width:90%;
+        text-align: center;
         height:100%;
+
+        @include respond-to(wide) {
+            width:500px;
+        }
+        @include respond-to(medium) {
+            max-width:400px;
+        }
+        @include respond-to(phone) {
+            max-width:300em;
+        }
     }
-
-    .login__input{
-
+    .card--header{
+        text-align: center;
+        width:100%;
     }
-    .text-input__login{
-        margin:0 0 25px 0;
-    }
-
-    .login__footer{
-        margin:20px 0 20px 0;
-        display: grid;
-        grid-template-columns: auto;
-        grid-gap: 20px;
-        justify-items: center;
-
-    }
-
 </style>

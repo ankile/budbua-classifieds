@@ -43,7 +43,6 @@
 <style scoped>
     .index {
         height: 100vh;
-        width:100vw;
     }
 
 </style>

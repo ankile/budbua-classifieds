@@ -17,13 +17,12 @@
 
 
 <script>
-    import Api from '../api'
+    import {Api} from '../../api'
     import DetailsGeneral from './DetailsGeneral'
     import DetailsBid from "./DetailsBid";
     import DetailsUnregistered from "./DetailsUnregistered";
     import DetailsDeleteAd from "./DetailsDeleteAd";
     import DetailsReport from "./DetailsReport";
-
 
     export default {
         name: "Details",
@@ -45,7 +44,7 @@
         },
 
         created() {
-            Api.get('auctions/ads/'+ this.id)
+            Api.get('/auctions/ads/'+ this.id)
                 .then(res => {
                     this.ad = res.data;
                     this.loading = false;

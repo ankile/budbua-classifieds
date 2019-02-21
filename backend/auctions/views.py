@@ -2,6 +2,9 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from .models import Bid
+from .serializers import BidSerializer
+
 
 from auctions.models import Ad
 from auctions.serializers import AdCreateSerializer, AdListSerializer, AdDetailSerializer
@@ -58,3 +61,11 @@ class AdsDetailView(ModelView):
         ad.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class BidCreateView(APIView):
+    def post(self, request, pk):
+        serializer = BidSerializer(data={**request.data, 'bidder':request.user.id, 'ad':pk})
+        serializer.is_valid(raise_exception=True)
+        serializer.create(serializer.validated_data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
