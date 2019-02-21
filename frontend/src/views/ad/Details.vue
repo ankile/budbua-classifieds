@@ -1,7 +1,8 @@
 <!--
   Detailed view of an ad
   Wrapper for sub views
-  Content depending on user status
+  Content depending on user status and bid status
+
 -->
 
 <template>
