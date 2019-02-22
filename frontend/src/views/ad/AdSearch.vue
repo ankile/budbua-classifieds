@@ -18,7 +18,7 @@
     methods: {
       searchAd(e) {
         e.preventDefault();
-        console.log(this.searchQuery);
+        this.$emit('ad-search', this.searchQuery);
         this.searchQuery = '';
       }
     }

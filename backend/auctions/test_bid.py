@@ -90,19 +90,19 @@ class Test_Bid_View(TestCase):
 
         cls.getTokenClient.credentials(HTTP_AUTHORIZATION='JWT ' + cls.token)
 
-        cls.add_bid_url = '/auctions/bid/'
+        cls.bad_add_bid_url = '/auctions/ads/99/bid/'
+        cls.good_add_bid_url = '/auctions/ads/1/bid/'
 
 
         cls.test_user_ad_owner = User.objects.create(email='user@budbua.no', password='budbua')
-        cls.test_user_ad_bidder = User.objects.create(email='bidder@bidder.no', password='budbua')
         cls.ad = Ad.objects.create(owner=cls.test_user_ad_owner, title='testAD', description='the best ad ever', bid_end_time=today(cls))
 
     def test_bid_inserting_via_rest(self):
 
-        inserting_failed_bid = self.getTokenClient.post(self.add_bid_url,{'ad':99, 'value':3000}, format='json')
+        inserting_failed_bid = self.getTokenClient.post(self.bad_add_bid_url,{'value':3000}, format='json')
         self.assertEqual(inserting_failed_bid.status_code, status.HTTP_400_BAD_REQUEST)
 
-        inserting_successful_bid = self.getTokenClient.post(self.add_bid_url,{'ad':1, 'value':3000}, format='json')
+        inserting_successful_bid = self.getTokenClient.post(self.good_add_bid_url,{'value':3000}, format='json')
         self.assertEqual(inserting_successful_bid.status_code, status.HTTP_201_CREATED)
 
 

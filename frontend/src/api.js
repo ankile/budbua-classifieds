@@ -28,7 +28,7 @@ class Api {
     }
 
     static addHostToPath(path) {
-        const host = String(process.env.VUE_APP_API_BASE_URL) || "http://localhost:8080"; //TODO make enviroment variable
+        const host = String(process.env.VUE_APP_API_BASE_URL);
         return host + path;
     }
 
