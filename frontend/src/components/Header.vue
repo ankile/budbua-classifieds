@@ -4,12 +4,18 @@
         <sui-menu pointing secondary>
 
             <sui-menu-item>
-                <p class="menu__header">BudBua</p>
+                <router-link to="/" class="menu__header">BudBua</router-link>
             </sui-menu-item>
 
             <sui-menu-menu position="right">
-                <router-link is="sui-menu-item" to="/">Hjem</router-link>
-                <router-link is="sui-menu-item" to="/login">Login</router-link>
+                <a
+                        is="sui-menu-item"
+                        v-for="item in items"
+                        :active="isActive(item)"
+                        :key="item"
+                        :content="item"
+                        @click="select(item)"
+                />
             </sui-menu-menu>
         </sui-menu>
 
@@ -20,10 +26,33 @@
 <script>
     import SuiHeader from "semantic-ui-vue/dist/commonjs/elements/Header/Header";
     import SuiTab from "semantic-ui-vue/dist/commonjs/modules/Tab/Tab";
+    import router from  './../router'
+
     export default {
         name: "Header",
-        components: {SuiTab, SuiHeader}
+        components: {SuiTab, SuiHeader},
+        data() {
+            return {
+                active: 'Hjem',
+                items: ['Login'],
+            };
+        },
+        methods: {
+            isActive(name) {
+                return this.active === name;
+            },
+            select(name) {
+                switch(name){
+                    case "Login":
+                        router.push("/login");
+                        break;
+                    case "Hjem":
+                        router.push("/");
+                }
+            },
+        },
     }
+
 </script>
 
 
