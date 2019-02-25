@@ -57,10 +57,14 @@ class AdsDetailView(ModelView):
         return Response(status=status.HTTP_200_OK)
 
     def delete(self, _, pk):
-        ad = self.get_object(pk=pk)
-        ad.delete()
+        try:
+            ad = self.get_object(pk=pk)
+            ad.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 
 class BidCreateView(APIView):
