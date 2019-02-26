@@ -13,8 +13,13 @@
 
     <sui-grid :columns="3" divided stackable>
         <sui-grid-column>
-          <h3 v-if="timeremaining">Utløper om: {{timeremaining}}</h3>
-          <h3 class="expired" v-else>Utløpt</h3>
+            <h3 v-if="timeremaining">
+                <sui-loader v-if="timeremaining.includes('NaNd')" active centered inline />
+                <div v-else> Utløper om:
+                {{timeremaining}}
+                </div>
+            </h3>
+            <h3 class="expired" v-else>Utløpt</h3>
         </sui-grid-column>
         <sui-grid-column>
           <h3>Selger: {{ad.firstName}} {{ad.lastName}}</h3>
@@ -52,7 +57,8 @@
         props: ["ad"],
         data() {
             return {
-                timeremaining: null
+                timeremaining: undefined
+
             }
         },
         created() {
