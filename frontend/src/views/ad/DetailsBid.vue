@@ -9,7 +9,13 @@
     <sui-form @submit="bid">
       <sui-form-field>
         <h3>Bud</h3>
-        <input placeholder="Legg inn et bud..." >
+        <sui-input
+              type="text"
+              placeholder="Legg inn et bud..."
+              v-model="bidAmountInput"
+              icon="money bill alternate outline"
+              icon-position="left" />
+
       </sui-form-field>
       <sui-button primary type="submit">By</sui-button>
     </sui-form>
@@ -19,19 +25,39 @@
 </template>
 
 <script>
+    import {Api} from "../../api";
+
     export default {
         name: "DetailsBid",
         props: ['ad'],
         data() {
             return {
-                bidAmount: ''
+                bidAmountInput: ''
             }
         },
         methods: {
             bid(e) {
-                e.preventDefault();
-                //todo: api call, issue #7
-                this.bidAmount = '';
+                //e.preventDefault();
+                let minBid = 0;
+                if (this.ad.maximumBid) {
+                    minBid = this.ad.maximumBid + 1;
+                }
+                else {
+                    minBid = this.ad.minimumBid
+                }
+                this.bidAmountInput = Number(this.bidAmountInput);
+                if (!isNaN(this.bidAmountInput) && this.bidAmountInput >= minBid) { // if the bid is accepted
+                    const data = {
+                      "value": this.bidAmountInput
+                    };
+                    const path = '/auctions/ads/'+this.ad.id +'/bid/';
+                    Api.post(path, data)
+                        .then(() => {
+                            this.bidAmountInput = '';
+                        })
+                        .catch(err => console.log(err));
+                }
+
             }
         }
     }
