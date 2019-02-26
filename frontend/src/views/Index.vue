@@ -9,7 +9,8 @@
 <script>
     import Ad from './ad/Ad'
     import AdSearch from './ad/AdSearch'
-    import Api from "./api";
+    import {Api} from "../api";
+
 
     export default {
         name: "Index",
@@ -24,14 +25,14 @@
             }
         },
         created() {
-            Api.get('auctions/ads/')
+            Api.get('/auctions/ads/')
                     .then(res => this.ads = res.data)
                     .catch(err => console.log(err));
         },
         methods: {
             adSearch(query) {
                 console.log("search!!" + query);
-                Api.get('auctions/ads/?search='+query)
+                Api.get('/auctions/ads/?search='+query)
                         .then(res => this.ads = res.data)
                         .catch(err => console.log(err));
             }

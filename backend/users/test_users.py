@@ -142,7 +142,6 @@ class Test_User_View(TestCase):
         test_user.save()
         jwt_auth_url = '/users/api-token-auth/'
         jwt_auth_get_token_response = client.post(jwt_auth_url, {'email': "budbuaTest@budbua.no", 'password':"pleaseDoNOTdeleteM3"}, format='json')
-        token = jwt_auth_get_token_response.data['token']
 
         delete_profile_response = client.delete(self.user_url)
         self.assertEqual(delete_profile_response.status_code, status.HTTP_401_UNAUTHORIZED)

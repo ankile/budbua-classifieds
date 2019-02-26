@@ -1,6 +1,5 @@
 from django.test import TestCase
 
-from django.urls import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 from .models import User
@@ -35,14 +34,12 @@ class Test_JWT_Authentication(TestCase):
         test_user.is_active = False
         test_user.save()
         jwt_auth_response_fail = client.post(jwt_auth_url, {'email':'.no', 'password':'budbua'}, format='json')
-        print(jwt_auth_response_fail)
         self.assertEqual(jwt_auth_response_fail.status_code, status.HTTP_400_BAD_REQUEST)
 
         test_user.is_active = True
         test_user.save()
 
         jwt_auth_response_success= client.post(jwt_auth_url, {'email':TEST_EMAIL, 'password':TEST_PASSWORD}, format='json')
-        print(jwt_auth_response_success)
         self.assertEqual(jwt_auth_response_success.status_code, status.HTTP_200_OK)
         self.assertTrue('token' in jwt_auth_response_success.data)
 
