@@ -32,27 +32,37 @@
     export default {
         name: "Header",
         components: {SuiTab, SuiHeader},
-        data() {
-            return {
-                active: 'Hjem',
-                items: ['Login'],
-            };
+        state:{
+
         },
-        mounted(){
-              console.log(User.isLoggedIn())
+        data() {
+            return {items: ['Login']}
+        },
+        created(){
+            User.isLoggedIn().then(()=>{
+                this.items=['Lag annonse', 'Logg ut']
+            })
         },
         methods: {
+
             isActive(name) {
                 return this.active === name;
             },
             select(name) {
-                switch(name){
-                    case "Login":
-                        router.push("/login");
-                        break;
-                    case "Hjem":
-                        router.push("/");
-                }
+                        switch(name){
+                            case "Login":
+                                router.push("/login");
+                                break;
+                            case "Lag annonse":
+                                router.push("/create-ad");
+                                break;
+                            case "Logg ut":
+                                router.push("/logout");
+                                break;
+
+                        }
+
+
             },
         },
     }
