@@ -54,7 +54,7 @@
                                 router.push("/login");
                                 break;
                             case "Lag annonse":
-                                router.push("/create-ad");
+                                router.push("/create");
                                 break;
                             case "Logg ut":
                                 router.push("/logout");
