@@ -58,6 +58,21 @@
 
   }
 
+  
+  body::-webkit-scrollbar {
+  width: 0.7em;
+  background: transparent;
+  }
+  body::-webkit-scrollbar-thumb {
+  background: rgba(65,131,196, 0.5);
+  border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+  background: rgba(65,131,196, 0.65);
+  }
+
+
 
 </style>
 
