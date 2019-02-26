@@ -59,6 +59,7 @@
                             case "Logg ut":
                                 router.push("/logout");
                                 break;
+
                         }
 
 
