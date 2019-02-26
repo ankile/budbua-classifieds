@@ -57,7 +57,9 @@
                                 router.push("/create");
                                 break;
                             case "Logg ut":
-                                router.push("/logout");
+                                localStorage.removeItem("token")
+                                this.$router.push("/")
+                                document.location.reload()
                                 break;
 
                         }

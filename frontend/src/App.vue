@@ -58,7 +58,7 @@
 
   }
 
-  
+
   body::-webkit-scrollbar {
   width: 0.7em;
   background: transparent;
