@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Bid
+from .models import Bid, User
 from .serializers import BidSerializer
 
 
@@ -56,11 +56,15 @@ class AdsDetailView(ModelView):
 
         return Response(status=status.HTTP_200_OK)
 
-    def delete(self, _, pk):
+
+    def delete(self, request, pk):
         try:
+            user = User.objects.get(pk=request.user)
             ad = self.get_object(pk=pk)
-            ad.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            if (user==ad.owner):
+                ad.delete()
+                return Response(status=status.HTTP_204_NO_CONTENT)
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
