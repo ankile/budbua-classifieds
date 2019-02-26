@@ -49,7 +49,7 @@
                 .then(res => {
                     this.ad = res.data;
                     this.loading = false;
-                    Api.get('users/')
+                    Api.get('/users/')
                         .then(res => {
                             this.user = res.data;
                             this.owner = this.user.id === this.ad.owner
