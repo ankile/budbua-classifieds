@@ -9,15 +9,23 @@
     <sui-form @submit="bid">
       <sui-form-field>
         <h3>Bud</h3>
-        <sui-input
+        <sui-input v-if="timeremaining"
               type="text"
               placeholder="Legg inn et bud..."
               v-model="bidAmountInput"
               icon="money bill alternate outline"
               icon-position="left" />
 
+        <sui-input v-else
+                   type="text"
+                   placeholder="denne annonsen er ikke aktiv..."
+                   v-model="bidAmountInput"
+                   icon="money bill alternate outline"
+                   icon-position="left"
+                   disabled />
       </sui-form-field>
-      <sui-button primary type="submit">By</sui-button>
+      <sui-button v-if="timeremaining" primary type="submit">By</sui-button>
+      <sui-button v-else disabled primary type="submit">By</sui-button>
     </sui-form>
 
 
@@ -26,6 +34,7 @@
 
 <script>
     import {Api} from "../../api";
+    import timeleft from "./timer";
 
     export default {
         name: "DetailsBid",
@@ -59,6 +68,9 @@
                 }
 
             }
+        },
+        created(){
+            this.timeremaining = timeleft.prettyGetTimeRemainng(this.ad.bidEndTime).timestring;
         }
     }
 </script>
