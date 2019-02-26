@@ -8,7 +8,7 @@
 <template>
   <div is="sui-container" textAlign="left">
     <h3 v-if="loading">Laster inn...</h3>
-    <DetailsGeneral v-bind:ad="ad"></DetailsGeneral>
+    <DetailsGeneral v-bind:ad="ad" v-bind:user="user"></DetailsGeneral>
     <DetailsBid v-bind:ad="ad" v-if="user && !owner"></DetailsBid>
     <!--<DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport> sprint 2-->
     <DetailsUnregistered v-if="!user"></DetailsUnregistered>
