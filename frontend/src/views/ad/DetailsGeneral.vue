@@ -20,7 +20,16 @@
           <h3>Selger: {{ad.firstName}} {{ad.lastName}}</h3>
         </sui-grid-column>
         <sui-grid-column>
-          <h3 class="highest-bid" v-if="ad.maximumBid">Høyeste bud: {{ad.maximumBid}} kr</h3>
+          <h3 class="highest-bid" v-if="ad.maximumBid">
+              <div v-if="ad.highestBidder.id == user.id">
+                  Du leder budet!<br/>
+                  Høyeste bud: {{ad.maximumBid}} kr.
+              </div>
+              <div v-else>
+                  Leder av budet: {{ad.highestBidder.name}}<br/>
+                  Høyeste bud: {{ad.maximumBid}} kr.
+              </div>
+          </h3>
           <h3 class="highest-bid" v-else>Ingen bud lagt inn <br>
             Minimum bud: {{ad.minimumBid}} kr</h3>
         </sui-grid-column>
@@ -35,6 +44,7 @@
     import SuiGrid from "semantic-ui-vue/dist/commonjs/collections/Grid/Grid";
     import SuiGridRow from "semantic-ui-vue/dist/commonjs/collections/Grid/GridRow";
     import SuiGridColumn from "semantic-ui-vue/dist/commonjs/collections/Grid/GridColumn";
+    import {Api} from '../../api'
 
     export default {
         name: "DetailsGeneral",
@@ -55,6 +65,12 @@
                 }
                 //console.log("timeintervallid" + this.ad.id);
             }, 1000);
+
+            Api.get('/users/')
+                .then(res => {
+                    this.user = res.data;
+                })
+                .catch(err => console.log(err));
         }
 
     }
