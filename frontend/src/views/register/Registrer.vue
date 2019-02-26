@@ -14,7 +14,7 @@ Components used:
 
                 <h2 is="sui-header" color="blue" image>
 
-                    <sui-header-content class="card--header">Log-in to your account</sui-header-content>
+                    <sui-header-content class="card--header">Registrer en ny bruker</sui-header-content>
                 </h2>
 
                 <sui-form>

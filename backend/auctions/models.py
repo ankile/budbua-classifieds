@@ -63,6 +63,18 @@ class Ad(TimeStampable):
     def email(self):
         return self.owner.email
 
+    @property
+    def highest_bidder(self):
+        if self.bids.count() != 0:
+            bidder = self.bids.first().bidder
+            user = {
+                "id": bidder.id,
+                "name": bidder.name,
+            }
+            return user
+        else:
+            return "none"
+
 
 class Bid(TimeStampable):
 

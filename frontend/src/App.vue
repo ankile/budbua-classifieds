@@ -7,7 +7,7 @@
 
 
 <script>
-  import Header from './components/BaseHeader'
+  import Header from './components/Header'
 
   export default {
     name: "App",
@@ -51,7 +51,7 @@
     text-align: center;
     font-family: gotham_light ;
     width:100vw;
-    height:100vh;
+    height:100%;
     letter-spacing: 1.1px;
     color: #2c3e50;
     background-color: $off-white;

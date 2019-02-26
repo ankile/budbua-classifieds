@@ -9,7 +9,8 @@ class AdListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
         read_only_fields = ('maximum_bid', 'num_bids')
-        fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner', )
+        fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner',
+                  'highest_bidder')
 
 
 class AdCreateSerializer(serializers.ModelSerializer):
