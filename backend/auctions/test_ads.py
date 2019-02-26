@@ -124,7 +124,6 @@ class Test_Ads_View(TestCase):
 
         success_response = self.authorizedClient.delete(ads_delete_url_success)
         self.assertEqual(success_response.status_code, status.HTTP_204_NO_CONTENT)
-        pass
 
 
     def test_ads_detail_view_when_clicked(self):

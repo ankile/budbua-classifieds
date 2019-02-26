@@ -59,7 +59,7 @@ class AdsDetailView(ModelView):
 
     def delete(self, request, pk):
         try:
-            user = User.objects.get(pk=request.user)
+            user = User.objects.get(pk=request.user.pk)
             ad = self.get_object(pk=pk)
             if (user==ad.owner):
                 ad.delete()
