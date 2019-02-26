@@ -14,7 +14,7 @@ Components used:
 
                 <h2 is="sui-header" color="blue" image>
 
-                    <sui-header-content class="card--header">Log-in to your account</sui-header-content>
+                    <sui-header-content class="card--header">Logg inn på din brukerkonto</sui-header-content>
                 </h2>
 
                 <sui-form>
@@ -39,7 +39,7 @@ Components used:
                     </sui-segment>
                 </sui-form>
 
-                <sui-message>Ny bruker? <router-link to="/register">Register</router-link></sui-message>
+                <sui-message>Ny bruker? <router-link to="/register">Registrer</router-link></sui-message>
             </sui-grid-column>
         </sui-grid>
     </div>

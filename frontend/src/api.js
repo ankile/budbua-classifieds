@@ -1,4 +1,6 @@
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
+
 
 
 export {
@@ -49,6 +51,15 @@ class Api {
 
 
 class User extends Api {
+
+    static isLoggedIn(){
+        return new Promise((resolve, reject)=>{
+            let token=localStorage.getItem('token');
+            let a=jwt_decode(token)
+            console.log(a)
+        })
+    }
+
 
     static login(email, password) {
         return new Promise((resolve, reject) => {
