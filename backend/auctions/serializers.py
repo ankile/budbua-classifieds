@@ -10,7 +10,7 @@ class AdListSerializer(serializers.ModelSerializer):
         model = Ad
         read_only_fields = ('maximum_bid', 'num_bids')
         fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner',
-                  'highest_bidder')
+                  'highest_bidder', 'image_string')
 
 
 class AdCreateSerializer(serializers.ModelSerializer):
@@ -19,7 +19,7 @@ class AdCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ad
-        fields = ('title', 'description', 'bid_end_time', 'minimum_bid', )
+        fields = ('title', 'description', 'bid_end_time', 'minimum_bid', 'image_string', )
 
     @staticmethod
     def validate_minimum_bid(value):
@@ -40,8 +40,8 @@ class AdDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ad
         read_only_fields = ('first_name', 'last_name', 'email', )
-        fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner', ) \
-            + read_only_fields
+        fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner',
+                  'image_string') + read_only_fields
 
 
 class BidSerializer(serializers.ModelSerializer):

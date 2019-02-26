@@ -43,6 +43,11 @@ class Ad(TimeStampable):
         null=True, blank=True,
     )
 
+    image_string = models.TextField(
+        verbose_name='image string',
+        null=True,
+    )
+
     @property
     def maximum_bid(self):
         return self.bids.first().value if self.bids.count() else None
@@ -74,6 +79,7 @@ class Ad(TimeStampable):
             return user
         else:
             return "none"
+
 
 
 class Bid(TimeStampable):
