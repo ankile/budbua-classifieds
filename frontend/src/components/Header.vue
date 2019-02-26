@@ -27,6 +27,7 @@
     import SuiHeader from "semantic-ui-vue/dist/commonjs/elements/Header/Header";
     import SuiTab from "semantic-ui-vue/dist/commonjs/modules/Tab/Tab";
     import router from  './../router'
+    import {User} from './../api'
 
     export default {
         name: "Header",
@@ -36,6 +37,9 @@
                 active: 'Hjem',
                 items: ['Login'],
             };
+        },
+        mounted(){
+              console.log(User.isLoggedIn())
         },
         methods: {
             isActive(name) {
