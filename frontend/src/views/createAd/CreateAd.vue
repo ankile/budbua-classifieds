@@ -125,7 +125,7 @@
                         this.zipcodeInput = '';
                     })
                     .catch(err => console.log(err))
-
+                 this.$router.push("/")
             }
         }
     }
