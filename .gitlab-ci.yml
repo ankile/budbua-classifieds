@@ -7,9 +7,13 @@ stages:
     stage: test
     script:
         - apt-get update -qy
-        - apt-get install -y python3-dev python3-pip
+        - apt-get install -y python3-dev python3-pip python3-virtualenv
         - cd backend
-        - pip3 install -r requirements.txt
+        - pip3 install virtualenv
+        - virtualenv -p python3 testenv
+        - source testenv/bin/activate
+        - ls
+        - pip3 install -r requirements_test.txt
         - python3 manage.py makemigrations --settings=budbua.settings_tests
         - python3 manage.py migrate --settings=budbua.settings_tests
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
