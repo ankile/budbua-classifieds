@@ -54,7 +54,7 @@
                             this.user = res.data;
                             this.owner = this.user.id === this.ad.owner
                         })
-                        .catch(err => console.log(err));
+                        .catch(() => this.user = null);
                 })
                 .catch(err => console.log(err));
         }
