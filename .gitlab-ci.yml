@@ -13,8 +13,8 @@ test-django-job:
     tags:
         - test
     only:
-        -master
-        -gitlab-ci-test
+        - master
+        - gitlab-ci-test
 
 deploy-job:
     stage: deploy
