@@ -14,7 +14,6 @@ class UserSerializer(serializers.ModelSerializer):
 class BaseUserSerializer(serializers.ModelSerializer):
     def validate(self, data, *args, **kwargs):
 
-        print(data)
 
         if 'password_2' not in data:
             raise serializers.ValidationError(
