@@ -7,14 +7,15 @@ stages:
     stage: test
     script:
         - apt-get update -qy
-        - apt-get install -y python-dev python-pip
+        - apt-get install -y python-dev python-pip3
         - cd backend
-        - pip install -r requirements.txt
+        - pip3 install -r requirements.txt
         - python manage.py test
 
 
 test-django-job:
     stage: test
+    image: python:3.7
     only:
         - master
         - gitlab-ci-test
