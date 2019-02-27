@@ -13,8 +13,8 @@ stages:
         - virtualenv -p python3 testenv
         - source testenv/bin/activate
         - ls
-        - sqlite3 --version
         - pip3 install -r requirements_test.txt
+        - sqlite3 --version
         - python3 manage.py makemigrations --settings=budbua.settings_tests
         - python3 manage.py migrate --settings=budbua.settings_tests
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
