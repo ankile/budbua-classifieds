@@ -3,18 +3,21 @@ stages:
   - deploy
 
 
-test-django-job:
+.test-job: &test-job
     stage: test
     script:
         - apt-get update -qy
         - apt-get install -y python-dev python-pip
         - pip install -r requirements.txt
         - python manage.py test
-    tags:
-        - test
+
+
+test-django-job:
+    stage: test
     only:
-        - master
         - gitlab-ci-test
+    <<: *test-job
+
 
 deploy-job:
     stage: deploy
