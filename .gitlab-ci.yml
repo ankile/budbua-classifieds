@@ -10,10 +10,9 @@ stages:
         - apt-get install -y python3-dev python3-pip
         - cd backend
         - pip3 install -r requirements.txt
-        - export DJANGO_DATABASE='tests'
-        - python3 manage.py makemigrations
-        - python3 manage.py migrate
-        - python3 manage.py test
+        - python3 manage.py makemigrations --settings=budbua.settings_tests
+        - python3 manage.py migrate --settings=budbua.settings_tests
+        - python3 manage.py test --settings=budbua.settings_tests
 
 
 test-django-job:
