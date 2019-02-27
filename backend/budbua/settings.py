@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 DATABASES = {
     'default': {
+        'NAME': 'maindb',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'TEST': {
             'ENGINE': 'django.db.backends.sqlite3',
