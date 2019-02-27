@@ -40,7 +40,7 @@
         },
         created(){
             User.isLoggedIn().then(()=>{
-                this.items=['Lag annonse', 'Logg ut']
+                this.items=['Lag annonse', "Profil", 'Logg ut']
             })
         },
         methods: {
@@ -55,6 +55,9 @@
                                 break;
                             case "Lag annonse":
                                 router.push("/create");
+                                break;
+                            case "Profil":
+                                router.push("/profile");
                                 break;
                             case "Logg ut":
                                 localStorage.removeItem("token")
