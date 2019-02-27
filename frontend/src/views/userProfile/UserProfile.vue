@@ -74,7 +74,7 @@
         methods: {
             submitUpdate(e){
                 e.preventDefault();
-                User.updateUserInfo(this.emailInput,this.firstNameInput, this.firstNameInput).then(
+                User.updateUserInfo(this.emailInput,this.firstNameInput, this.lastNameInput).then(
                     alert("Profil oppdatert")
                 )
             },
