@@ -14,6 +14,7 @@ stages:
       POSTGRES_PASSWORD: ""
 
     script:
+        - export DATABASE_URL=postgres://postgres:@postgres:5432/budbuaTest
         - apt-get update -qy
         - apt-get install -y python3-dev python3-pip python3-virtualenv sqlite3 libsqlite3-dev
         - cd backend
