@@ -19,11 +19,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'budbuaTest',
-        'Host': 'postgres',
-        'User': 'runner',
-        'Password': '',
-        'Database': 'budbuaheaven',
+        'HOST': 'postgres',
+        'USER': 'runner',
+        'PASSWORD': '',
         'PORT': '5432'
-
-}
+ }
 }
