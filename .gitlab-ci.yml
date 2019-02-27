@@ -1,21 +1,20 @@
 stages:
-  - build
   - test
   - deploy
 
-build-job:
-    stage: build
-    script:
-        - echo "build-job alive"
-    tags:
-        - build
 
-test-job:
+test-django-job:
     stage: test
     script:
-        - echo "test-job alive"
+        - apt-get update -qy
+        - apt-get install -y python-dev python-pip
+        - pip install -r requirements.txt
+        - python manage.py test
     tags:
         - test
+    only:
+        -master
+        -gitlab-ci-test
 
 deploy-job:
     stage: deploy
@@ -23,3 +22,5 @@ deploy-job:
         - echo "deploy-job alive"
     tags:
         - deploy
+    only:
+        master
