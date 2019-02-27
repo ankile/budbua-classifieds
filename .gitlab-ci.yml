@@ -13,10 +13,10 @@ stages:
         - virtualenv -p python3 testenv
         - source testenv/bin/activate
         - pip3 install -r requirements_test.txt
-        - python3 manage.py makemigrations --settings=budbua.settings_tests
-        - python3 manage.py migrate --settings=budbua.settings_tests
+        - python3 manage.py makemigrations
+        - python3 manage.py migrate
         - sqlite3 --version
-        - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
+        - python3 manage.py test
 
 
 test-django-job:
