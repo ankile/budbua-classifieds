@@ -22,6 +22,8 @@ DATABASES = {
         'Host': 'postgres',
         'User': 'runner',
         'Password': '',
-        'Database': 'budbuaheaven'
-    }
+        'Database': 'budbuaheaven',
+        'PORT': '5432'
+
+}
 }
