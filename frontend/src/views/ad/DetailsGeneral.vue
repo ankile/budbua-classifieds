@@ -7,7 +7,7 @@
 <template>
   <div class="general">
     <h1 is="sui-header" class="title">{{ad.title}}</h1>
-    <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Annonsebilde">
+    <img v-bind:src="this.ad.imageString" alt="Annonsebilde">
     <article>{{ad.description}}</article>
     <sui-divider section></sui-divider>
 
