@@ -107,7 +107,7 @@
                     "title": this.titleInput,
                     "description": this.descriptionInput,
                     "bidEndTime": new Date(this.bidEndTimeInput).toISOString(),
-                    //"image": this.selectedFile // not implemented backend yet
+                    "imageString": this.selectedFile
                     //"zipCode": this.zipcodeInput
                 };
                 let minimumBid = Number(this.minimumBidInput);
