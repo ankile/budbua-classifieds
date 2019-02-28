@@ -20,11 +20,16 @@ stages:
 .heroku-deploy: &heroku-deploy
     stage: deploy
     script:
+        - echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
+        - wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
         - apt-get update -qy
+        - apt-get install -y heroku-toolbelt
         - apt-get install -y ruby-dev
         - gem install dpl
         - cd backend
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY --run=$HEROKU_COMMANDS
+        - heroku run "python migrate.py migrate" --exit-code --$HEROKU_APP_NAME
+
     tags:
         - deploy
     only:
