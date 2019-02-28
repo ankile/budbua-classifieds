@@ -14,19 +14,19 @@ class UserSerializer(serializers.ModelSerializer):
 class BaseUserSerializer(serializers.ModelSerializer):
     def validate(self, data, *args, **kwargs):
 
+        if 'password' in data:
+            if 'password_2' not in data:
+                raise serializers.ValidationError(
+                    {'password_2': ['This field must be filled out when setting the password']})
 
-        if 'password_2' not in data:
-            raise serializers.ValidationError(
-                {'password_2': ['This field must be filled out when setting the password']})
+            if data['password'] != data['password_2']:
+                raise serializers.ValidationError({'password_2': ['Confirmation does not match the password']})
 
-        if data['password'] != data['password_2']:
-            raise serializers.ValidationError({'password_2': ['Confirmation does not match the password']})
-
-        try:
-            validate_password(data['password'])
-        except ValidationError as e:
-            raise serializers.ValidationError(
-                {'password': list(map(lambda x: str(x).strip("[]'"), e.error_list))})
+            try:
+                validate_password(data['password'])
+            except ValidationError as e:
+                raise serializers.ValidationError(
+                    {'password': list(map(lambda x: str(x).strip("[]'"), e.error_list))})
 
         return super().validate(data)
 
