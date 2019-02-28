@@ -25,7 +25,7 @@ stages:
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
 
 
-.deploy-job-heroku: &deploy-job-heroku
+.heroku-deploy: &heroku-deploy
     stage: deploy
     script:
         - apt-get update -qy
@@ -53,5 +53,5 @@ deploy-heroku-job:
         - deploy
     only:
         - master
-        -gitlab-ci-test
-    <<
+        - gitlab-ci-test
+    <<: *heroku-deploy
