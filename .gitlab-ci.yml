@@ -62,7 +62,7 @@ deploy-heroku-job:
         - yarn run build
         - cp netlify.toml dist
         - yarn add netlify-cli
-        - yarn run netlify deploy -s $NETLIFY_SITE_ID -p dist -t $NETLIFY_ACCESS_TOKEN
+        - yarn run netlify deploy -s $NETLIFY_SITE_ID -p dist -t $NETLIFY_AUTH_TOKEN
     tags:
         - deploy
     only:
