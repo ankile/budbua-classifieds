@@ -45,7 +45,7 @@ class Ad(TimeStampable):
 
     image_string = models.TextField(
         verbose_name='image string',
-        null=True,
+        null=True, blank=True,
     )
 
     @property
