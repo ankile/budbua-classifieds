@@ -28,7 +28,7 @@ stages:
         - gem install dpl
         - cd backend
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
-        - heroku run "python manage.py migrate" --exit-code --$HEROKU_APP_NAME
+        - heroku run "python manage.py migrate" --exit-code --app=$HEROKU_APP_NAME
     tags:
         - deploy
     only:
