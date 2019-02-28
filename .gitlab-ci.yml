@@ -53,3 +53,29 @@ deploy-heroku-job:
         - master
         - gitlab-ci-test
     <<: *heroku-deploy
+
+
+.netlify-deploy: &netlify-deploy
+    stage: deploy
+    script:
+        - cd frontend
+        - yarn
+        - yarn run build
+        - cp netlify.toml dist
+        - yarn add netlify-cli
+        - yarn run netlify deploy -s $NETLIFY_SITE_ID -p dist -t $NETLIFY_ACCESS_TOKEN
+    tags:
+        - deploy
+    only:
+        - master
+        - gitlab-ci-test
+
+deploy-netlify-job:
+    stage: deploy
+    image: node:latest
+    tags:
+        - deploy
+    only:
+        - master
+        - gitlab-ci-test
+    <<: *netlify-deploy
