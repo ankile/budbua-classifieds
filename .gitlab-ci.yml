@@ -25,7 +25,6 @@ stages:
         - gem install dpl
         - cd backend
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
-  only:
     tags:
         - deploy
     only:
