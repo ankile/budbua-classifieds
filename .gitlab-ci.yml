@@ -54,6 +54,7 @@ deploy-heroku-job:
     stage: deploy
     script:
         - cd frontend
+        - yarn
         - yarn run build
         - cp netlify.toml dist
         - yarn add netlify-cli
