@@ -23,6 +23,8 @@ stages:
         - apt-get update -qy
         - apt-get install -y ruby-dev
         - gem install dpl
+        - echo $HEROKU_APP_NAME
+        - echo $HEROKU_API_KEY
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
     tags:
         - deploy
@@ -35,7 +37,6 @@ django-unit-integration-tests-job:
     image: python:3.7
     only:
         - master
-        - gitlab-ci-test
     <<: *test-job
 
 
