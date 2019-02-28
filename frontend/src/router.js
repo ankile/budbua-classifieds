@@ -6,6 +6,7 @@ import LoginWrapper from "./views/login/LoginWrapper";
 import RegisterWrapper from "./views/register/RegisterWrapper";
 import About from "./views/About";
 import CreateAdWrapper from "./views/createAd/CreateAdWrapper";
+import userProfile from "./views/userProfile/UserProfileWrapper";
 
 Vue.use(Router);
 
@@ -41,7 +42,13 @@ export default new Router({
       path: '/create',
       name: 'create',
       component: CreateAdWrapper
-    }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: userProfile
+    },
+
   ],
   scrollBehavior(to, from, savedPosition) { //preserves the scrolling position of history entries
     if (savedPosition) {

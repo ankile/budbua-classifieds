@@ -2,6 +2,8 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
 
+//TODO:: faktisk håndtere feilmeldinger :))
+
 
 export {
     Api,
@@ -44,6 +46,16 @@ class Api {
         const fullPath = Api.addHostToPath(url);
         const config = Api.config();
         return axios.post(fullPath, data, config)
+    }
+    static put(url, data) {
+        const fullPath = Api.addHostToPath(url);
+        const config = Api.config();
+        return axios.put(fullPath, data, config)
+    }
+    static delete(url) {
+        const fullPath = Api.addHostToPath(url);
+        const config = Api.config();
+        return axios.delete(fullPath, config)
     }
 
 
@@ -95,7 +107,44 @@ class User extends Api {
                     reject();
                 });
         });
+    }
 
+    static getCurrentUser(){
+        return new Promise((resolve, reject) => {
+            this.get("/users/")
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    static updateUserInfo(email, firstName, lastName){
+        return new Promise((resolve, reject) => {
+            this.put("/users/", {email,firstName,lastName})
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+    static deleteUser(){
+        return new Promise((resolve, reject) => {
+            this.delete("/users/", {})
+                .then(res => {
+
+                    localStorage.removeItem("token");
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
     }
 
 }
