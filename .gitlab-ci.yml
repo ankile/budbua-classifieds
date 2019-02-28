@@ -22,11 +22,23 @@ stages:
         - virtualenv -p python3 testenv
         - source testenv/bin/activate
         - pip3 install -r requirements_test.txt
-        - yes | python3 manage.py makemigrations --settings=budbua.settings_tests --merge
-        - python3 manage.py --settings=budbua.settings_tests migrate
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
 
-test-django-job:
+
+.deploy-job-heroku: &deploy-job-heroku
+    stage: deploy
+    script:
+        - apt-get update -qy
+        - apt-get install -y ruby-dev
+        - gem install dpl
+        - dpl --provider=heroku --app=gitlab-ci-python-test-prod --api-key=$HEROKU_PRODUCTION_API_KEY
+    tags:
+        - deploy
+    only:
+        - master
+        - gitlab-ci-test
+
+django-unit-integration-tests-job:
     stage: test
     image: python:3.7
     only:
@@ -35,12 +47,11 @@ test-django-job:
     <<: *test-job
 
 
-deploy-job:
+deploy-heroku-job:
     stage: deploy
-
-    script:
-        - echo "deploy-job alive"
     tags:
         - deploy
     only:
         - master
+        -gitlab-ci-test
+    <<
