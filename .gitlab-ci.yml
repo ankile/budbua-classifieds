@@ -29,7 +29,6 @@ stages:
         - cd backend
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY --run=$HEROKU_COMMANDS
         - heroku run "python migrate.py migrate" --exit-code --$HEROKU_APP_NAME
-
     tags:
         - deploy
     only:
