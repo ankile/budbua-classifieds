@@ -1,25 +1,80 @@
 stages:
-  - build
   - test
   - deploy
 
-build-job:
-    stage: build
-    script:
-        - echo "build-job alive"
-    tags:
-        - build
 
-test-job:
+.test-job: &test-job
     stage: test
-    script:
-        - echo "test-job alive"
-    tags:
-        - test
 
-deploy-job:
+    script:
+        - apt-get update -qy
+        - apt-get install -y python3-dev python3-pip python3-virtualenv sqlite3 libsqlite3-dev
+        - cd backend
+        - pip3 install virtualenv
+        - virtualenv -p python3 testenv
+        - source testenv/bin/activate
+        - pip3 install -r requirements_test.txt
+        - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
+
+
+.heroku-deploy: &heroku-deploy
     stage: deploy
     script:
-        - echo "deploy-job alive"
+        - echo "deb http://toolbelt.heroku.com/ubuntu ./" > /etc/apt/sources.list.d/heroku.list
+        - wget -O- https://toolbelt.heroku.com/apt/release.key | apt-key add -
+        - apt-get update -qy
+        - apt-get install -y heroku-toolbelt
+        - apt-get install -y ruby-dev
+        - gem install dpl
+        - cd backend
+        - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+        - heroku run "python manage.py migrate" --exit-code --app=$HEROKU_APP_NAME
     tags:
         - deploy
+    only:
+        - master
+        - gitlab-ci-test
+
+django-unit-integration-tests-job:
+    stage: test
+    image: python:3.7
+    only:
+        - master
+    <<: *test-job
+
+
+deploy-heroku-job:
+    stage: deploy
+    image: python:3.7
+    tags:
+        - deploy
+    only:
+        - master
+        - gitlab-ci-test
+    <<: *heroku-deploy
+
+
+.netlify-deploy: &netlify-deploy
+    stage: deploy
+    script:
+        - cd frontend
+        - yarn
+        - yarn run build
+        - cp netlify.toml dist
+        - yarn add netlify-cli
+        - yarn run netlify deploy -s $NETLIFY_SITE_ID -d "dist" -a $NETLIFY_AUTH_TOKEN
+    tags:
+        - deploy
+    only:
+        - master
+        - gitlab-ci-test
+
+deploy-netlify-job:
+    stage: deploy
+    image: node:latest
+    tags:
+        - deploy
+    only:
+        - master
+        - gitlab-ci-test
+    <<: *netlify-deploy

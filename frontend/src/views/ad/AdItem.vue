@@ -48,7 +48,7 @@
 
 <style scoped>
   #aditem {
-    background: #f4f4f4;
+    background: #red;
     box-shadow: 0 0 8px #1e639d;
     max-width: 700px;
     /* border: 2px solid #41aaa1; */
