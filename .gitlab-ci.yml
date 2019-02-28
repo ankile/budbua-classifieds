@@ -27,8 +27,8 @@ stages:
         - apt-get install -y ruby-dev
         - gem install dpl
         - cd backend
-        - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY --run=$HEROKU_COMMANDS
-        - heroku run "python migrate.py migrate" --exit-code --$HEROKU_APP_NAME
+        - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+        - heroku run "python manage.py migrate" --exit-code --$HEROKU_APP_NAME
     tags:
         - deploy
     only:
@@ -62,7 +62,7 @@ deploy-heroku-job:
         - yarn run build
         - cp netlify.toml dist
         - yarn add netlify-cli
-        - yarn run netlify deploy -s $NETLIFY_SITE_ID -p "dist" -a $NETLIFY_AUTH_TOKEN
+        - yarn run netlify deploy -s $NETLIFY_SITE_ID -d "dist" -a $NETLIFY_AUTH_TOKEN
     tags:
         - deploy
     only:
