@@ -138,7 +138,6 @@ class User extends Api {
         return new Promise((resolve, reject) => {
             this.delete("/users/", {})
                 .then(res => {
-
                     localStorage.removeItem("token");
                     resolve(res);
                 })

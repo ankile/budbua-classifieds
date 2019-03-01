@@ -81,13 +81,16 @@
 
             submitDelete(e){
                 e.preventDefault();
-                User.deleteUser().then(
-                    router.push("/")
-                )
+                let confirmDeletion = confirm("Er du sikker på at du vil slette din bruker? Er ikke du fornøyd med siden vår er dette permanent løsning til et midlertidig problem \n Trykk 'ok' for å fullføre slettingen")
+
+                if(confirmDeletion == true){
+                    User.deleteUser().then( () => {
+                        router.push("/")
+                        document.location.reload()
+                    })
+                }
             }
-
         }
-
     }
 
 </script>
