@@ -36,7 +36,7 @@
 
         },
         data() {
-            return {items: ['Login']}
+            return {items: ['Registrer', 'Login']}
         },
         created(){
             User.isLoggedIn().then(()=>{
@@ -52,6 +52,9 @@
                         switch(name){
                             case "Login":
                                 router.push("/login");
+                                break;
+                            case "Registrer":
+                                router.push("/register");
                                 break;
                             case "Lag annonse":
                                 router.push("/create");
