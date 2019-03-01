@@ -65,10 +65,11 @@ Components used:
             submitLogin(e){
                 e.preventDefault();
                 User.login(this.emailInput, this.passwordInput)
-                    .then(e => {
+                    .then(data => {
                         router.push('/?login=true')
                         document.location.reload()
-                    })
+                    }).catch( (error) => {
+                })
             }
 
         }

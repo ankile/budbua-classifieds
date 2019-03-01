@@ -87,6 +87,7 @@ class User extends Api {
                 })
 
                 .catch(err => {
+                    alert("Brukernavn/Passord kombinasjon er feil. Prøv på nytt.")
                     reject();
                 });
         });
@@ -137,7 +138,6 @@ class User extends Api {
         return new Promise((resolve, reject) => {
             this.delete("/users/", {})
                 .then(res => {
-
                     localStorage.removeItem("token");
                     resolve(res);
                 })
