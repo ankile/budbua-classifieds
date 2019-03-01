@@ -87,6 +87,7 @@ class User extends Api {
                 })
 
                 .catch(err => {
+                    alert("Brukernavn/Passord kombinasjon er feil. Prøv på nytt.")
                     reject();
                 });
         });
