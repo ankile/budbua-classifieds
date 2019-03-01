@@ -78,6 +78,7 @@
 
     .header{
         margin-bottom:30px;
+        background-color: white;
     }
 
     .menu__header{

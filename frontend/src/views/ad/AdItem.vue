@@ -48,8 +48,7 @@
 
 <style scoped>
   #aditem {
-    background: #red;
-    box-shadow: 0 0 8px #1e639d;
+    background-color: white;
     max-width: 700px;
     /* border: 2px solid #41aaa1; */
     display: grid;
@@ -58,10 +57,11 @@
     padding: 2rem 3rem;
     margin: 1rem auto;
     text-align: left;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   }
 
   #aditem:hover {
-    box-shadow: 0 0 10px #41aaa1;
+    box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
     transition-duration: 0.3s;
   }
 

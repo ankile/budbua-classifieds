@@ -33,6 +33,8 @@
   }
 
   input[type="text"] {
+    outline: none;
+    border: none;
     flex: 10;
     padding: 5px;
   }
@@ -47,12 +49,12 @@
   }
 
   .btn {
-    background: #1E639D;
+    background-color: #1E639D;
     color: #fff;
+    margin-left: 6px;
   }
 
   .btn:hover {
-    background: #41AAA1;
-    color: #000;
+    background-color: #1c588f;
   }
 </style>
