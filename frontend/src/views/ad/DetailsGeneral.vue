@@ -26,7 +26,7 @@
         </sui-grid-column>
         <sui-grid-column>
           <h3 class="highest-bid" v-if="ad.maximumBid">
-              <div v-if="ad.highestBidder.id == user.id">
+              <div v-if="user && ad.highestBidder.id == user.id">
                   Du leder budet!<br/>
                   Høyeste bud: {{ad.maximumBid}} kr.
               </div>
@@ -49,16 +49,14 @@
     import SuiGrid from "semantic-ui-vue/dist/commonjs/collections/Grid/Grid";
     import SuiGridRow from "semantic-ui-vue/dist/commonjs/collections/Grid/GridRow";
     import SuiGridColumn from "semantic-ui-vue/dist/commonjs/collections/Grid/GridColumn";
-    import {Api} from '../../api'
 
     export default {
         name: "DetailsGeneral",
         components: {SuiGridColumn, SuiGridRow, SuiGrid, SuiDivider},
-        props: ["ad"],
+        props: ["ad", "user"],
         data() {
             return {
                 timeremaining: undefined
-
             }
         },
         created() {
@@ -69,16 +67,8 @@
                 if (!time.shouldCount) {
                     clearInterval(timeinterval);
                 }
-                //console.log("timeintervallid" + this.ad.id);
             }, 1000);
-
-            Api.get('/users/')
-                .then(res => {
-                    this.user = res.data;
-                })
-                .catch(err => console.log(err));
         }
-
     }
 </script>
 
