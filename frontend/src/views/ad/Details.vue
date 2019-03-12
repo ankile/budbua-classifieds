@@ -10,7 +10,7 @@
     <h3 v-if="loading">Laster inn...</h3>
     <DetailsGeneral v-bind:ad="ad" v-bind:user="user"></DetailsGeneral>
     <DetailsBid v-bind:ad="ad" v-if="user && !owner"></DetailsBid>
-    <!--<DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport> sprint 2-->
+    <DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport>
     <DetailsUnregistered v-if="!user"></DetailsUnregistered>
     <!--<DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd> sprint 2-->
   </div>
