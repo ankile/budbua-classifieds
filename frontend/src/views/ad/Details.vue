@@ -12,7 +12,7 @@
     <DetailsBid v-bind:ad="ad" v-if="user && !owner"></DetailsBid>
     <!--<DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport> sprint 2-->
     <DetailsUnregistered v-if="!user"></DetailsUnregistered>
-    <!--<DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd> sprint 2-->
+    <DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd>
   </div>
 </template>
 
