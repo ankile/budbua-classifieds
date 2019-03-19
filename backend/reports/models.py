@@ -2,7 +2,6 @@
 from django.db import models
 
 from budbua.utils.mixins import TimeStampable
-from django.core.exceptions import ValidationError
 from users.models import User
 from auctions.models import Ad
 
