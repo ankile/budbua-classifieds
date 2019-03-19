@@ -38,8 +38,9 @@ class Ad(TimeStampable):
         default=0,
     )
 
-    zip_code = models.IntegerField(
+    zip_code = models.CharField(
         verbose_name='zip code',
+        max_length=4,
         null=True, blank=True,
     )
 
@@ -79,6 +80,8 @@ class Ad(TimeStampable):
             return user
         else:
             return "none"
+
+
 
 
 
