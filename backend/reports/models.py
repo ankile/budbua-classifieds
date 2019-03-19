@@ -17,12 +17,14 @@ class AdReport(TimeStampable):
     reporter = models.ForeignKey(
         User,
         verbose_name='reporter',
+        related_name='ads_reported',
         on_delete=models.CASCADE
     )
 
     ad = models.ForeignKey(
         Ad,
         verbose_name='ad',
+        related_name='ad_reported',
         on_delete=models.CASCADE
     )
 
@@ -38,11 +40,13 @@ class UserReport(TimeStampable):
     reporter = models.ForeignKey(
         User,
         verbose_name='reporter',
+        related_name='user_reported',
         on_delete=models.CASCADE
     )
 
     reported = models.ForeignKey(
         User,
         verbose_name='reported',
+        related_name='self_reported',
         on_delete=models.CASCADE
     )
