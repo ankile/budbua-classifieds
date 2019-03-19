@@ -20,7 +20,7 @@
                       icon-position="left"/>
 
             </sui-form-field>
-            <sui-form-field>
+            <sui-form-field required>
               <label>Beskrivelse</label>
               <textarea v-model="descriptionInput" rows="10" placeholder="Beskrivelse"></textarea>
             </sui-form-field>
@@ -32,7 +32,7 @@
                 <img v-bind:src="this.selectedFile" alt="Annonsebilde">
               </div>
             </sui-form-field>
-            <sui-form-field required>
+            <sui-form-field>
               <label>Sluttid</label>
               <sui-input
                       type="datetime-local"
@@ -51,14 +51,14 @@
                       icon="money bill alternate outline"
                       icon-position="left" />
             </sui-form-field>
-            <!--<sui-form-field>
+            <sui-form-field>
               <sui-input
                       type="text"
                       placeholder="Postkode"
                       v-model="zipcodeInput"
                       icon="map marker alternate"
                       icon-position="left" />
-            </sui-form-field>-->
+            </sui-form-field>
             <sui-button v-on:click="submitAd" size="large" color="blue" fluid>Lag Annonse</sui-button>
           </sui-segment>
         </sui-form>
@@ -131,21 +131,24 @@
                     "description": this.descriptionInput,
                     "bidEndTime": new Date(this.bidEndTimeInput).toISOString(),
                     "imageString": this.selectedFile
-                    //"zipCode": this.zipcodeInput
                 };
                 let minimumBid = Number(this.minimumBidInput);
                 if (!isNaN(minimumBid)) { // add minimumbid field if it's a number
                     data.minimumBid = minimumBid;
                 }
-                let errormsg = ""
-                if(data.title == '' || data.description == undefined) {
+                if(this.zipcodeInput !== '') {
+                    data.zipCode = this.zipcodeInput;
+                }
+
+                let errormsg = "";
+                if(data.title === '' || data.description == undefined) {
                     errormsg = "Du må ha tittel på annonsen\n"
                 }
-                if(data.description == '' || data.description == undefined) {
+                if(data.description === '' || data.description == undefined) {
                     errormsg += "Du må ha en beskrivelse i annonsen\n"
                 }
 
-                if(errormsg != ""){
+                if(errormsg !== ""){
                     alert(errormsg)
                 }
                 else {
