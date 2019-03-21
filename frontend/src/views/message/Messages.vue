@@ -11,16 +11,34 @@
     </div>
 
     <div class="content">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus asperiores, aspernatur consectetur dicta doloremque dolores eaque est excepturi facere illum in itaque magnam maxime minima mollitia nam omnis perspiciatis praesentium quidem rem repellendus reprehenderit sed tempore tenetur veniam vero voluptas?</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut earum officiis quisquam sapiente temporibus. Animi assumenda atque blanditiis delectus eos nostrum odio quaerat recusandae suscipit ut? Ab alias aut cumque deserunt dolorem dolores doloribus, ducimus facilis fugit illo ipsam iste laboriosam modi necessitatibus, non nulla officia officiis perspiciatis quos recusandae sapiente, sequi similique sint sit veritatis voluptatem voluptatibus? Alias at consequatur deleniti distinctio ducimus enim eos, esse fugit hic impedit iure laboriosam maiores molestiae nam nemo numquam officia officiis qui ratione rerum sapiente sequi sunt voluptate. Ab consequuntur, doloremque expedita explicabo ipsa, iure nemo praesentium quae, quia quis repellat sit?</p>
+      <div class="msg_history">
+        <OutgoingMessage></OutgoingMessage>
+        <IncomingMessage></IncomingMessage>
+        <IncomingMessage></IncomingMessage>
+        <OutgoingMessage></OutgoingMessage>
+        <OutgoingMessage></OutgoingMessage>
+        <IncomingMessage></IncomingMessage>
+        <IncomingMessage></IncomingMessage>
+        <OutgoingMessage></OutgoingMessage>
+      </div>
+      <div class="type_msg">
+        <div class="input_msg_write">
+          <input type="text" class="write_msg" placeholder="Skriv en melding" />
+          <button class="msg_send_btn" type="button">Send</button>
+        </div>
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
+    import OutgoingMessage from "./OutgoingMessage";
+    import IncomingMessage from "./IncomingMessage"
+
     export default {
         name: "Messages",
+        components: {OutgoingMessage, IncomingMessage},
         methods: {
             boxClicked(userId) {
                 console.log(userId);
@@ -68,7 +86,7 @@
   }
 
   .outer {
-    height: 75vh;
+    height: 85vh;
     display: grid;
     grid-template-columns: 1fr 2fr;
 
@@ -95,11 +113,52 @@
   }
 
   .content {
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     background: white;
-    padding-left: 10px;
+  }
 
+  .msg_history {
+    height: calc(85vh - 48px);
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .type_msg {
+    border-top: 1px solid #c4c4c4;
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .input_msg_write input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    color: #4c4c4c;
+    font-size: 15px;
+    min-height: 48px;
+    width: 86%;
+    float: left;
+
+  }
+
+  .input_msg_write input:focus {
+    outline-width: 0;
+  }
+
+
+  .msg_send_btn {
+    background: #1E639C none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    height: 33px;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 70px;
   }
 </style>
 
