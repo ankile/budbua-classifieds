@@ -40,7 +40,7 @@
         },
         created(){
             User.isLoggedIn().then(()=>{
-                this.items=['Lag annonse', "Profil", 'Logg ut']
+                this.items=['Lag annonse', 'Meldinger', "Profil", 'Logg ut']
             })
         },
         methods: {
@@ -58,6 +58,9 @@
                                 break;
                             case "Lag annonse":
                                 router.push("/create");
+                                break;
+                            case "Meldinger":
+                                router.push("/messages");
                                 break;
                             case "Profil":
                                 router.push("/profile");
