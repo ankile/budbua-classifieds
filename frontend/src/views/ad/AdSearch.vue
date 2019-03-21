@@ -3,17 +3,20 @@
     <form @submit="searchAd">
       <input type="text" v-on:keyup="updateQuery" name="search" placeholder="Søk i annonser ...">
     </form>
-    <div class="adfilter__tabs">
-      <sui-button active v-on:click="e=>updateFilter(e, 'ALL_ADS')">Alle annonser</sui-button>
-      <sui-button v-on:click="e=>updateFilter(e, 'MY_ADS')">Mine annonser</sui-button>
-      <sui-button v-on:click="e=>updateFilter(e, 'MY_BIDS')">Mine bud</sui-button>
-    </div>
+      <div v-if="isloggedin">
+          <div class="adfilter__tabs">
+              <sui-button active v-on:click="e=>updateFilter(e, 'ALL_ADS')">Alle annonser</sui-button>
+              <sui-button v-on:click="e=>updateFilter(e, 'MY_ADS')">Mine annonser</sui-button>
+              <sui-button v-on:click="e=>updateFilter(e, 'MY_BIDS')">Mine bud</sui-button>
+          </div>
+      </div>
   </div>
 </template>
 
 <script>
 
   export default {
+  props:['isloggedin'],
     name: "AdSearch",
     data() {
       return {
@@ -21,6 +24,7 @@
           filter: 'ALL_ADS',
       }
     },
+
     methods: {
       updateQuery(e){
         e.preventDefault();
