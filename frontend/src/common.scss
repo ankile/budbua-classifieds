@@ -9,7 +9,9 @@ $primary-dark:#0039cb;
 $off-white:#F2F2F2;
 $off-black:#2c3e50;
 
-
+html,body{
+  background-color: $off-white;
+}
 
 
 /* MEDIA QUERIES */

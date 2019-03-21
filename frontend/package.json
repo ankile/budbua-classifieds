@@ -13,7 +13,7 @@
     "netlify-cli": "^2.8.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.7.0",
-    "vue": "^2.5.22",
+    "vue": "2.6.6",
     "vue-material": "^1.0.0-beta-10.2",
     "vue-router": "^3.0.1"
   },
@@ -27,7 +27,7 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "vue-loader": "^15.6.2",
-    "vue-template-compiler": "^2.6.6"
+    "vue-template-compiler": "2.6.6"
   },
   "eslintConfig": {
     "root": true,

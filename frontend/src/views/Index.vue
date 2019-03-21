@@ -26,15 +26,23 @@
         },
         created() {
             Api.get('/auctions/ads/')
-                    .then(res => this.ads = res.data)
-                    .catch(err => console.log(err));
+                    .then(res => this.ads = res.data
+                    )
+                    .catch((err) => {
+                        if(err.response.status == 401) {
+                            localStorage.removeItem("token")
+                            location.reload();
+                            console.log("ok")
+                        }
+                    } );
         },
         methods: {
             adSearch(query) {
                 console.log("search!!" + query);
                 Api.get('/auctions/ads/?search='+query)
                         .then(res => this.ads = res.data)
-                        .catch(err => console.log(err));
+                        .catch(() => {
+                        });
             }
         }
     }

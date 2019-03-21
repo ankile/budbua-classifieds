@@ -21,7 +21,7 @@
     @import './../common.scss';
 
     .header {
-        background: $primary;
+        background-color: white !important;
         color: white;
         text-align: center;
         padding: 10px;
@@ -31,6 +31,9 @@
         color: white;
         padding-right: 5px;
         text-decoration: none;
+    }
+    #nav{
+        background-color: white !important;
     }
 
 </style>

@@ -1,7 +1,6 @@
 import datetime
 import os
 
-import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -44,6 +43,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
     }
+
 }
 
 MIDDLEWARE = [
@@ -146,4 +146,8 @@ try:
 except ImportError:
     pass
 
-django_heroku.settings(locals())
+
+if 'HEROKU' in os.environ:
+    import django_heroku
+    django_heroku.settings(locals())
+

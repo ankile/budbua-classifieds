@@ -93,13 +93,38 @@ Components used:
         methods: {
             submitRegister(e){
                 e.preventDefault();
-                User.register(
-                    this.firstNameInput,
-                    this.lastNameInput,
-                    this.emailInput,
-                    this.passwordInput,
-                    this.password2Input)
-                    .then(() => router.push('/login'))
+                let errormsg = ""
+                if(this.firstNameInput == "") {
+                    errormsg += "Det mangler fornavn \n"
+                }
+                if(this.lastNameInput == "") {
+                    errormsg += "Det mangler etternavn\n"
+                }
+                if(this.emailInput == "") {
+                    errormsg += "Det mangler epost\n"
+                }
+                if(this.passwordInput !== this.password2Input || this.passwordInput=="") {
+                    errormsg += "Du må skrive samme passord to ganger"
+                }
+                if(errormsg !== ""){
+                    alert(errormsg)
+                }
+                else {
+                    User.register(
+                        this.firstNameInput,
+                        this.lastNameInput,
+                        this.emailInput,
+                        this.passwordInput,
+                        this.password2Input)
+                        .then(() => {
+                            alert("Din nye konto er nå aktiv og kan logges inn med")
+                            router.push('/login')
+                            }
+                        ).catch(() => {
+                            alert("Wooops, her har det skjedd noe galt med innloggingen. Prøv igjen senere")
+                    })
+                }
+
             }
 
         }

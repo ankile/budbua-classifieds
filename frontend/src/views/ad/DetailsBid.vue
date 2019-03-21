@@ -14,7 +14,8 @@
               placeholder="Legg inn et bud..."
               v-model="bidAmountInput"
               icon="money bill alternate outline"
-              icon-position="left" />
+              icon-position="left"
+              />
 
         <sui-input v-else
                    type="text"
@@ -41,7 +42,7 @@
         props: ['ad'],
         data() {
             return {
-                bidAmountInput: ''
+                bidAmountInput: "",
             }
         },
         methods: {
@@ -55,17 +56,26 @@
                     minBid = this.ad.minimumBid
                 }
                 this.bidAmountInput = Number(this.bidAmountInput);
-                if (!isNaN(this.bidAmountInput) && this.bidAmountInput >= minBid) { // if the bid is accepted
-                    const data = {
-                      "value": this.bidAmountInput
-                    };
-                    const path = '/auctions/ads/'+this.ad.id +'/bid/';
-                    Api.post(path, data)
-                        .then(() => {
-                            this.bidAmountInput = '';
-                        })
-                        .catch(err => console.log(err));
+                if(this.bidAmountInput <= this.ad.maximumBid){
+                    alert("Budet må være større enn nåværende bud")
+                } else {
+                    let confirmationPopup = confirm("Du er i ferd med å legge inn et bud på: "+this.bidAmountInput+" NOK. Dette budet er bindende. \nVil du legge inn bud?")
+                    if(confirmationPopup == true){
+                        if (!isNaN(this.bidAmountInput) && this.bidAmountInput >= minBid) { // if the bid is accepted
+                            const data = {
+                                "value": this.bidAmountInput
+                            };
+                            const path = '/auctions/ads/'+this.ad.id +'/bid/';
+                            Api.post(path, data)
+                                .then(() => {
+                                    this.bidAmountInput = '';
+                                })
+                                .catch(err => console.log(err));
+                        }
+                    }
+
                 }
+
 
             }
         },
