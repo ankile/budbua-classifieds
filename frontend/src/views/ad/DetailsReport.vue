@@ -29,25 +29,27 @@
         },
         methods: {
             reportSeller() {
-                console.log("report seller");
                 let confirmationPopup = confirm("Du er i ferd med å rapportere selger. Dette kan ikke angres. \nVil du rapportere?")
                 if (confirmationPopup) {
-                    console.log("slettet");
-                    // API call here
-                    //alert("Selger er rapportert");
-                    this.reportSellerDisabled = true;
-
+                    const url = '/reports/users/' + this.ad.owner + '/';
+                    Api.post(url, null)
+                        .then(() => {
+                            alert("Selger er rapportert");
+                            this.reportSellerDisabled = true;
+                        })
+                        .catch(() => alert("Upps, noe gikk galt. Selger ble ikke rapportert"));
                 }
             },
             reportAd() {
-                console.log("report ad");
                 let confirmationPopup = confirm("Du er i ferd med å rapportere denne annonsen. Dette kan ikke angres. \nVil du rapportere?")
                 if (confirmationPopup) {
-                    console.log("slettet");
-                    // API call here
-                    //alert("Budet er rapportert");
-                    this.reportAdDisabled = true;
-
+                    const url = '/reports/ads/' + this.ad.id + '/';
+                    Api.post(url, null)
+                        .then(() => {
+                            alert("Budet er rapportert");
+                            this.reportAdDisabled = true;
+                        })
+                        .catch(() => alert("Upps, noe gikk galt. Annonsen ble ikke rapportert"));
                 }
             }
         }
