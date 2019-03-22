@@ -12,7 +12,7 @@ export default class {
         (hours.length === 1) && (hours = '0' + hours);
         (minutes.length === 1) && (minutes = '0' + minutes);
         if(shouldReturnTime) {return hours + ':' + minutes + ' | ' + day + '.' + month + '.' + year;}
-        else {return day + '.' + month + '.' + year;}
+        else {return day + '.' + month;}
     }
 }
 

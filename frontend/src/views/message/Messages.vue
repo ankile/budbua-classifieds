@@ -116,13 +116,16 @@
 
   .inbox-box {
     padding: 5px;
+    position: relative;
   }
 
   .time {
-    height: 33px;
+    height: 20px;
     position: absolute;
-    width: 50px;
-    background: red;
+    width: 40px;
+    top: 5px;
+    right: 5px;
+
   }
 
   .inbox-box:hover {
