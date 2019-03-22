@@ -2,10 +2,14 @@
   <div class="outer">
 
     <div class="inbox">
+      <h2 is="sui-header" color="blue">
+        <sui-header-content class="card--header">Meldinger</sui-header-content>
+      </h2>
       <div :key="message.userId" v-for="message in allMessages">
         <div class="inbox-box" :class="{active: message.isActive}" v-on:click="boxClicked(message.userId)">
           <h3 :class="{active: message.isActive}">{{message.name}}</h3>
           <p>{{message.latestMessage}}</p>
+          <p class="time">{{message.dateTime}}</p>
         </div>
       </div>
     </div>
@@ -32,9 +36,11 @@
   </div>
 </template>
 
+
 <script>
     import OutgoingMessage from "./OutgoingMessage";
     import IncomingMessage from "./IncomingMessage"
+    import prettyTime from "./prettyTime";
 
     export default {
         name: "Messages",
@@ -54,19 +60,22 @@
                       userId: 1,
                       name: 'Jo Nesbø',
                       latestMessage: 'Passer det å møtes i morgen kl 12?',
-                      isActive: false
+                      isActive: true,
+                      dateTime: prettyTime.getPrettyTime(new Date(), false)
                     },
                     {
                         userId: 3,
                         name: 'Ivar Myrstad',
                         latestMessage: 'Ka, ka, ka, ka e det som skjer?',
-                        isActive: true
+                        isActive: false,
+                        dateTime: prettyTime.getPrettyTime(new Date(), false)
                     },
                     {
                         userId: 4,
                         name: 'Postman Pat',
                         latestMessage: 'Jeg har en svart og hvit katt',
-                        isActive: false
+                        isActive: false,
+                        dateTime: prettyTime.getPrettyTime(new Date(), false)
                     }
                 ],
 
@@ -74,6 +83,7 @@
         }
     }
 </script>
+
 
 <style scoped>
   h3 {
@@ -83,6 +93,12 @@
 
   p {
     text-align: left;
+  }
+
+  .card--header{
+    text-align: center;
+    width:100%;
+    background: none!important;
   }
 
   .outer {
@@ -100,6 +116,13 @@
 
   .inbox-box {
     padding: 5px;
+  }
+
+  .time {
+    height: 33px;
+    position: absolute;
+    width: 50px;
+    background: red;
   }
 
   .inbox-box:hover {

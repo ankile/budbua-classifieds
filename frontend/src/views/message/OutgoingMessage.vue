@@ -15,7 +15,7 @@
         name: "OutgoingMessage",
         data() {
             return {
-                timeDate: prettyTime.getPrettyTime(new Date())
+                timeDate: prettyTime.getPrettyTime(new Date(), true)
             }
         }
     }

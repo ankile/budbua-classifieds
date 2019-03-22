@@ -1,6 +1,6 @@
 
 export default class {
-    static getPrettyTime(datetime) {
+    static getPrettyTime(datetime, shouldReturnTime) {
         let hours = datetime.getHours().toString();
         let minutes = datetime.getMinutes().toString();
         const year = datetime.getFullYear().toString().substr(2);
@@ -11,8 +11,8 @@ export default class {
         (month.length === 1) && (month = '0' + month);
         (hours.length === 1) && (hours = '0' + hours);
         (minutes.length === 1) && (minutes = '0' + minutes);
-
-        return hours + ':' + minutes + ' | ' + day + '.' + month + '.' + year;
+        if(shouldReturnTime) {return hours + ':' + minutes + ' | ' + day + '.' + month + '.' + year;}
+        else {return day + '.' + month + '.' + year;}
     }
 }
 

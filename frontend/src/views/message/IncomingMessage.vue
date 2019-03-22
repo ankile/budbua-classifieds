@@ -15,7 +15,7 @@
         name: "ReceivedMessage",
         data() {
             return {
-                dateTime: prettyTime.getPrettyTime(new Date())
+                dateTime: prettyTime.getPrettyTime(new Date(), true)
             }
         }
     }
