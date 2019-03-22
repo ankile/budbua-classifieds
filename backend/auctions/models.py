@@ -79,10 +79,6 @@ class Ad(TimeStampable):
         else:
             return None
 
-    @property
-    def user_bid(self):
-        if self.bids.count() != 0:
-            bids = self.bids.get()
 
 class Bid(TimeStampable):
     class Meta:

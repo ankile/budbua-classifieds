@@ -17,17 +17,12 @@ class AdsListCreateView(APIView):
     # TODO Implement searching and pagination
     @staticmethod
     def get(request):
-
-        # TODO Get My Ads, Ads I've bid on, last number,
-
-
-
-        print(request.GET)
         search_query = request.GET.get("search", "")
 
         filter_query = request.GET.get("filter", None)
 
-        ads = Ad.objects.filter(title__icontains=search_query).annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user)))
+        ads = Ad.objects.filter(title__icontains=search_query).annotate(
+            user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user)))
 
         if filter_query is not None:
             if filter_query == "MY_ADS":
@@ -36,10 +31,7 @@ class AdsListCreateView(APIView):
             elif filter_query == "MY_BIDS":
                 ads = ads.filter(bids__bidder=request.user)
 
-
         serializer = AdListSerializer(ads, many=True)
-
-
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -57,8 +49,10 @@ class AdsDetailView(ModelView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     @staticmethod
-    def get(_, pk):
-        ad = Ad.objects.get(pk=pk)
+    def get(request, pk):
+        print('in detail')
+        ad = Ad.objects.filter(pk=pk).annotate(
+            user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))).get()
         serializer = AdDetailSerializer(ad)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
@@ -72,7 +66,7 @@ class AdsDetailView(ModelView):
 
         return Response(status=status.HTTP_200_OK)
 
-    def dele(self, request, pk):
+    def delete(self, request, pk):
         try:
             user = User.objects.get(pk=request.user.pk)
             ad = self.get_object(pk=pk)
