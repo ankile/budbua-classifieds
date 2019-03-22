@@ -148,3 +148,21 @@ class User extends Api {
     }
 
 }
+
+
+export class Message extends Api{
+
+    static createChat(userId){
+        return new Promise((resolve, reject) => {
+            this.post("/messages/"+userId, {})
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+    }
+
+
+}
