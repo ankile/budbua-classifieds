@@ -70,7 +70,8 @@ class AdsDetailView(ModelView):
         try:
             user = User.objects.get(pk=request.user.pk)
             ad = self.get_object(pk=pk)
-            if (user == ad.owner):
+
+            if user == ad.owner:
                 ad.delete()
                 return Response(status=status.HTTP_204_NO_CONTENT)
             return Response(status=status.HTTP_401_UNAUTHORIZED)
