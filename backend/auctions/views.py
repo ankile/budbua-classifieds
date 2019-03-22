@@ -50,7 +50,6 @@ class AdsDetailView(ModelView):
 
     @staticmethod
     def get(request, pk):
-        print('in detail')
         ad = Ad.objects.filter(pk=pk).annotate(
             user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))).get()
         serializer = AdDetailSerializer(ad)
