@@ -6,11 +6,17 @@ from budbua.utils.validators import try_cast_to_int
 
 class AdListSerializer(serializers.ModelSerializer):
 
+    user_max_bid = serializers.SerializerMethodField()
+
     class Meta:
         model = Ad
         read_only_fields = ('maximum_bid', 'num_bids')
         fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner',
-                  'highest_bidder', 'image_string')
+                  'highest_bidder', 'user_max_bid', 'image_string')
+
+
+    def get_user_max_bid(self, ad):
+        return ad.user_max_bid
 
 
 class AdCreateSerializer(serializers.ModelSerializer):
@@ -41,7 +47,7 @@ class AdDetailSerializer(serializers.ModelSerializer):
         model = Ad
         read_only_fields = ('first_name', 'last_name', 'email', )
         fields = ('id', 'title', 'description', 'bid_end_time', 'minimum_bid', 'maximum_bid', 'num_bids', 'owner',
-                  'image_string', 'highest_bidder') + read_only_fields
+                  'image_string', 'highest_bidder', 'user_bid') + read_only_fields
 
 
 class BidSerializer(serializers.ModelSerializer):
