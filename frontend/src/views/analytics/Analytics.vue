@@ -22,8 +22,8 @@ This component contains logic, styling and structure for the owner to see statis
 
                         </sui-card-content>
                         <sui-card-content extra>
-                            <span slot="right">
-                                Oppdatert: Akkurat nå
+                            <span class="card-footer" slot="right">
+                                {{ getTimeSinceUpdated }}
                             </span>
                         </sui-card-content>
                     </sui-card>
@@ -41,8 +41,8 @@ This component contains logic, styling and structure for the owner to see statis
 
                         </sui-card-content>
                         <sui-card-content extra>
-                            <span slot="right">
-                                Oppdatert: Akkurat nå
+                            <span class="card-footer" slot="right">
+                                {{ getTimeSinceUpdated }}
                             </span>
                         </sui-card-content>
                     </sui-card>
@@ -60,8 +60,8 @@ This component contains logic, styling and structure for the owner to see statis
 
                         </sui-card-content>
                         <sui-card-content extra>
-                            <span slot="right">
-                                Oppdatert: Akkurat nå
+                            <span class="card-footer" slot="right">
+                                {{ getTimeSinceUpdated }}
                             </span>
                         </sui-card-content>
                     </sui-card>
@@ -79,8 +79,8 @@ This component contains logic, styling and structure for the owner to see statis
 
                         </sui-card-content>
                         <sui-card-content extra>
-                            <span slot="right">
-                                Oppdatert: Akkurat nå
+                            <span class="card-footer" slot="right">
+                                {{ getTimeSinceUpdated }}
                             </span>
                         </sui-card-content>
                     </sui-card>
@@ -99,7 +99,13 @@ This component contains logic, styling and structure for the owner to see statis
 
         data() {
             return {
-                analytics: null,
+                analytics: {
+                    userCount: "",
+                    adCount: "",
+                    bidCount: "",
+                    reportCount: "",
+                },
+                lastUpdatedSeconds: 0,
             }
         },
 
@@ -107,7 +113,26 @@ This component contains logic, styling and structure for the owner to see statis
 
         created() {
             Api.get('/analytics/')
-                .then(resp => this.analytics = resp.data)
+                .then(resp => {
+                    this.analytics = resp.data;
+                    setInterval(() => {
+                        if (this.lastUpdatedSeconds >= 59) {
+                            Api.get('/analytics/')
+                                .then(resp => {
+                                    this.analytics = resp.data;
+                                    this.lastUpdatedSeconds = 0;
+                                })
+                        } else {
+                            this.lastUpdatedSeconds += 1;
+                        }
+                    }, 1000);
+                })
+        },
+        computed: {
+            getTimeSinceUpdated() {
+                return this.lastUpdatedSeconds === 0 ?
+                    'Oppdatert: Akkurat nå' : `Oppdatert for ${this.lastUpdatedSeconds} sekunder siden`;
+            }
         }
 
     }
@@ -142,5 +167,9 @@ This component contains logic, styling and structure for the owner to see statis
     .analytics-header {
         margin-bottom: 1.2em;
         font-size: 2.5em;
+    }
+
+    .card-footer {
+        font-size: 0.8em;
     }
 </style>
