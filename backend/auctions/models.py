@@ -6,9 +6,8 @@ from users.models import User
 
 
 class Ad(TimeStampable):
-
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
 
     def __str__(self):
         return f'Ad(owner={self.owner}, title="{self.title}")'
@@ -79,16 +78,14 @@ class Ad(TimeStampable):
             }
             return user
         else:
-            return "none"
-
+            return None
 
 
 
 
 class Bid(TimeStampable):
-
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
 
     def __str__(self):
         return f'Bid(bidder={self.bidder}, ad={self.ad.title}, value={self.value})'
@@ -112,16 +109,12 @@ class Bid(TimeStampable):
         verbose_name='value',
     )
 
-
-    #Implements custom validation
+    # Implements custom validation
     def clean(self, *args, **kwargs):
         if self.bidder == self.ad.owner:
             raise ValidationError('Bidder and owner can not be the same person')
         super(Bid, self).clean(*args, **kwargs)
 
-
     def save(self, *args, **kwargs):
         self.full_clean()
         super(Bid, self).save(*args, **kwargs)
-
-
