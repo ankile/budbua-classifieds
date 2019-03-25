@@ -7,8 +7,8 @@ import jwt_decode from 'jwt-decode'
 
 export {
     Api,
-    User
-}
+    User,
+    MessageApi}
 
 class Api {
     static headers() {
@@ -75,7 +75,6 @@ class User extends Api {
             }
         })
     }
-
 
     static login(email, password) {
         return new Promise((resolve, reject) => {
@@ -150,11 +149,11 @@ class User extends Api {
 }
 
 
-export class Message extends Api{
+class MessageApi extends Api{
 
     static createChat(userId){
         return new Promise((resolve, reject) => {
-            this.post("/messages/"+userId, {})
+            this.post("/messages/", {with:userId})
                 .then(res => {
                     resolve(res);
                 })
@@ -164,5 +163,84 @@ export class Message extends Api{
         });
     }
 
+    static openChat(userId){
+        return new Promise((resolve, reject) => {
+
+        });
+    }
+
+    static getChatWithUser(userId){
+        return new Promise((resolve, reject) => {
+
+        })
+    }
+
+    static getChat(chatId){
+        return new Promise((resolve, reject) => {
+            /*this.get("/messages/"+chatId, {})
+                .then(res => {
+
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+                */
+            let res={}
+            switch(chatId){
+                case "1":
+                    res=[{from: 1, text: "vsfdsfds", time: 123}, {from: 2, text: "dsa g", time: 123}]
+                    break;
+                case "2":
+                    res=[{from: 1, text: "f3efsdf", time: 123}, {from: 2, text: "22e44", time: 123}]
+                    break;
+                case "3":
+                    res=[{from: 1, text: "gtggf", time: 123}, {from: 2, text: "wdwdwdw", time: 123}]
+                    break;
+            }
+            resolve(res)
+        });
+    }
+
+    static getAllChats(){
+        return new Promise((resolve, reject)=>{
+            let res=[
+                {
+                    chatId: "1",
+                    displayName: 'Jo Nesbø',
+                    latestMessage: {from: 1, text: "hallo", time: 123},
+                    messages: [{from: 1, text: "hallgfgfo", time: 123}, {from: 2, text: "haldla", time: 123}]
+                },
+                {
+                    chatId: "2",
+                    displayName: 'Tor',
+                    latestMessage: {from: 1, text: "hadllo", time: 133223},
+                    messages: [{from: 1, text: "haldlo", time: 123}, {from: 2, text: "halla", time: 123}]
+                },
+                {
+                    chatId: "3",
+                    displayName: 'Gunnar',
+                    latestMessage: {from: 1, text: "halwlo", time: 1423},
+                    messages: [{from: 1, text: "hallasdo", time: 123}, {from: 2, text: "halla", time: 123}]
+                }
+            ]
+            res.sort((a, b) => {
+                return (a.latestMessage.time < b.latestMessage.time) ? 1 : -1
+            });
+            resolve(res)
+        })
+    }
+
+    static sendMessage(chatId,text, time){
+        return new Promise((resolve, reject) => {
+            this.post("/messages/"+chatId, {text, time})
+                .then(()=>{
+                    resolve();
+                })
+                .catch(()=>{
+                    reject();
+                })
+        })
+    }
 
 }
