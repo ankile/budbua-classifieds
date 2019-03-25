@@ -1,18 +1,31 @@
 <template>
   <div class="message-wrapper">
-    <Messages></Messages>
+    <Messages v-bind:currentuserid="currentUserId"></Messages>
   </div>
 </template>
 
 <script>
     import Messages from './Messages'
+    import {User} from './../../api'
 
     export default {
         name: "MessagesWrapper",
         components: {
             Messages
+        },
+        data(){
+          return{
+            currentUserId:null
+          }
+        },
+        beforeMount() {
+          User.getCurrentUser()
+                  .then(user=>{
+                    this.currentUserId=user.data.id
+                  })
         }
     }
+
 </script>
 
 
