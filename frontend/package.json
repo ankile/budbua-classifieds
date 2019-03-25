@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "latest",
     "jwt-decode": "^2.2.0",
+    "netlify-cli": "^2.8.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-vue": "^0.7.0",
     "vue": "2.6.6",
