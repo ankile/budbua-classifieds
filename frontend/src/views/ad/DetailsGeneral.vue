@@ -50,7 +50,7 @@
     import SuiGrid from "semantic-ui-vue/dist/commonjs/collections/Grid/Grid";
     import SuiGridRow from "semantic-ui-vue/dist/commonjs/collections/Grid/GridRow";
     import SuiGridColumn from "semantic-ui-vue/dist/commonjs/collections/Grid/GridColumn";
-    import { Message } from './../../api'
+    import { MessageApi } from './../../api'
     import router from './../../router'
 
     export default {
@@ -74,7 +74,10 @@
         },
         methods:{
             createChat(){
-                router.push("/messages/?id="+this.ad.owner)
+                MessageApi.openChat(this.ad.owner)
+                    .then(chatId=>{
+                        router.push("/messages/?chatId="+chatId)
+                    })
             }
 
         }
