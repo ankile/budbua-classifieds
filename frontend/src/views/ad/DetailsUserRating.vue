@@ -20,35 +20,63 @@
                 payload: {},
                 adActive: false,
                 owner: this.user.id === this.ad.owner,
-                hasLeadingBid: this.user.id === this.ad.highestBidder.id
-
+                hasLeadingBid: this.user.id === this.ad.highestBidder.id,
+                previouslyRated: false
             }
         },
         methods: {
             handleRate(evt, props) {
                 this.value = props.rating;
                 this.payload = props;
-                console.log(this.payload.rating);
-                /*Api.post(url, data)
-                    .then(() => {
 
+                const data = {
+                    "rating": this.value
+                };
+                let url = '/rating/?ratingReceiver=';
+                if(this.hasLeadingBid) {
+                    url += this.ad.owner;
+                }
+                else {
+                    url += this.user.id
+                }
+                if(!this.previouslyRated) {
+                    Api.post(url, data)
+                        .then(() => {
+                            this.previouslyRated = true;
+                        })
+                        .catch(() => {
+                            this.value = 0;
+                            alert("Noe gikk galt");
+                        });
+                }
+                else {
+                    Api.put(url, data)
+                        .catch(() => {
+                            this.value = 0;
+                            alert("Noe gikk galt");
                     })
-                    .catch(() => {
-
-                    });*/
-
+                }
             },
         },
         created() {
             const timeremaining = timeleft.prettyGetTimeRemainng(this.ad.bidEndTime).timestring;
             if(timeremaining) {this.adActive = true;}
 
-
+            let url = '/rating/?ratingReceiver=';
+            if(this.hasLeadingBid) {
+                 url += this.ad.owner;
+            }
+            else {
+                url += this.user.id
+            }
+            Api.get(url)
+                .then(res => {
+                    if(res.status === 200) {
+                        this.value = res.data.rating;
+                        this.previouslyRated = true;
+                        console.log("200");
+                    }
+                });
         }
-
     }
 </script>
-
-<style scoped>
-
-</style>
