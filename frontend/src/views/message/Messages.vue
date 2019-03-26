@@ -60,7 +60,11 @@
                 MessageApi.sendMessage(chatId, text, time);
                 this.currentInput="";
                 this.currentChat.messages.push({chatId,text,time,from:this.currentuserid, type:"out"})
+            },
+            recieveMessage(){
+
             }
+
         },
         created() {
             MessageApi.getAllChats()
@@ -72,7 +76,13 @@
                     } else {
                         this.boxClicked(this.chats[0].chatId)
                     }
+
+                    setInterval(()=>{
+
+                    }, 500)
+
                 })
+
         },
         data() {
             return {

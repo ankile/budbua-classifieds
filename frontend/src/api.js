@@ -231,6 +231,14 @@ class MessageApi extends Api{
         })
     }
 
+    static fetchMessagesFromChat(ChatId, time){
+        return new Promise((resolve, reject)=>{
+            this.get("/messages/"+chatId+"?after="+time).then(res=>{
+                resolve(res)
+            })
+        })
+    }
+
     static sendMessage(chatId,text, time){
         return new Promise((resolve, reject) => {
             this.post("/messages/"+chatId, {text, time})
