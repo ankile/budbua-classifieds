@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'auctions',
     'analytics',
     'reports',
+    'rating',
 ]
 
 
