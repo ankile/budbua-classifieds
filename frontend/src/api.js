@@ -2,7 +2,7 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
 
-//TODO:: faktisk håndtere feilmeldinger :))
+//TODO: faktisk håndtere feilmeldinger :))
 
 
 export {
@@ -101,11 +101,11 @@ class User extends Api {
         return new Promise((resolve, reject) => {
             this.post("/users/create/",
                 {firstName, lastName, email, password, password2})
-                .then(res => {
+                .then(() => {
                     resolve();
                 })
 
-                .catch(err => {
+                .catch(() => {
                     reject();
                 });
         });

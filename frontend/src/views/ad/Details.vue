@@ -58,8 +58,7 @@
                             this.owner = this.user.id === this.ad.owner
                         })
                         .catch(() => this.user = null);
-                })
-                .catch(err => console.log(err));
+                });
         }
     }
 </script>
