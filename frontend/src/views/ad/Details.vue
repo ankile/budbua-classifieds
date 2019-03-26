@@ -10,7 +10,7 @@
     <h3 v-if="loading">Laster inn...</h3>
     <DetailsGeneral v-bind:ad="ad" v-bind:user="user"></DetailsGeneral>
     <DetailsBid v-bind:ad="ad" v-if="user && !owner"></DetailsBid>
-    <DetailsMap v-bind:ad="ad" v-if="user && ad.zipCode"></DetailsMap>
+    <DetailsMap v-bind:ad="ad" v-if="ad.zipCode"></DetailsMap>
     <DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport>
     <DetailsUnregistered v-if="!user"></DetailsUnregistered>
     <DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd>
