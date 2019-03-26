@@ -74,7 +74,6 @@
                     if(res.status === 200) {
                         this.value = res.data.rating;
                         this.previouslyRated = true;
-                        console.log("200");
                     }
                 });
         }
