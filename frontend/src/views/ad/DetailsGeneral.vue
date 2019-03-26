@@ -23,6 +23,12 @@
         </sui-grid-column>
         <sui-grid-column>
           <h3>Selger: {{ad.firstName}} {{ad.lastName}}</h3>
+          <sui-label v-if="ad.userRating">
+            <sui-icon name="star" color="yellow"/> {{ad.userRating}} / 5
+          </sui-label>
+          <sui-label v-else>
+            <sui-icon name="star" color="yellow"/> Ingen vurderinger enda
+          </sui-label>
         </sui-grid-column>
         <sui-grid-column>
           <h3 class="highest-bid" v-if="ad.maximumBid">
