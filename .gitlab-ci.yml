@@ -31,6 +31,8 @@ stages:
         - cd backend
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
         - heroku run "python manage.py migrate" --exit-code --app=$HEROKU_APP_NAME
+    tags:
+        - deploy
     only:
         - master
 
@@ -46,6 +48,8 @@ django-unit-integration-tests-job:
 deploy-heroku-job:
     stage: deploy
     image: python:3.7
+    tags:
+        - deploy
     only:
         - master
         - gitlab-ci-test
@@ -61,6 +65,8 @@ deploy-heroku-job:
         - cp netlify.toml dist
         - yarn add netlify-cli
         - yarn run netlify deploy -s $NETLIFY_SITE_ID -d "dist" -a $NETLIFY_AUTH_TOKEN --prod
+    tags:
+        - deploy
     only:
         - master
         - gitlab-ci-test
@@ -68,6 +74,8 @@ deploy-heroku-job:
 deploy-netlify-job:
     stage: deploy
     image: node:latest
+    tags:
+        - deploy
     only:
         - master
         - gitlab-ci-test
