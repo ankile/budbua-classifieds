@@ -1,25 +1,51 @@
 <template>
   <div>
     <form @submit="searchAd">
-      <input type="text" v-model="searchQuery" name="search" placeholder="Søk i annonser ...">
-      <input type="submit" value="Søk" class="btn">
+      <input type="text" v-on:keyup="updateQuery" name="search" placeholder="Søk i annonser ...">
     </form>
+      <div v-if="isloggedin">
+          <div class="adfilter__tabs">
+              <sui-button active v-on:click="e=>updateFilter(e, 'ALL_ADS')">Alle annonser</sui-button>
+              <sui-button v-on:click="e=>updateFilter(e, 'MY_ADS')">Mine annonser</sui-button>
+              <sui-button v-on:click="e=>updateFilter(e, 'MY_BIDS')">Mine bud</sui-button>
+          </div>
+      </div>
   </div>
 </template>
 
 <script>
+
   export default {
+  props:['isloggedin'],
     name: "AdSearch",
     data() {
       return {
-          searchQuery: ''
+          query: '',
+          filter: 'ALL_ADS',
       }
     },
+
     methods: {
-      searchAd(e) {
+      updateQuery(e){
         e.preventDefault();
-        this.$emit('ad-search', this.searchQuery);
-        this.searchQuery = '';
+        this.query=e.target.value;
+        this.searchAd();
+      },
+
+      updateFilter(e, filter){
+        this.filter=filter;
+        this.searchAd();
+        e.target.parentNode.childNodes.forEach(child=>{
+          if(child===e.target){
+            e.target.classList.add("active")
+          }else{
+            child.classList.remove("active")
+          }
+        });
+      },
+
+      searchAd() {
+        this.$emit('ad-search', {filter:this.filter, query:this.query});
       }
     }
   }
@@ -56,5 +82,21 @@
 
   .btn:hover {
     background-color: #1c588f;
+  }
+
+  .adfilter__tabs{
+    margin:0 auto;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 700px;
+  }
+
+  .adfilter__tabs__button{
+    padding:30px;
+  }
+
+  .adfilter__tabs__active{
+
   }
 </style>

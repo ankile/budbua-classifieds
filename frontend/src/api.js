@@ -2,7 +2,7 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 
 
-//TODO:: faktisk håndtere feilmeldinger :))
+//TODO: faktisk håndtere feilmeldinger :))
 
 
 export {
@@ -47,11 +47,13 @@ class Api {
         const config = Api.config();
         return axios.post(fullPath, data, config)
     }
+
     static put(url, data) {
         const fullPath = Api.addHostToPath(url);
         const config = Api.config();
         return axios.put(fullPath, data, config)
     }
+
     static delete(url) {
         const fullPath = Api.addHostToPath(url);
         const config = Api.config();
@@ -64,13 +66,13 @@ class Api {
 
 class User extends Api {
 
-    static isLoggedIn(){
-        return new Promise((resolve, reject)=>{
-            let token=localStorage.getItem('token');
-            let a=jwt_decode(token);
-            if(a){
+    static isLoggedIn() {
+        return new Promise((resolve, reject) => {
+            let token = localStorage.getItem('token');
+            let a = jwt_decode(token);
+            if (a) {
                 resolve();
-            }else{
+            } else {
                 reject();
             }
         })
@@ -85,31 +87,30 @@ class User extends Api {
                     resolve();
                 })
 
-                .catch(err => {
-                    alert("Brukernavn/Passord kombinasjon er feil. Prøv på nytt.")
+                .catch(() => {
+                    alert("Brukernavn/Passord-kombinasjon er feil. Prøv på nytt.");
                     reject();
                 });
         });
 
     }
-
 
 
     static register(firstName, lastName, email, password, password2) {
         return new Promise((resolve, reject) => {
             this.post("/users/create/",
                 {firstName, lastName, email, password, password2})
-                .then(res => {
+                .then(() => {
                     resolve();
                 })
 
-                .catch(err => {
+                .catch(() => {
                     reject();
                 });
         });
     }
 
-    static getCurrentUser(){
+    static getCurrentUser() {
         return new Promise((resolve, reject) => {
             this.get("/users/")
                 .then(res => {
@@ -121,9 +122,9 @@ class User extends Api {
         });
     }
 
-    static updateUserInfo(email, firstName, lastName){
+    static updateUserInfo(email, firstName, lastName) {
         return new Promise((resolve, reject) => {
-            this.put("/users/", {email,firstName,lastName})
+            this.put("/users/", {email, firstName, lastName})
                 .then(res => {
                     resolve(res);
                 })
@@ -133,7 +134,7 @@ class User extends Api {
         });
     }
 
-    static deleteUser(){
+    static deleteUser() {
         return new Promise((resolve, reject) => {
             this.delete("/users/", {})
                 .then(res => {
