@@ -7,6 +7,7 @@ import RegisterWrapper from "./views/register/RegisterWrapper";
 import About from "./views/About";
 import CreateAdWrapper from "./views/createAd/CreateAdWrapper";
 import userProfile from "./views/userProfile/UserProfileWrapper";
+import AnalyticsWrapper from "./views/analytics/AnalyticsWrapper";
 
 Vue.use(Router);
 
@@ -48,8 +49,14 @@ export default new Router({
       name: 'profile',
       component: userProfile
     },
+    {
+      path: '/analytics',
+      name: 'analytics',
+      component: AnalyticsWrapper,
+    },
 
   ],
+
   scrollBehavior(to, from, savedPosition) { //preserves the scrolling position of history entries
     if (savedPosition) {
       //console.log(savedPosition);
