@@ -14,8 +14,8 @@ stages:
         - virtualenv -p python3 testenv
         - source testenv/bin/activate
         - pip3 install -r requirements_test.txt
-        - python3 manage.py makemigrations --settings=budbua.settings_tests --merge --exit-code
-        - python3 manage.py migrate --settings=budbua.settings_tests --exit-code
+        - python3 manage.py makemigrations --settings=budbua.settings_tests --merge
+        - python3 manage.py migrate --settings=budbua.settings_tests
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
 
 
@@ -35,12 +35,13 @@ stages:
         - deploy
     only:
         - master
-        - gitlab-ci-test
+        - dev
 
 django-unit-integration-tests-job:
     stage: test
     image: python:3.7
     only:
+        - dev
         - master
     <<: *test-job
 
