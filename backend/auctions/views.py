@@ -59,8 +59,8 @@ class AdsDetailView(ModelView):
             user_rating=Avg('owner__received_ratings__rating'),
         )
 
-        # if request.user:
-        #     ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
+        if not isinstance(request.user, AnonymousUser):
+            ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
 
         serializer = AdDetailSerializer(ad.get())
 
@@ -79,10 +79,7 @@ class AdsDetailView(ModelView):
         try:
             user = User.objects.get(pk=request.user.pk)
             ad = self.get_object(pk=pk)
-<<<<<<< HEAD
-=======
 
->>>>>>> dev
             if user == ad.owner:
                 ad.delete()
                 return Response(status=status.HTTP_204_NO_CONTENT)

@@ -12,7 +12,6 @@ class Chat(TimeStampable):
     users = models.ManyToManyField(
         'users.User',
         related_name='chats',
-        on_delete=models.CASCADE
     )
 
     @property
