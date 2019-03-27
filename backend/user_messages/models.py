@@ -16,7 +16,11 @@ class Chat(TimeStampable):
 
     @property
     def latest_message(self):
-        return self.messages.last().message
+        return self.messages.last().message if self.messages.exists() else ""
+
+    @property
+    def message_count(self):
+        return self.messages.count()
 
 
 class Message(TimeStampable):
