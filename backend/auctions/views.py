@@ -14,9 +14,7 @@ from budbua.utils.mixins import ModelView
 
 
 class AdsListCreateView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
 
-    # TODO Implement searching and pagination
     @staticmethod
     def get(request):
         search_query = request.GET.get("search", "")
@@ -61,8 +59,8 @@ class AdsDetailView(ModelView):
             user_rating=Avg('owner__received_ratings__rating'),
         )
 
-        # if request.user:
-        #     ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
+        if not isinstance(request.user, AnonymousUser):
+            ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
 
         serializer = AdDetailSerializer(ad.get())
 
