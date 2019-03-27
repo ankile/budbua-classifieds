@@ -2,26 +2,46 @@ from django.db import models
 
 # Create your models here.
 
+from budbua.utils.mixins import TimeStampable
 
-class Messages(models.Model):
 
-    message_sender = models.ForeignKey(
+class Chat(TimeStampable):
+    class Meta:
+        ordering = ('-updated_at',)
+
+    users = models.ManyToManyField(
         'users.User',
-        verbose_name='message sender',
-        on_delete=models.CASCADE()
+        related_name='chats',
+        on_delete=models.CASCADE
     )
 
-    message_receiver = models.ForeignKey(
+    @property
+    def latest_message(self):
+        return self.messages.last().message
+
+
+class Message(TimeStampable):
+    class Meta:
+        ordering = ('-created_at',)
+
+    sender = models.ForeignKey(
         'users.User',
-        verbose_name='message receiver',
-        on_delete=models.CASCADE()
+        verbose_name='sender',
+        on_delete=models.CASCADE
+    )
+
+    chat = models.ForeignKey(
+        Chat,
+        related_name='messages',
+        on_delete=models.CASCADE
     )
 
     message = models.TextField(
         verbose_name='message',
-
     )
 
-    message_sent_time = models.DateTimeField(
-        verbose_name='message sent at'
-    )
+    def save(self, **kwargs):
+        self.chat.save()
+
+        # Call super method to make sure it is saved to database
+        super().save(**kwargs)
