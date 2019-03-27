@@ -31,12 +31,12 @@ stages:
         - cd backend
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
         - heroku run "python manage.py migrate" --exit-code --app=$HEROKU_APP_NAME
-   only:
+    only:
         - master
 
 django-unit-integration-tests-job:
     stage: test
-   image: python:3.7
+    image: python:3.7
     only:
         - dev
         - master
