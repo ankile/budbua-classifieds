@@ -1,3 +1,6 @@
+from django.contrib.auth.models import AnonymousUser
+from django.db.models import Max, Q, Count
+from django.db.models.aggregates import Avg
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -11,12 +14,28 @@ from budbua.utils.mixins import ModelView
 
 
 class AdsListCreateView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
 
     @staticmethod
     def get(request):
         search_query = request.GET.get("search", "")
-        ads = Ad.objects.filter(title__icontains=search_query)
+        filter_query = request.GET.get("filter", None)
+
+        ads = Ad.objects.filter(title__icontains=search_query).annotate(
+            user_rating=Avg('owner__received_ratings__rating'),
+        )
+
+        if not isinstance(request.user, AnonymousUser):
+            ads = ads.annotate(
+                user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user)),
+            )
+
+        if filter_query is not None:
+            if filter_query == "MY_ADS":
+                ads = ads.filter(owner=request.user)  # filter ads created by user
+
+            elif filter_query == "MY_BIDS":
+                ads = ads.filter(bids__bidder=request.user)
+
         serializer = AdListSerializer(ads, many=True)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -35,9 +54,15 @@ class AdsDetailView(ModelView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
 
     @staticmethod
-    def get(_, pk):
-        ad = Ad.objects.get(pk=pk)
-        serializer = AdDetailSerializer(ad)
+    def get(request, pk):
+        ad = Ad.objects.filter(pk=pk).annotate(
+            user_rating=Avg('owner__received_ratings__rating'),
+        )
+
+        # if request.user:
+        #     ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
+
+        serializer = AdDetailSerializer(ad.get())
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -54,6 +79,10 @@ class AdsDetailView(ModelView):
         try:
             user = User.objects.get(pk=request.user.pk)
             ad = self.get_object(pk=pk)
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
             if user == ad.owner:
                 ad.delete()
                 return Response(status=status.HTTP_204_NO_CONTENT)
