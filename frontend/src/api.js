@@ -154,13 +154,14 @@ class MessageApi extends Api{
 
     static createChat(userId){
         return new Promise((resolve, reject) => {
-            this.post("/messages/", {with:userId})
+            this.post("/messages/", {userId:userId})
                 .then(res => {
                     resolve(res);
                 })
                 .catch(err => {
                     reject(err);
                 });
+
         });
     }
 

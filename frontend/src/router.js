@@ -54,7 +54,7 @@ export default new Router({
       path: '/messages',
       name: 'messages',
       component: MessagesWrapper
-    }
+    },
     {
       path: '/analytics',
       name: 'analytics',
