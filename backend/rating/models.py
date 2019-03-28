@@ -1,21 +1,25 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
+
 class Rating(models.Model):
+    class Meta:
+        unique_together = ('rating_giver', 'rating_receiver')
 
     rating_giver = models.ForeignKey(
         'users.User',
         verbose_name='rating giver',
-        on_delete=models.CASCADE()
+        on_delete=models.CASCADE,
+        related_name='given_ratings',
     )
 
     rating_receiver = models.ForeignKey(
         'users.User',
         verbose_name='rating receiver',
-        on_delete=models.CASCADE()
+        on_delete=models.CASCADE,
+        related_name='received_ratings',
     )
 
     rating = models.IntegerField(
-        max_value = 5,
-        min_value = 1,
+        validators=[MinValueValidator(1), MaxValueValidator(5)]
     )

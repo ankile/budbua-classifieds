@@ -16,7 +16,7 @@ SECRET_KEY = '81f3*u+6%h1otfxxh5wq$&#*%ysw#&718n1u%g!0qst)l*o&s^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 CORS_ORIGIN_WHITELIST = (
     'budbua.no',
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'auctions',
     'analytics',
     'reports',
+    'rating',
+    'user_messages',
 ]
 
 

@@ -1,4 +1,6 @@
+from django.contrib.auth.models import AnonymousUser
 from django.db.models import Max, Q, Count
+from django.db.models.aggregates import Avg
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
@@ -12,17 +14,20 @@ from budbua.utils.mixins import ModelView
 
 
 class AdsListCreateView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
 
-    # TODO Implement searching and pagination
     @staticmethod
     def get(request):
         search_query = request.GET.get("search", "")
-
         filter_query = request.GET.get("filter", None)
 
         ads = Ad.objects.filter(title__icontains=search_query).annotate(
-            user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user)))
+            user_rating=Avg('owner__received_ratings__rating'),
+        )
+
+        if not isinstance(request.user, AnonymousUser):
+            ads = ads.annotate(
+                user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user)),
+            )
 
         if filter_query is not None:
             if filter_query == "MY_ADS":
@@ -51,8 +56,13 @@ class AdsDetailView(ModelView):
     @staticmethod
     def get(request, pk):
         ad = Ad.objects.filter(pk=pk).annotate(
-            user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))).get()
-        serializer = AdDetailSerializer(ad)
+            user_rating=Avg('owner__received_ratings__rating'),
+        )
+
+        if not isinstance(request.user, AnonymousUser):
+            ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
+
+        serializer = AdDetailSerializer(ad.get())
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
