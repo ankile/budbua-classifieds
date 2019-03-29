@@ -8,13 +8,15 @@
 <template>
   <div is="sui-container" textAlign="left">
     <h3 v-if="loading">Laster inn...</h3>
-    <DetailsGeneral v-bind:ad="ad" v-bind:user="user"></DetailsGeneral>
-    <DetailsUserRating v-bind:ad="ad" v-bind:user="user" v-if="user"></DetailsUserRating>
-    <DetailsBid v-bind:ad="ad" v-if="user && !owner"></DetailsBid>
-    <DetailsMap v-bind:ad="ad" v-if="ad.zipCode"></DetailsMap>
-    <DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport>
-    <DetailsUnregistered v-if="!user"></DetailsUnregistered>
-    <DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd>
+    <div v-else>
+      <DetailsGeneral v-bind:ad="ad" v-bind:user="user"></DetailsGeneral>
+      <DetailsUserRating v-bind:ad="ad" v-bind:user="user" v-if="user"></DetailsUserRating>
+      <DetailsBid v-bind:ad="ad" v-if="user && !owner"></DetailsBid>
+      <DetailsMap v-bind:ad="ad" v-if="ad.zipCode"></DetailsMap>
+      <DetailsReport v-bind:ad="ad" v-if="user && !owner"></DetailsReport>
+      <DetailsUnregistered v-if="!user"></DetailsUnregistered>
+      <DetailsDeleteAd v-bind:ad="ad" v-if="owner"></DetailsDeleteAd>
+    </div>
   </div>
 </template>
 
