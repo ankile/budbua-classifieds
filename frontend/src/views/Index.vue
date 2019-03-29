@@ -32,8 +32,11 @@
                     )
                     .catch((err) => {
                         if(err.response.status === 401) {
-                            localStorage.removeItem("token")
-                            location.reload();
+                            if(localStorage.getItem("token")) {
+                                localStorage.removeItem("token");
+                                location.reload();
+                            }
+
                         }
                     } );
            User.isLoggedIn()
