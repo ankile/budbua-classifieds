@@ -7,6 +7,7 @@ from budbua.utils.mixins import TimeStampable
 
 
 class User(AbstractBaseUser, PermissionsMixin, TimeStampable):
+
     email = models.EmailField(
         verbose_name='email',
         unique=True,
@@ -41,8 +42,12 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampable):
 
     @property
     def name(self):
-        return f'{self.first_name if self.first_name else ""}{" " + str(self.last_name)  if self.first_name else ""}' \
+        return f'{self.first_name if self.first_name else ""}' \
+            f'{" " + str(self.last_name) if self.first_name else ""}' \
             if self.first_name or self.last_name else self.email
+
+    def __str__(self):
+        return self.name + f' <{self.email}>' if self.last_name or self.first_name else ""
 
     objects = CustomUserManager()
 

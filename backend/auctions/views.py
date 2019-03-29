@@ -14,11 +14,12 @@ from budbua.utils.mixins import ModelView
 
 
 class AdsListCreateView(APIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
 
-    # TODO Implement searching and pagination
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    
     @staticmethod
     def get(request):
+
         search_query = request.GET.get("search", "")
         filter_query = request.GET.get("filter", None)
 
@@ -60,9 +61,11 @@ class AdsDetailView(ModelView):
         ad = Ad.objects.filter(pk=pk).annotate(
             user_rating=Avg('owner__received_ratings__rating'),
         )
+        if not isinstance(request.user, AnonymousUser):
+            ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
 
-        # if request.user:
-        #     ad = ad.annotate(user_max_bid=Max('bids__value', filter=Q(bids__bidder=request.user))),
+        if isinstance(ad, tuple):
+            ad = ad[0]
 
         serializer = AdDetailSerializer(ad.get())
 
