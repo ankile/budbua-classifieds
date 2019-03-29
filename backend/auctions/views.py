@@ -15,8 +15,11 @@ from budbua.utils.mixins import ModelView
 
 class AdsListCreateView(APIView):
 
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    
     @staticmethod
     def get(request):
+
         search_query = request.GET.get("search", "")
         filter_query = request.GET.get("filter", None)
 
