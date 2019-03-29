@@ -31,7 +31,7 @@
                     <sui-icon name="star" color="yellow"/>
                     Ingen vurderinger enda
                 </sui-label>
-                <sui-button basic positive class="details__msg_button" v-on:click="createChat">Send melding til selger
+                <sui-button v-if="isLoggedIn==true" basic positive class="details__msg_button" v-on:click="createChat">Send melding til selger
                 </sui-button>
             </sui-grid-column>
             <sui-grid-column>
@@ -59,7 +59,7 @@
     import SuiGrid from "semantic-ui-vue/dist/commonjs/collections/Grid/Grid";
     import SuiGridRow from "semantic-ui-vue/dist/commonjs/collections/Grid/GridRow";
     import SuiGridColumn from "semantic-ui-vue/dist/commonjs/collections/Grid/GridColumn";
-    import {MessageApi} from "./../../api";
+    import {MessageApi, User} from "./../../api";
     import router from "./../../router"
 
     export default {
@@ -68,7 +68,8 @@
         props: ["ad", "user"],
         data() {
             return {
-                timeremaining: undefined
+                timeremaining: undefined,
+                isLoggedIn:false
             }
         },
         methods: {
@@ -89,6 +90,10 @@
                     clearInterval(timeinterval);
                 }
             }, 1000);
+
+            User.isLoggedIn().then(()=>{
+                this.isLoggedIn=true;
+            })
         }
     }
 </script>
