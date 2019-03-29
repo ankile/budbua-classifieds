@@ -7,8 +7,8 @@ import jwt_decode from 'jwt-decode'
 
 export {
     Api,
-    User
-}
+    User,
+    MessageApi}
 
 class Api {
     static headers() {
@@ -78,7 +78,6 @@ class User extends Api {
         })
     }
 
-
     static login(email, password) {
         return new Promise((resolve, reject) => {
             this.post("/users/api-token-auth/", {email, password})
@@ -146,6 +145,72 @@ class User extends Api {
                     reject(err);
                 });
         });
+    }
+
+}
+
+
+class MessageApi extends Api{
+
+    static createChat(userId){
+        return new Promise((resolve, reject) => {
+            this.post("/messages/", {receivers:[userId]})
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+
+        });
+    }
+
+    static getChat(id){
+        return new Promise((resolve, reject) => {
+            this.get("/messages/"+id, {})
+                .then(res => {
+                    let data=res.data
+                    data=data.reverse()
+                    resolve(res.data);
+
+                })
+                .catch(err => {
+                    reject(err);
+                });
+
+        });
+    }
+
+    static getAllChats(){
+        return new Promise((resolve, reject)=>{
+            this.get("/messages/").then(res=>{
+                let data=res.data;
+
+                resolve(data)
+            })
+        })
+    }
+
+    static fetchMessagesFromChat(id, time){
+        return new Promise((resolve, reject)=>{
+            this.get("/messages/"+id+"?after="+time).then(res=>{
+                let data=res.data
+                data=data.reverse()
+                resolve(data)
+            })
+        })
+    }
+
+    static sendMessage(chatId,message, time){
+        return new Promise((resolve, reject) => {
+            this.post("/messages/"+chatId+"/", {message, time})
+                .then(()=>{
+                    resolve();
+                })
+                .catch(()=>{
+                    reject();
+                })
+        })
     }
 
 }
