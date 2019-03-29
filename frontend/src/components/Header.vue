@@ -15,7 +15,6 @@
                         @click="select(item)"
                 />
             </sui-menu-menu>
-            <img class="logoheader" src="./../assets/logo_trans.png" />
         </sui-menu>
 
     </div>
