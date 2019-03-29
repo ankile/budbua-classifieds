@@ -5,7 +5,7 @@
 <template>
     <div class="msg">
         <div class="msg__container" v-bind:class="{'msg__type--in':msg.type=='in', 'msg__type--out':msg.type=='out'}">
-            <p class="msg__text">{{msg.text}}</p>
+            <p class="msg__text">{{msg.message}}</p>
             <span class="msg__timestamp">{{timeDate}}</span>
         </div>
     </div>
@@ -18,8 +18,12 @@
         name: "Message",
         data() {
             return {
-                timeDate: prettyTime.getPrettyTime(new Date(), true)
+                timeDate: ""
             }
+        },
+        created() {
+            console.log(this.msg.message+"     "+this.msg.createdAt)
+           this.timeDate= prettyTime.getPrettyTime(this.msg.createdAt, true)
         }
     }
 </script>

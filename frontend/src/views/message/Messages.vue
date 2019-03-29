@@ -5,12 +5,12 @@
             <h2 is="sui-header" color="blue">
                 <sui-header-content class="card--header">Meldinger</sui-header-content>
             </h2>
-            <div :key="chat.chatId" v-for="chat in chats">
-                <div class="inbox-box" :class="{active: currentChat.chatId===chat.chatId}"
-                     v-on:click="boxClicked(chat.chatId)">
-                    <h3 :class="{active: currentChat.chatId===chat.chatId}">{{chat.displayName}}</h3>
-                    <p>{{chat.latestMessage.text}}</p>
-                    <p class="time">{{chat.latestMessage.time}}</p>
+            <div :key="chat.id" v-for="chat in chats">
+                <div class="inbox-box" :class="{active: currentChat.id===chat.id}"
+                     v-on:click="boxClicked(chat.id)">
+                    <h3 :class="{active: currentChat.id===chat.id}">{{chat.displayName||chat.id}}</h3>
+                    <p>{{chat.message}}</p>
+                    <p class="time">{{chat.updatedAt}}</p>
                 </div>
             </div>
         </div>
@@ -34,52 +34,73 @@
 <script>
     import Message from "./Message";
     import {MessageApi} from "./../../api";
+    import prettyTime from "./prettyTime"
 
     export default {
         name: "Messages",
         components: {Message},
         props: ["currentuserid"],
         methods: {
-            boxClicked(chatId) {
-                window.history.pushState("Navigated", "", "/messages?chatId="+chatId);
-                MessageApi.getChat(chatId)
+            boxClicked(id) {
+                window.history.pushState("Navigated", "", "/messages?id="+id);
+                MessageApi.getChat(id)
                     .then(messages => {
                         this.currentChat =
                             {
                                 messages: messages.map((msg) => {
-                                    return {...msg, type: (msg.from === this.currentuserid) ? "out" : "in"}
+                                    return {...msg,
+                                        type: (msg.sender === this.currentuserid) ? "out" : "in"
+                                    }
                                 }),
-                                chatId: chatId
+                                id: id
                             };
+                        this.recieveMessage(id)
                     })
             },
             sendMessage(e){
-                let chatId = new URL(window.location).searchParams.get("chatId");
-                let text=this.currentInput;
-                let time=new Date();
-                MessageApi.sendMessage(chatId, text, time);
+                let id = new URL(window.location).searchParams.get("id");
+                let message=this.currentInput;
+                let createdAt=new Date();
+                MessageApi.sendMessage(id, message, createdAt);
                 this.currentInput="";
-                this.currentChat.messages.push({chatId,text,time,from:this.currentuserid, type:"out"})
+                this.currentChat.messages.push({id,message,createdAt,from:this.currentuserid, type:"out"})
             },
-            recieveMessage(){
+            recieveMessage(id){
 
+                    window.clearInterval(this.interval_id);
+
+                this.interval_id=setInterval(()=>{
+                    MessageApi.fetchMessagesFromChat(id)
+                        .then(msgs=>{
+                            this.currentChat =
+                                {
+                                    messages: msgs.map((msg) => {
+                                        return {...msg,
+                                            type: (msg.sender === this.currentuserid) ? "out" : "in"
+                                        }
+                                    }),
+                                    id: id
+                                };
+
+                        })
+                }, 2000);
             }
 
         },
         created() {
             MessageApi.getAllChats()
                 .then(chats => {
-                    this.chats = chats
-                    let chatId = new URL(window.location).searchParams.get("chatId");
-                    if (chatId) {
-                        this.boxClicked(chatId)
+                    let id = new URL(window.location).searchParams.get("id");
+                    this.chats = chats.map(chat=>{
+                        return({...chat,updatedAt: prettyTime.getPrettyTime(chat.updatedAt, true)})
+                    });
+                    if (id!=undefined) {
+                        this.boxClicked(id)
                     } else {
-                        this.boxClicked(this.chats[0].chatId)
+                        id=this.chats[0].id
+                        this.boxClicked(id)
                     }
-
-                    setInterval(()=>{
-
-                    }, 500)
+                    this.recieveMessage(id)
 
                 })
 
@@ -89,6 +110,7 @@
                 currentInput:"",
                 currentChat: {},
                 chats: [],
+                interval_id:null
 
             }
         }

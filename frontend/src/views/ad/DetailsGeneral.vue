@@ -29,6 +29,7 @@
           <sui-label v-else>
             <sui-icon name="star" color="yellow"/> Ingen vurderinger enda
           </sui-label>
+            <sui-button basic positive class="details__msg_button" v-on:click="createChat">Send melding til selger</sui-button>
         </sui-grid-column>
         <sui-grid-column>
           <h3 class="highest-bid" v-if="ad.maximumBid">
@@ -55,6 +56,8 @@
     import SuiGrid from "semantic-ui-vue/dist/commonjs/collections/Grid/Grid";
     import SuiGridRow from "semantic-ui-vue/dist/commonjs/collections/Grid/GridRow";
     import SuiGridColumn from "semantic-ui-vue/dist/commonjs/collections/Grid/GridColumn";
+    import {MessageApi} from "./../../api";
+    import router from "./../../router"
 
     export default {
         name: "DetailsGeneral",
@@ -63,6 +66,14 @@
         data() {
             return {
                 timeremaining: undefined
+            }
+        },
+        methods:{
+            createChat(){
+                MessageApi.createChat(this.ad.owner)
+                    .then(res=>{
+                        router.push('/messages/?id='+res.data.id)
+                    })
             }
         },
         created() {
@@ -100,4 +111,7 @@
     color: red;
   }
 
+    .details__msg_button{
+        margin:10px !important;
+    }
 </style>

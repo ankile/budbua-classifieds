@@ -1,6 +1,7 @@
 
 export default class {
-    static getPrettyTime(datetime, shouldReturnTime) {
+    static getPrettyTime(dateIn, shouldReturnTime) {
+        let datetime= new Date(dateIn);
         let hours = datetime.getHours().toString();
         let minutes = datetime.getMinutes().toString();
         const year = datetime.getFullYear().toString().substr(2);
