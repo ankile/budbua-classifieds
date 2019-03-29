@@ -67,7 +67,7 @@ This component contains logic, styling and structure for the owner to see statis
                     </sui-card>
                 </sui-grid-column>
 
-                <sui-grid-column stretched>
+                <sui-grid-column c>
                     <sui-card>
                         <sui-card-content>
                             <div class="statistic-card">
@@ -76,7 +76,6 @@ This component contains logic, styling and structure for the owner to see statis
                                     <sui-statistic-label>Rapporter</sui-statistic-label>
                                 </sui-statistic>
                             </div>
-
                         </sui-card-content>
                         <sui-card-content extra>
                             <span class="card-footer" slot="right">
@@ -87,6 +86,19 @@ This component contains logic, styling and structure for the owner to see statis
                 </sui-grid-column>
 
             </sui-grid-row>
+
+        </sui-grid>
+        <sui-grid :columns="2" centered vertical-align="middle" :stackable="true">
+            <sui-grid-row v-if="loaded">
+                <sui-grid-column stretched>
+                    <p>Utvikling i brukermasse</p>
+                    <BarChart v-bind:chart-data="analytics.userDevelopment" title="Utvikling i brukere"></BarChart>
+                </sui-grid-column>
+                <sui-grid-column stretched>
+                    <p>Utvikling i antall annonser</p>
+                    <BarChart v-bind:chart-data="analytics.adDevelopment" title="Utvikling i annonser"></BarChart>
+                </sui-grid-column>
+            </sui-grid-row>
         </sui-grid>
     </div>
 </template>
@@ -94,6 +106,7 @@ This component contains logic, styling and structure for the owner to see statis
 <script>
 
     import {Api} from "../../api";
+    import BarChart from './BarChart';
 
     export default {
 
@@ -104,17 +117,23 @@ This component contains logic, styling and structure for the owner to see statis
                     adCount: "",
                     bidCount: "",
                     reportCount: "",
+                    userDevelopment: [],
+                    adDevelopment: [],
                 },
                 lastUpdatedSeconds: 0,
+                loaded: false,
             }
         },
 
-        components: {},
+        components: {
+            BarChart,
+        },
 
         created() {
             Api.get('/analytics/')
                 .then(resp => {
                     this.analytics = resp.data;
+                    this.loaded = true;
                     setInterval(() => {
                         if (this.lastUpdatedSeconds >= 59) {
                             Api.get('/analytics/')
