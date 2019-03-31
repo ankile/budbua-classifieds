@@ -5,51 +5,51 @@
 -->
 
 <template>
-    <div class="general">
-        <h1 is="sui-header" class="title">{{ad.title}}</h1>
-        <img v-bind:src="this.ad.imageString" alt="Annonsebilde">
-        <article>{{ad.description}}</article>
-        <sui-divider section></sui-divider>
+  <div class="general">
+    <h1 is="sui-header" class="title">{{ad.title}}</h1>
+    <img v-bind:src="this.ad.imageString" alt="Annonsebilde">
+    <article>{{ad.description}}</article>
+    <sui-divider section></sui-divider>
 
-        <sui-grid :columns="3" divided stackable>
-            <sui-grid-column>
-                <h3 v-if="timeremaining">
-                    <sui-loader v-if="timeremaining.includes('NaNd')" active centered inline/>
-                    <div v-else> Utløper om:
-                        {{timeremaining}}
-                    </div>
-                </h3>
-                <h3 class="expired" v-else>Utløpt</h3>
-            </sui-grid-column>
-            <sui-grid-column>
-                <h3>Selger: {{ad.firstName}} {{ad.lastName}}</h3>
-                <sui-label v-if="ad.userRating">
-                    <sui-icon name="star" color="yellow"/>
-                    {{ad.userRating}} / 5
-                </sui-label>
-                <sui-label v-else>
-                    <sui-icon name="star" color="yellow"/>
-                    Ingen vurderinger enda
-                </sui-label>
-                <sui-button v-if="isLoggedIn==true" basic positive class="details__msg_button" v-on:click="createChat">Send melding til selger
-                </sui-button>
-            </sui-grid-column>
-            <sui-grid-column>
-                <h3 class="highest-bid" v-if="ad.maximumBid">
-                    <div v-if="user && ad.highestBidder.id == user.id">
-                        Du leder budet!<br/>
-                        Høyeste bud: {{ad.maximumBid}} kr.
-                    </div>
-                    <div v-else>
-                        Leder av budet: {{ad.highestBidder.name}}<br/>
-                        Høyeste bud: {{ad.maximumBid}} kr.
-                    </div>
-                </h3>
-                <h3 class="highest-bid" v-else>Ingen bud lagt inn <br>
-                    Minimum bud: {{ad.minimumBid}} kr</h3>
-            </sui-grid-column>
-        </sui-grid>
-    </div>
+    <sui-grid :columns="3" divided stackable>
+      <sui-grid-column>
+        <h3 v-if="timeremaining">
+          <sui-loader v-if="timeremaining.includes('NaNd')" active centered inline/>
+          <div v-else> Utløper om:
+            {{timeremaining}}
+          </div>
+        </h3>
+        <h3 class="expired" v-else>Utløpt</h3>
+      </sui-grid-column>
+      <sui-grid-column>
+        <h3>Selger: {{ad.firstName}} {{ad.lastName}}</h3>
+        <sui-label v-if="ad.userRating">
+          <sui-icon name="star" color="yellow"/>
+          {{Math.round(ad.userRating*10)/10}} / 5
+        </sui-label>
+        <sui-label v-else>
+          <sui-icon name="star" color="yellow"/>
+          Ingen vurderinger enda
+        </sui-label>
+        <sui-button v-if="isLoggedIn==true" basic positive class="details__msg_button" v-on:click="createChat">Send melding til selger
+        </sui-button>
+      </sui-grid-column>
+      <sui-grid-column>
+        <h3 class="highest-bid" v-if="ad.maximumBid">
+          <div v-if="user && ad.highestBidder.id == user.id">
+            Du leder budet!<br/>
+            Høyeste bud: {{ad.maximumBid}} kr.
+          </div>
+          <div v-else>
+            Leder av budet: {{ad.highestBidder.name}}<br/>
+            Høyeste bud: {{ad.maximumBid}} kr.
+          </div>
+        </h3>
+        <h3 class="highest-bid" v-else>Ingen bud lagt inn <br>
+          Minimum bud: {{ad.minimumBid}} kr</h3>
+      </sui-grid-column>
+    </sui-grid>
+  </div>
 </template>
 
 
@@ -101,26 +101,26 @@
 
 <style scoped>
 
-    .general {
-        padding: 3rem 0;
-    }
+  .general {
+    padding: 3rem 0;
+  }
 
-    img {
-        max-width: 100%;
-        max-height: 100%;
-        background-color: white;
-        border-radius: 5px;
-    }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    background-color: white;
+    border-radius: 5px;
+  }
 
-    article {
-        margin-top: 2rem;
-    }
+  article {
+    margin-top: 2rem;
+  }
 
-    .expired {
-        color: red;
-    }
+  .expired {
+    color: red;
+  }
 
-    .details__msg_button {
-        margin: 10px !important;
-    }
+  .details__msg_button {
+    margin: 10px !important;
+  }
 </style>
