@@ -1,13 +1,14 @@
 from django.contrib import admin
 
-from auctions.models import Ad, Bid
+# Register your models here.
+from user_messages.models import Message, Chat
 
 
-@admin.register(Ad)
+@admin.register(Chat)
 class AdAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(Bid)
+@admin.register(Message)
 class BidAdmin(admin.ModelAdmin):
     pass
