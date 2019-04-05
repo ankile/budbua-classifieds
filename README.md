@@ -1,7 +1,27 @@
-# Welcome to group 7 project
+# Budbua
+Budbua AS er norges eldste og største auksjonsselskap og ble stiftet i 1869. De har nå bestemt seg for å gå digitalt og ønsker norges beste auksjonsapplikasjon. Dette er web-appen som oppfuller dette ønsket. 
 
 
-## frontend
+## Oppsummering
+Web-løsningen er arkitekturmessig delt opp i to deler. Backend for å håndtere databasekall og intern logikk og frontend for å håndtere GUI og interaksjon med endebruker. 
+### Backend
+[Installasjon](#installasjon)
+
+### Frontend
+[Installasjon](#installasjon)
+
+
+## Build status 
+Legg inn badges her for pipeline, netlify, heroku, test-coverage
+
+
+## Bilder
+Legg inn litt enkle bilder her
+
+
+## Installasjon
+
+### frontend
 
 For å kjøre frontend må du installere npm (node package manager)
 
@@ -12,7 +32,7 @@ For å kjøre frontend må du installere npm (node package manager)
 - kjør npm start
 
 
-## backend
+### backend
 
 For å kjøre backend må du nok:
 
@@ -22,3 +42,7 @@ For å kjøre backend må du nok:
 - kjør `pip install -r requirements.txt`
 - kjør `python manage.py migrate`
 - kjør `python manage.py runserver`
+
+
+## Bruk
+Skriv inn om bruk her
