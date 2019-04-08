@@ -18,7 +18,7 @@ stages:
         - python3 manage.py makemigrations --settings=budbua.settings_tests --merge --no-input
         - python3 manage.py migrate --settings=budbua.settings_tests --no-input
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
-        - python3 runtests.py
+        - pytest --cov
 
 .heroku-deploy: &heroku-deploy
     stage: deploy
