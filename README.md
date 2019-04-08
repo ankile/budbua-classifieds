@@ -1,15 +1,12 @@
-# Budbua
-Budbua AS er norges eldste og største auksjonsselskap og ble stiftet i 1869. De har nå bestemt seg for å gå digitalt og ønsker norges beste auksjonsapplikasjon. Dette er web-appen som bidrar til å nå dette målet. 
-
-Du finner webappen live på <https://budbua.no>
-
-
-## Status
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![pipeline status](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/badges/master/pipeline.svg)](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/commits/master)
 [![coverage report](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/badges/master/coverage.svg)](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/commits/master)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
+# Budbua
+Budbua AS er norges eldste og største auksjonsselskap og ble stiftet i 1869. De har nå bestemt seg for å gå digitalt og ønsker norges beste auksjonsapplikasjon. Dette er web-appen som bidrar til å nå dette målet. 
+
+Du finner webappen live på <https://budbua.no>
 
 ## Oppsummering
 Web-løsningen er arkitekturmessig delt opp i to deler. Backend for å håndtere databasekall og intern logikk, i kombinasjon med frontend for å håndtere GUI og interaksjon med endebruker. Frontend kommuniserer med backend via HTTP-kall og autentiseres med [JWT-tokens](https://jwt.io/introduction/). 
@@ -105,7 +102,7 @@ testing = ["Kent Are Torvik"]
 
 MIT License
 
-Copyright (c) 2019 budbua
+Copyright (c) 2019 Pusju Consulting
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
