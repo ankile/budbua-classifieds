@@ -14,3 +14,4 @@ six==1.12.0
 whitenoise==4.1.2
 coverage==4.5.3
 pytest==4.4.0
+cov=2.6.1
