@@ -1,52 +1,24 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1dd9b4bd-f2e7-4653-b032-f416480f5f6b/deploy-status)](https://app.netlify.com/sites/gallant-swirles-109ebc/deploys)
+# Frontend
 
-# frontend
+Det blir brukt javascript-rammeverket [Vue](https://vuejs.org/) som kjører på toppen av [Node.js](https://nodejs.org/en/). Til stylingen brukes [Semantic UI](https://semantic-ui-vue.github.io/#/) med en kombinasjon av eget design. 
 
-### Project setup
-```
-npm install
-```
+Frontend blir deployet automatisk til [Netlify](https://www.netlify.com/) om alle tester blir passert. 
 
-#### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Installasjon 
 
-#### Compiles and minifies for production
-```
-npm run build
-```
+Last ned og installer [Node.js](https://nodejs.org/en/)
 
-#### Run your tests
-```
-npm run test
-```
+Åpne så et terminalvindu i mappen "frontend" og eksekvere kommandoen `npm install`. Da vil alle nødvendige avhengigheter installert.
 
-#### Lints and fixes files
-```
-npm run lint
-```
-
-#### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Du kjører frontend-delen av webappen med å eksekvere kommandoen `npm run serve`
 
 
-# colors
+## Bruk
 
-- primary: #2962ff
-- primary light: #768fff
-- primary dark: #0039cb
-- offwhite: #F2F2F2
-- offblack #B7B7B7
+Du kjører frontend-delen av webappen med å eksekvere kommandoen `npm run serve` når du er i frontend-mappen. 
 
+Du kan da aksessere webappen ved å gå inn i nettleseren din og skrive adressen <http://localhost:8080/>
 
+Du må også kjøre backend-delen for at siden skal fungere som ønsket. 
 
-
-# Prosjektstruktur 
-
-## Mapper
-
-### Views
-I denne mappen finnes filer knyttet til et hvert view på siden. Eksempelvis vil alle komponenter som brukes i ```/auth (login og registrering)```, lagres i mappen ```auth```. 
-Internt i denne mappen vil hver feature ha sin egen fil, samt en felles wrapperfil som knytter viewet sammen.
-
+Kommunikasjonsstrukturen mellom backend og frontend er definert på [wikien](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/wikis/Communication/auctions). All ny nødvendige strukturer blir oppdatert der. 
