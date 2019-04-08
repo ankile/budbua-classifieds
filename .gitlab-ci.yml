@@ -10,14 +10,16 @@ stages:
         - apt-get update -qy
         - apt-get install -y python3-dev python3-pip python3-virtualenv sqlite3 libsqlite3-dev
         - cd backend
-        - pip3 install virtualenv
-        - virtualenv -p python3 testenv
-        - source testenv/bin/activate
         - pip3 install -r requirements_test.txt
+        - export DJANGO_SETTINGS_MODULE=budbua.settings_tests
+        - pip3 install pytest
+        - pip3 install pytest-cov
+        - pip3 install coverage
+        - pip3 install pytest-django
         - python3 manage.py makemigrations --settings=budbua.settings_tests --merge --no-input
         - python3 manage.py migrate --settings=budbua.settings_tests --no-input
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
-
+        - pytest --cov
 
 .heroku-deploy: &heroku-deploy
     stage: deploy
@@ -34,12 +36,14 @@ stages:
     only:
         - master
 
+
 django-unit-integration-tests-job:
     stage: test
     image: python:3.7
     only:
         - dev
         - master
+        - readme
     <<: *test-job
 
 

@@ -39,43 +39,6 @@ class Test_Bid_Model(TestCase):
         with self.assertRaises(ValidationError):
             Bid.objects.create(bidder=self.test_user_ad_owner, ad=self.ad, value=3000)
 
-class Test_Bid_Serializer:
-    @classmethod
-    def setUp(self):
-        self.bid_attributes = {
-            'bidder': 1,
-            'ad': 1,
-            'value': 3000
-        }
-
-        self.serializer_data = {
-            'bidder': 5,
-            'ad': 2,
-            'value': 3000
-        }
-
-        self.test_user_ad_owner = User.objects.create(email='user@budbua.no', password='budbua')
-        self.test_user_ad_bidder = User.objects.create(email='bidder@bidder.no', password='budbua')
-        self.ad = Ad.objects.create(owner=self.test_user_ad_owner, title='testAD', description='the best ad ever', bid_end_time=today(cls))
-
-        self.bid = Bid.objects.create(**self.bid_attributes)
-        self.serializer = BidSerializer(instance=self.bid)
-
-    def test_bid_contains_expected_fields(self):
-        data = self.serializer.data
-        self.assertItemsEqual(set(data.keys()), ['bidder', 'ad', 'value'])
-
-    def test_bidder_field_content(self):
-        data = self.serializer.data
-        self.assertEqual(data['bidder'], self.bid_attributes['bidder'])
-
-    def test_ad_field_content(self):
-        data = self.serializer.data
-        self.assertEqual(data['ad'], self.bid_attributes['ad'])
-
-    def test_value_field_content(self):
-        data = self.serializer.data
-        self.assertEqual(data['value'], self.bid_attributes['value'])
 
 class Test_Bid_View(TestCase):
     @classmethod
