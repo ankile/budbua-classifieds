@@ -15,6 +15,7 @@ stages:
         - pip3 install pytest
         - pip3 install pytest-cov
         - pip3 install coverage
+        - pip3 install pytest-django
         - python3 manage.py makemigrations --settings=budbua.settings_tests --merge --no-input
         - python3 manage.py migrate --settings=budbua.settings_tests --no-input
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
