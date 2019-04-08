@@ -12,7 +12,7 @@ stages:
         - cd backend
         - pip3 install -r requirements_test.txt
         - pip3 install pytest-cov
-        - python3 pytest --cov
+        - pytest --cov
         - python3 manage.py makemigrations --settings=budbua.settings_tests --merge --no-input
         - python3 manage.py migrate --settings=budbua.settings_tests --no-input
         - python3 manage.py test --settings=budbua.settings_tests --verbosity=2
