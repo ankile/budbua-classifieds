@@ -3,7 +3,9 @@
 [![coverage report](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/badges/master/coverage.svg)](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/commits/master)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
-# Budbua
+<img src="https://i.imgur.com/lXW3ZxH.png" height="70">
+<img src="https://i.imgur.com/Fz8Mzkj.png" height="70">
+
 Budbua AS er norges eldste og største auksjonsselskap og ble stiftet i 1869. De har nå bestemt seg for å gå digitalt og ønsker norges beste auksjonsapplikasjon. Dette er web-appen som bidrar til å nå dette målet. 
 
 Du finner webappen live på <https://budbua.no>
@@ -12,6 +14,9 @@ Du finner webappen live på <https://budbua.no>
 Web-løsningen er arkitekturmessig delt opp i to deler. Backend for å håndtere databasekall og intern logikk, i kombinasjon med frontend for å håndtere GUI og interaksjon med endebruker. Frontend kommuniserer med backend via HTTP-kall og autentiseres med [JWT-tokens](https://jwt.io/introduction/). 
 
 Kommunikasjonsstrukturen mellom backend og frontend er definert på [wikien](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/wikis/Communication/auctions). All ny nødvendige strukturer blir oppdatert der. 
+
+
+For bilder og bruk av nettsiden fra et brukerperspektiv, vennligst se vår [brukermanual](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/wikis/Vedlikeholdsplan/Brukermanual-til-produktet).
 ### Backend
 [Installasjon](#installasjon)
 
@@ -29,11 +34,6 @@ Det blir brukt javascript-rammeverket [Vue](https://vuejs.org/) som kjører på 
 
 Frontend blir deployet automatisk til [Netlify](https://www.netlify.com/) om alle tester blir passert. 
 
-
-## Bilder
-Legg inn litt enkle bilder her
-
-
 ## Installasjon
 
 Start med å klone git-repoet med kommandoen 
@@ -49,7 +49,6 @@ Last ned og installer [Node.js](https://nodejs.org/en/)
 Åpne så et terminalvindu i mappen "frontend" og eksekvere kommandoen `npm install`. Da vil alle nødvendige avhengigheter installert.
 
 Du kjører frontend-delen av webappen med å eksekvere kommandoen `npm run serve`
-
 
 
 ### Backend
