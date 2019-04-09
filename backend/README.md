@@ -12,9 +12,10 @@ Last ned og installer [Python 3.x](https://www.python.org/downloads/)
 ```bash 
 pip3 install virtualenv
 virtualenv -p python3 testenv
-source testenv/bin/activate
+source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
+python manage.py makemigrations
 ```
 
 Du kjører backend-delen av webappen med å eksekvere kommandoen `python manage.py runserver` fra backend-mappen
