@@ -146,8 +146,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    if not "LIVE" in os.environ:
-        from budbua.local_settings import *
+    if "LIVE" in os.environ:
+       raise ImportError
+    from budbua.local_settings import *
 except ImportError:
     pass
 
