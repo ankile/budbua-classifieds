@@ -90,8 +90,7 @@
       MM = ten(date.getMonth() + 1),
       DD = ten(date.getDate()),
       HH = ten(date.getHours()),
-      II = ten(date.getMinutes()),
-      SS = ten(date.getSeconds())
+      II = ten(date.getMinutes())
     ;
     return YYYY + '-' + MM + '-' + DD + 'T' +
              HH + ':' + II;
@@ -121,7 +120,7 @@
                     .then(data => {
                         this.selectedFile = data;
                     })
-                    .catch(err => console.log(err));
+                    .catch(() => {});
             },
 
             submitAd(e) {
@@ -161,7 +160,7 @@
                             this.zipcodeInput = '';
                             this.$router.push("/")
                         })
-                        .catch((err)=> {
+                        .catch(()=> {
                             alert("Woops, her er det noe trøbbel. Prøv igjen senere. ")
                         })
                 }

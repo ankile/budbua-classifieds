@@ -29,9 +29,8 @@
                           alert("Annonsen er slettet");
                           router.push('/');
                         })
-                      .catch((e) => {
+                      .catch(() => {
                           alert("Noe gikk galt. Annonsen ble ikke slettet");
-                          console.log(e);
                       });
                 }
 

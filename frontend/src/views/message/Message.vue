@@ -22,7 +22,6 @@
             }
         },
         created() {
-            console.log(this.msg.message+"     "+this.msg.createdAt)
            this.timeDate= prettyTime.getPrettyTime(this.msg.createdAt, true)
         }
     }

@@ -64,10 +64,8 @@ export default new Router({
   ],
   scrollBehavior(to, from, savedPosition) { //preserves the scrolling position of history entries
     if (savedPosition) {
-      //console.log(savedPosition);
       return savedPosition
     } else {
-      //console.log("no saved position");
       return { x: 0, y: 0 }
     }
   }

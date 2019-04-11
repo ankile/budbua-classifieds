@@ -8,19 +8,19 @@
 
 Budbua AS er norges eldste og største auksjonsselskap og ble stiftet i 1869. De har nå bestemt seg for å gå digitalt og ønsker norges beste auksjonsapplikasjon. Dette er web-appen som bidrar til å nå dette målet. 
 
-Du finner webappen live på <https://budbua.no>
+Du finner web-appen live på <https://budbua.no>
 
 ## Oppsummering
 Web-løsningen er arkitekturmessig delt opp i to deler. Backend for å håndtere databasekall og intern logikk, i kombinasjon med frontend for å håndtere GUI og interaksjon med endebruker. Frontend kommuniserer med backend via HTTP-kall og autentiseres med [JWT-tokens](https://jwt.io/introduction/). 
 
-Kommunikasjonsstrukturen mellom backend og frontend er definert på [wikien](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/wikis/Communication/auctions). All ny nødvendige strukturer blir oppdatert der. 
+Kommunikasjonsstrukturen mellom backend og frontend er definert på [wikien](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/wikis/Communication/auctions). All ny nødvendig struktur blir oppdatert der. 
 
 
-For bilder og bruk av nettsiden fra et brukerperspektiv, vennligst se vår [brukermanual](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/wikis/Vedlikeholdsplan/Brukermanual-til-produktet).
+For bilder og bruk av nettsiden fra et brukerperspektiv, vennligst se vår [brukermanual](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/wikis/Vedlikeholdsplan/Brukermanual-til-produktet). For dypere infor
 ### Backend
 [Installasjon](#installasjon)
 
-Det blir brukt [REST arkitektur](https://en.wikipedia.org/wiki/Representational_state_transfer) for backend. For å oppnå dette bruker vi python-rammeverket [Django](https://www.djangoproject.com/). 
+Det blir brukt [REST-arkitektur](https://en.wikipedia.org/wiki/Representational_state_transfer) for backend. For å oppnå dette bruker vi python-rammeverket [Django](https://www.djangoproject.com/) sammen med [Django Rest Framework](https://www.django-rest-framework.org/). 
 
 Backend blir deployet automatisk til [Heroku](https://www.heroku.com/) om alle testene blir passert.
 
@@ -30,13 +30,14 @@ Backend blir deployet automatisk til [Heroku](https://www.heroku.com/) om alle t
 
 
 
-Det blir brukt javascript-rammeverket [Vue](https://vuejs.org/) som kjører på toppen av [Node.js](https://nodejs.org/en/). Til stylingen brukes [Semantic UI](https://semantic-ui-vue.github.io/#/) med en kombinasjon av eget design. 
+Det blir brukt javascript-rammeverket [Vue.js](https://vuejs.org/) som bruker [Node.js](https://nodejs.org/en/) som runtime-system. Til stylingen brukes [Semantic UI](https://semantic-ui-vue.github.io/#/) i kombinasjon av eget design. 
 
 Frontend blir deployet automatisk til [Netlify](https://www.netlify.com/) om alle tester blir passert. 
 
 ## Installasjon
+Før du begynner, sørg for at git er installert på din maskin. 
 
-Start med å klone git-repoet med kommandoen 
+Start med å klone git-repoet med en av kommandoene under.
 
 SSH: `git clone git@gitlab.stud.idi.ntnu.no:programvareutvikling-v19/gruppe-7.git`
 
@@ -46,7 +47,7 @@ HTTPS: `git clone https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/grupp
 
 Last ned og installer [Node.js](https://nodejs.org/en/)
 
-Åpne så et terminalvindu i mappen "frontend" og eksekvere kommandoen `npm install`. Da vil alle nødvendige avhengigheter installert.
+Åpne så et terminalvindu i mappen "frontend" og eksekver kommandoen `npm install`. Da vil alle nødvendige avhengigheter bli installert.
 
 Du kjører frontend-delen av webappen med å eksekvere kommandoen `npm run serve`
 
@@ -55,24 +56,44 @@ Du kjører frontend-delen av webappen med å eksekvere kommandoen `npm run serve
 
 Last ned og installer [Python 3.x](https://www.python.org/downloads/)
 
-Åpne så et terminalvindu i mappen "backend" og eksekvere kommandoene:
+Åpne så et terminalvindu i mappen "backend" og eksekver kommandoene:
+
+#### macOS / Linux
 ```bash 
-pip3 install virtualenv
-virtualenv -p python3 testenv
+pip install virtualenv
+virtualenv -p python venv
 source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py makemigrations
 ```
 
-Du kjører backend-delen av webappen med å eksekvere kommandoen `python manage.py runserver` fra backend-mappen
+#### Windows
+```bash 
+pip install virtualenv
+virtualenv -p python venv
+venv/Scripts/activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py makemigrations
+```
+
+Du kjører backend-delen av webappen med å eksekver kommandoen `python manage.py runserver` fra backend-mappen
 
 
 ## Bruk
 
 For å kjøre prosjektet lokalt må du åpne et terminalvindu i mappen frontend og et terminalvindu i mappen backend. 
 
-I terminalvinduet i backend-mappen eksekverer du kommandoen `python manage.py runserver`
+I terminalvinduet i backend-mappen må du ha aktivert virtualenv.
+
+Slik aktivere du virtualenv:
+
+For Windows: `venv/Script/activate` 
+
+For macOS/Linux: `source venv/bin/activate` 
+
+Du eksekverer så kommandoen  `python manage.py runserver` for å kjøre serveren.
 
 I terminalvinduet i frontend-mappen eksekverer du kommandoen `npm run serve`
 
