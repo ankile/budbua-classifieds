@@ -145,10 +145,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-try:
-    from budbua.local_settings import *
-except ImportError:
-    pass
+if not "LIVE" in os.environ:
+    try:
+        from budbua.local_settings import *
+    except ImportError:
+        pass
+
 
 
 if 'HEROKU' in os.environ:
