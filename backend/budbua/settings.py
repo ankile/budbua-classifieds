@@ -16,7 +16,7 @@ SECRET_KEY = '81f3*u+6%h1otfxxh5wq$&#*%ysw#&718n1u%g!0qst)l*o&s^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost']
 
 CORS_ORIGIN_WHITELIST = (
     'budbua.no',
@@ -145,11 +145,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if not "LIVE" in os.environ:
-    try:
+try:
+    if not "LIVE" in os.environ:
         from budbua.local_settings import *
-    except ImportError:
-        pass
+except ImportError:
+    pass
 
 
 
