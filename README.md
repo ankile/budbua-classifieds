@@ -3,6 +3,9 @@
 [![coverage report](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/badges/master/coverage.svg)](https://gitlab.stud.idi.ntnu.no/programvareutvikling-v19/gruppe-7/commits/master)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
+<img src="https://i.imgur.com/lXW3ZxH.png" height="70">
+<img src="https://i.imgur.com/Fz8Mzkj.png" height="70">
+
 # Budbua
 Budbua AS er norges eldste og største auksjonsselskap og ble stiftet i 1869. De har nå bestemt seg for å gå digitalt og ønsker norges beste auksjonsapplikasjon. Dette er web-appen som bidrar til å nå dette målet. 
 
