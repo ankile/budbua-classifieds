@@ -69,7 +69,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializer(BaseUserSerializer):
-
     password = serializers.CharField(write_only=True)
     password_2 = serializers.CharField(write_only=True)
 
@@ -78,7 +77,6 @@ class UserUpdateSerializer(BaseUserSerializer):
         fields = ('first_name', 'last_name', 'email', 'password', 'password_2')
 
     def update(self, instance, validated_data):
-
         if 'password' in validated_data:
             instance.set_password(validated_data.pop('password'))
             instance.save()

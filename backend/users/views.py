@@ -7,8 +7,7 @@ from users.serializers import UserSerializer, UserUpdateSerializer, UserCreateSe
 
 
 class UserDetailView(APIView):
-
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     @staticmethod
     def get(request):
@@ -29,8 +28,7 @@ class UserDetailView(APIView):
 
 
 class UserCreateView(APIView):
-
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     @staticmethod
     def post(request):

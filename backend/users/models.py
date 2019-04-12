@@ -7,7 +7,6 @@ from budbua.utils.mixins import TimeStampable
 
 
 class User(AbstractBaseUser, PermissionsMixin, TimeStampable):
-
     email = models.EmailField(
         verbose_name='email',
         unique=True,
