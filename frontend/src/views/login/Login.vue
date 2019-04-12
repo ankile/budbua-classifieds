@@ -46,7 +46,7 @@ Components used:
 </template>
 
 <script>
-    import {Api, User} from '../../api'
+    import {User} from '../../api'
     import router from '../../router'
 
     export default {
@@ -65,10 +65,10 @@ Components used:
             submitLogin(e){
                 e.preventDefault();
                 User.login(this.emailInput, this.passwordInput)
-                    .then(data => {
+                    .then( () => {
                         router.push('/?login=true')
                         document.location.reload()
-                    }).catch( (error) => {
+                    }).catch( () => {
                 })
             }
 

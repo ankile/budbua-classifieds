@@ -10,7 +10,6 @@
 
 <script>
   import AdItem from './AdItem'
-  import Api from '../api'
 
   export default {
       name: "Ad",
@@ -18,16 +17,7 @@
           AdItem
       },
       props: ["ads"],
-      /*data() {
-        return {
-            ads: []
-        }
-      },*/
       created() {
-          /*
-          Api.get('auctions/ads/')
-            .then(res => this.ads = res.data)
-            .catch(err => console.log(err)); */
 
       }
   }

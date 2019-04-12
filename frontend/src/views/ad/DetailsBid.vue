@@ -46,8 +46,7 @@
             }
         },
         methods: {
-            bid(e) {
-                //e.preventDefault();
+            bid() {
                 let minBid = 0;
                 if (this.ad.maximumBid) {
                     minBid = this.ad.maximumBid + 1;
@@ -70,7 +69,7 @@
                                 .then(() => {
                                     this.bidAmountInput = '';
                                 })
-                                .catch(err => console.log(err));
+                                .catch( () => {});
                         }
                     }
 

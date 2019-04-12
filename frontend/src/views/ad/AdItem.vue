@@ -37,7 +37,6 @@
               if (!time.shouldCount) {
                   clearInterval(timeinterval);
               }
-              //console.log("timeintervallid" + this.ad.id);
           }, 1000);
 
       }
