@@ -11,6 +11,8 @@ CORS_ORIGIN_WHITELIST = (
 
 )
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=365)
 }

@@ -106,7 +106,7 @@ Testingen blir gjort i backend-delen av appen. Testingen skal sørge for at vi i
 
 Testfilene bruker denne strukturen: `backend/{appnavn}/test_{hvasomtestes}.py`
 
-For å kjøre testene åpner du et terminalvindu backend-mappen og eksekverer kommandoen `python manage.py test`. Da vil alle testene bli kjørt og en feilmelding vil oppstå om noen feiler. 
+For å kjøre testene åpner du et terminalvindu i backend-mappen og eksekverer kommandoen `python manage.py test`. Da vil alle testene bli kjørt og en feilmelding vil oppstå om noen feiler. 
 
 Ønsker du mer informasjon på hva som blir testet kan du skrive `python manage.py test --verbosity=2`
 
