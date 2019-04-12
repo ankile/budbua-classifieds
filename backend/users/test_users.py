@@ -1,12 +1,11 @@
 from django.test import TestCase
-
-from rest_framework.test import APIClient
 from rest_framework import status
+from rest_framework.test import APIClient
+
 from .models import User
 
 TEST_PASSWORD = "PUPASSWOrdLetsGO"
 TEST_EMAIL = "bruker@budbua.no"
-
 
 
 class Test_User_View(TestCase):
@@ -17,13 +16,14 @@ class Test_User_View(TestCase):
         cls.test_user.set_password(TEST_PASSWORD)
         cls.test_user.save()
         jwt_auth_url = '/users/api-token-auth/'
-        cls.jwt_auth_get_token_response = cls.getTokenClient.post(jwt_auth_url, {'email': TEST_EMAIL, 'password':TEST_PASSWORD}, format='json')
+        cls.jwt_auth_get_token_response = cls.getTokenClient.post(jwt_auth_url,
+                                                                  {'email': TEST_EMAIL, 'password': TEST_PASSWORD},
+                                                                  format='json')
         cls.token = cls.jwt_auth_get_token_response.data['token']
 
         cls.getTokenClient.credentials(HTTP_AUTHORIZATION='JWT ' + cls.token)
 
         cls.user_url = '/users/'
-
 
     def test_user_register_via_rest(self):
         client = APIClient()
@@ -41,7 +41,6 @@ class Test_User_View(TestCase):
         create_user_response_success = client.post(create_user_url, registerUserData, format='json')
         self.assertEqual(create_user_response_success.status_code, status.HTTP_201_CREATED)
 
-
     def test_user_register_via_rest_wrong_second_password(self):
         client = APIClient()
         registerUserData = {
@@ -56,7 +55,6 @@ class Test_User_View(TestCase):
         self.assertEqual(create_user_response_fail.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_user_get_profile(self):
-
         get_profile_response = self.getTokenClient.get(self.user_url)
         self.assertEqual(get_profile_response.status_code, status.HTTP_200_OK)
 
@@ -90,7 +88,6 @@ class Test_User_View(TestCase):
         self.assertIn('last_name', get_profile_response.data.keys())
         self.assertIn('email', get_profile_response.data.keys())
 
-
     def test_user_profile_update(self):
         updateDate = {
             "firstName": "Kent Are",
@@ -107,7 +104,6 @@ class Test_User_View(TestCase):
         put_profile_update_response_success = self.getTokenClient.put(self.user_url, updateDate, format='json')
         self.assertEqual(put_profile_update_response_success.status_code, status.HTTP_200_OK)
 
-
     def test_user_profile_update_wrong_password(self):
         updateDate = {
             "firstName": "Kent Are",
@@ -121,19 +117,19 @@ class Test_User_View(TestCase):
         self.assertEqual(put_profile_update_response_wrong_password.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_user_delete_own_profile(self):
-         client = APIClient()
-         test_user = User(email="budbuaTest@budbua.no")
-         test_user.set_password('pleaseDoNOTdeleteM3')
-         test_user.save()
-         jwt_auth_url = '/users/api-token-auth/'
-         jwt_auth_get_token_response = client.post(jwt_auth_url, {'email': "budbuaTest@budbua.no", 'password':"pleaseDoNOTdeleteM3"}, format='json')
-         token = jwt_auth_get_token_response.data['token']
-         client.credentials(HTTP_AUTHORIZATION='JWT ' + token)
+        client = APIClient()
+        test_user = User(email="budbuaTest@budbua.no")
+        test_user.set_password('pleaseDoNOTdeleteM3')
+        test_user.save()
+        jwt_auth_url = '/users/api-token-auth/'
+        jwt_auth_get_token_response = client.post(jwt_auth_url,
+                                                  {'email': "budbuaTest@budbua.no", 'password': "pleaseDoNOTdeleteM3"},
+                                                  format='json')
+        token = jwt_auth_get_token_response.data['token']
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + token)
 
-         delete_profile_response = client.delete(self.user_url)
-         self.assertEqual(delete_profile_response.status_code, status.HTTP_204_NO_CONTENT)
-
-
+        delete_profile_response = client.delete(self.user_url)
+        self.assertEqual(delete_profile_response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_user_delete_own_profile_fail(self):
         client = APIClient()
@@ -141,12 +137,20 @@ class Test_User_View(TestCase):
         test_user.set_password('pleaseDoNOTdeleteM3')
         test_user.save()
         jwt_auth_url = '/users/api-token-auth/'
-        jwt_auth_get_token_response = client.post(jwt_auth_url, {'email': "budbuaTest@budbua.no", 'password':"pleaseDoNOTdeleteM3"}, format='json')
+        jwt_auth_get_token_response = client.post(jwt_auth_url,
+                                                  {'email': "budbuaTest@budbua.no", 'password': "pleaseDoNOTdeleteM3"},
+                                                  format='json')
 
         delete_profile_response = client.delete(self.user_url)
         self.assertEqual(delete_profile_response.status_code, status.HTTP_401_UNAUTHORIZED)
 
 
+class TestCreateSuperUser(TestCase):
+    @classmethod
+    def setUpTestData(cls):
 
+        User.objects.create_superuser('test@test.test', 'heiheihei')
 
-
+    def test_user_was_created(self):
+        u = User.objects.get()
+        self.assertTrue(u.is_superuser)

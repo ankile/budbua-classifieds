@@ -1,7 +1,7 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from budbua.utils.mixins import TimeStampable
-from django.core.exceptions import ValidationError
 from users.models import User
 
 
@@ -79,8 +79,6 @@ class Ad(TimeStampable):
             return user
         else:
             return None
-
-
 
 
 class Bid(TimeStampable):
