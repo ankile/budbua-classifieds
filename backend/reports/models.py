@@ -1,15 +1,13 @@
-
 from django.db import models
 
+from auctions.models import Ad
 from budbua.utils.mixins import TimeStampable
 from users.models import User
-from auctions.models import Ad
 
 
 class AdReport(TimeStampable):
-
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
 
     def __str__(self):
         return f'AdReport(reporter={self.reporter}, ad="{self.ad}")'
@@ -30,9 +28,8 @@ class AdReport(TimeStampable):
 
 
 class UserReport(TimeStampable):
-
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-created_at',)
 
     def __str__(self):
         return f'UserReport(reporter={self.reporter}, reported="{self.reported}")'

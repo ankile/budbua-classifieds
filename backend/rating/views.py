@@ -1,16 +1,15 @@
 from rest_framework import status
-from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Rating
+from rest_framework.views import APIView
 
-# from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .models import Rating
 from .serializers import RatingSerializer
 
 
 class RatingView(APIView):
     def post(self, request):
         serializer = RatingSerializer(data={
-            'rating':request.data.get('rating'),
+            'rating': request.data.get('rating'),
             'rating_giver': request.user.id,
             'rating_receiver': request.GET.get('ratingReceiver'),
         })
