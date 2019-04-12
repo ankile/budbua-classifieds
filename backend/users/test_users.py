@@ -143,3 +143,14 @@ class Test_User_View(TestCase):
 
         delete_profile_response = client.delete(self.user_url)
         self.assertEqual(delete_profile_response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class TestCreateSuperUser(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+
+        User.objects.create_superuser('test@test.test', 'heiheihei')
+
+    def test_user_was_created(self):
+        u = User.objects.get()
+        self.assertTrue(u.is_superuser)
