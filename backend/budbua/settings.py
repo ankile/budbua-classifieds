@@ -146,8 +146,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    if "LIVE" in os.environ:
-       raise ImportError
+    if "LIVE" in os.environ or "HEROKU" in os.environ:
+        raise ImportError
     from budbua.local_settings import *
 except ImportError:
     pass
