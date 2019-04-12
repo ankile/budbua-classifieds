@@ -4,5 +4,4 @@ from analytics import views
 
 urlpatterns = [
     path('', views.OwnerAnalyticsView.as_view(), name='owner-analytics'),
-
 ]

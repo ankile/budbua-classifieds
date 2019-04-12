@@ -1,22 +1,21 @@
 from django.contrib.auth.models import AnonymousUser
-from django.db.models import Max, Q, Count
+from django.db.models import Max, Q
 from django.db.models.aggregates import Avg
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Bid, User
-from .serializers import BidSerializer
 
 from auctions.models import Ad
 from auctions.serializers import AdCreateSerializer, AdListSerializer, AdDetailSerializer
 from budbua.utils.mixins import ModelView
+from .models import User
+from .serializers import BidSerializer
 
 
 class AdsListCreateView(APIView):
-
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    
+
     @staticmethod
     def get(request):
 

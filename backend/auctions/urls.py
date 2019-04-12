@@ -7,5 +7,3 @@ urlpatterns = [
     path('ads/<int:pk>/', views.AdsDetailView.as_view(), name='ads-detail'),
     path('ads/<int:pk>/bid/', views.BidCreateView.as_view(), name='bid'),
 ]
-
-
