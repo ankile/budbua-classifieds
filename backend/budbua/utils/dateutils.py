@@ -1,5 +1,5 @@
 import datetime
 
 
-def today(_):
+def today():
     return datetime.date.today()

@@ -18,7 +18,7 @@ class Test_Bid_Model(TestCase):
         cls.test_user_ad_owner = User.objects.create(email='user@budbua.no', password='budbua')
         cls.test_user_ad_bidder = User.objects.create(email='bidder@bidder.no', password='budbua')
         cls.ad = Ad.objects.create(owner=cls.test_user_ad_owner, title='testAD', description='the best ad ever',
-                                   bid_end_time=today(cls))
+                                   bid_end_time=today())
         cls.bid = Bid.objects.create(bidder=cls.test_user_ad_bidder, ad=cls.ad, value=1000)
 
     def test_bid_bidder_label(self):
@@ -59,7 +59,7 @@ class Test_Bid_Serializer:
         self.test_user_ad_owner = User.objects.create(email='user@budbua.no', password='budbua')
         self.test_user_ad_bidder = User.objects.create(email='bidder@bidder.no', password='budbua')
         self.ad = Ad.objects.create(owner=self.test_user_ad_owner, title='testAD', description='the best ad ever',
-                                    bid_end_time=today(cls))
+                                    bid_end_time=today())
 
         self.bid = Bid.objects.create(**self.bid_attributes)
         self.serializer = BidSerializer(instance=self.bid)
@@ -101,7 +101,7 @@ class Test_Bid_View(TestCase):
 
         cls.test_user_ad_owner = User.objects.create(email='user@budbua.no', password='budbua')
         cls.ad = Ad.objects.create(owner=cls.test_user_ad_owner, title='testAD', description='the best ad ever',
-                                   bid_end_time=today(cls))
+                                   bid_end_time=today())
 
     def test_bid_inserting_via_rest(self):
         inserting_failed_bid = self.getTokenClient.post(self.bad_add_bid_url, {'value': 3000}, format='json')

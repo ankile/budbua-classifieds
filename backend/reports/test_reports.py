@@ -34,7 +34,7 @@ class Test_Report_View(TestCase):
         cls.test_user_reported = User.objects.create(email='user@budbua.no', password='budbua')
 
         cls.ad = Ad.objects.create(owner=cls.test_user_reported, title='testAD', description='the best ad ever',
-                                   bid_end_time=today(cls))
+                                   bid_end_time=today())
 
     def test_report_user_via_rest(self):
         inserting_failed_report = self.getTokenClient.post(self.bad_user_report_url)
