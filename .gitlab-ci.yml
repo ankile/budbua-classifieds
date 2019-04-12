@@ -32,6 +32,7 @@ stages:
         - gem install dpl
         - cd backend
         - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+        - heroku run "rm budbua/local_settings.py" --exit-code --app=$HEROKU_APP_NAME
         - heroku run "python manage.py migrate" --exit-code --app=$HEROKU_APP_NAME
     only:
         - master
